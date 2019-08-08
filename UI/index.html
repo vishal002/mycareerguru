@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="ie ie9" lang="en"> <![endif]-->
+<html lang="en" ng-app="mcgApp">
+    <!--<![endif]--><head>
+
+        <!-- Basic Page Needs -->
+        <meta charset="utf-8">
+        <title>MCG - Educational, College and Courses</title>
+        <meta name="description" content="MCG - Educational, College and Courses">
+        <meta name="author" content="vishal kumar">
+        <meta http-equiv="Cache-control" content="public">
+
+        <!-- Favicons
+        <link rel="shortcut icon" href="/static/assets/img/favicon.ico" type="image/x-icon"/>
+        <link rel="apple-touch-icon" type="image/x-icon" href="/static/assets/img/apple-touch-icon-57x57-precomposed.png">
+        <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="/static/assets/img/apple-touch-icon-72x72-precomposed.png">
+        <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="/static/assets/img/apple-touch-icon-114x114-precomposed.png">
+        <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="/static/assets/img/apple-touch-icon-144x144-precomposed.png">
+        -->
+
+        <link rel="shortcut icon" href="/static/assets/img/favicon.ico" type="image/x-icon"/>
+        <link rel="apple-touch-icon" type="image/x-icon" href="/static/assets/img/logo_light.png">
+        <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="/static/assets/img/logo_light.png">
+        <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="/static/assets/img/logo_light.png">
+        <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="/static/assets/img/logo_light.png">
+
+
+        <!-- Mobile Specific Metas -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="/static/assets/css/wysiwyg/editor.css">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="/static/assets/css/autocomplete/angular-material.css" media="screen" >
+        <link href="/static/assets/css/bootstrap.css" rel="stylesheet">
+        <link href="/static/assets/css/bootstrap-responsive.css" rel="stylesheet">
+        <link href="/static/assets/css/megamenu.css" rel="stylesheet">
+        <link href="/static/assets/css/style.css" rel="stylesheet">
+        <link href="/static/assets/font-awesome/css/font-awesome.css" rel="stylesheet" >
+        <link rel="stylesheet" href="/static/assets/js/fancybox/source/jquery.fancybox.css?v=2.1.4">
+
+        <!-- REVOLUTION BANNER CSS SETTINGS -->
+        <link rel="stylesheet" href="/static/assets/css/fullwidth.css" media="screen" >
+        <link rel="stylesheet" href="/static/assets/rs-plugin/css/settings.css" media="screen" >
+
+        <link rel="stylesheet" href="/static/assets/other_css/owl.carousel.min.css" />
+        <link rel="stylesheet" href="/static/assets/other_css/owl.theme.min.css" />
+        <link rel="stylesheet" href="/static/assets/other_css/owl.transitions.min.css" />
+
+        <link rel="stylesheet" href="/static/assets/js/angular-busy-master/dist/angular-busy.min.css" />
+
+        <link rel='stylesheet prefetch' href='/static/assets/other_css/font-awesome.min.css'>
+        <style>
+            /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
+            .star-rating {
+                margin: 0;
+                padding: 0;
+                display: inline-block;
+            }
+            .star-rating .star {
+                padding: 1px;
+                color: #ddd;
+                font-size: 20px;
+                text-shadow: .05em .05em #aaa;
+                list-style-type: none;
+                display: inline-block;
+                cursor: pointer;
+            }
+            .star-rating .star.filled {
+                color: #666;
+            }
+            .star-rating.readonly .star.filled {
+                color:  #fd0;
+            }
+
+        </style>
+
+        <script src="/static/assets/other_js/prefixfree.min.js"></script>
+
+        <!-- Angular Js AutoComplete code -->
+        <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">-->
+
+        <!--<link rel='stylesheet prefetch' href='https://material.angularjs.org/1.1.1/docs.css'>-->
+        <link rel="stylesheet" href="/static/assets/css/autocomplete/style.css" media="screen" >
+
+
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <!-- Jquery -->
+        <script src="/static/assets/js/jquery.js"></script>
+        <!-- Support media queries for IE8 -->
+        <script src="/static/assets/js/respond.min.js"></script>
+
+        <!-- HTML5 and CSS3-in older browsers-->
+        <script src="/static/assets/js/modernizr.custom.17475.js"></script>
+
+        <!--[if IE 7]>
+          <link rel="stylesheet" href="font-awesome/css/font-awesome-ie7.min.css">
+        <![endif]-->
+
+        <!--[if !IE]><!--><script>if (/*@cc_on!@*/false) {
+                document.documentElement.className += ' ie10';
+            }</script><!--<![endif]--> <!-- Border radius fixed IE10-->
+    </head>
+
+    <body ng-controller="LoginController">
+
+        <div ng-view ></div>
+
+        <div ng-include="'/static/sections/view/footer.html'" ></div>
+        <div id="toTop">Back to Top</div>
+
+        <!-- MEGAMENU -->
+        <script src="/static/assets/js/jquery.easing.js"></script>
+        <!--<script src="assets/js/megamenu.js"></script>-->
+
+        <!-- OTHER JS -->
+        <script src="/static/assets/js/bootstrap.js"></script>
+        <script src="/static/assets/js/functions.js"></script>
+        <script src="/static/assets/assets/validate.js"></script>
+        <script src="http://underscorejs.org/underscore-min.js"></script>
+
+        <!-- FANCYBOX -->
+        <script  src="/static/assets/js/fancybox/source/jquery.fancybox.pack.js?v=2.1.4" type="text/javascript"></script>
+        <script src="/static/assets/js/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.5" type="text/javascript"></script>
+        <script src="/static/assets/js/fancy_func.js" type="text/javascript"></script>
+
+        <!-- REVOLUTION SLIDER -->
+        <script src="/static/assets/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+        <script type="text/javascript" src="/static/assets/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+        <script src="/static/assets/js/revolutio-slider-func.js"></script>
+
+        <!-- ANGULAR JS -->
+        <script src="/static/assets/js/angular/angular.min.js" ></script>
+        <script src="/static/assets/js/angular/angular-route.min.js" ></script>
+        <script src="/static/assets/js/angular/angular-cookies.min.js" ></script>
+        <script src="/static/assets/js/angular/angular-sanitize.min.js" ></script>
+        <script src="/static/assets/other_js/owl.carousel.min.js"></script>
+        <script src="/static/assets/js/pagination/dirPagination.js" ></script>
+        <script src="/static/assets/js/angular-busy-master/dist/angular-busy.min.js"></script>
+        <script src="/static/assets/other_js/roundProgress.min.js"></script>
+
+        <!-- Angular Js AutoComplete code -->
+        <script src='/static/assets/other_js/angular-animate.min.js'></script>
+        <script src='/static/assets/other_js/angular-aria.min.js'></script>
+        <script src='/static/assets/other_js/angular-messages.min.js'></script>
+        <script src='/static/assets/other_js/svg-assets-cache.js'></script>
+        <script src='/static/assets/other_js/angular-material.js'></script>
+
+        <!-- Angular Js full fledge editor -->
+        <script src="/static/assets/js/tinymce/tinymce.js"></script>
+        <script src="/static/assets/js/angular-ui-tinymce/src/tinymce.js"></script>
+
+        <!-- Angular plugin for message Growl  -->
+        <link href="/static/assets/growl/angular-growl.min.css" rel="stylesheet">
+        <script src="/static/assets/growl/angular-growl.min.js"></script>
+
+        <!-- Custom Scripts -->
+        <script src="/static/app.js"></script>
+        <script src="/static/service.js"></script>
+        <script src="/static/sections/js/section.js"></script>
+        <script src="/static/home/js/home.js"></script>
+        <script src="/static/services/js/career_planning.js"></script>
+
+        <script src="/static/services/js/courses_&_colleges.js"></script>
+
+        <script src="/static/services/js/colleges.js"></script>
+        <script src="/static/services/js/courses.js"></script>
+        <script src="/static/services/js/entrance_and_scholarship_exams.js"></script>
+        <script src="/static/services/js/school.js"></script>
+        <script src="/static/services/js/study_abroad.js"></script>
+        <script src="/static/services/js/pro_mentoring.js"></script>
+        <script src="/static/services/js/scholarships.js"></script>
+        <script src="/static/services/js/aptitude_ability.js"></script>
+        <script src="/static/services/js/mentoring.js"></script>
+        <script src="/static/services/js/mentee.js"></script>
+        <script src="/static/services/js/mentor.js"></script>
+        <script src="/static/services/js/exams.js"></script>
+        <script src="/static/services/js/col_cou_ex_car-search.js"></script>
+        <script src="/static/services/js/home_schooling.js"></script>
+        <script src="/static/services/js/home-schooling-decoded.js"></script>
+        <script src="/static/services/js/knowledge-society.js"></script>
+        <script src="/static/services/js/coaching_tuitions.js"></script>
+
+        <script src="/static/assets/js/wysiwyg.js"></script>
+        <script src="/static/login/js/authentication/services.js"></script>
+        <script src="/static/login/js/authentication/controllers.js"></script>
+        <script src="/static/login/js/registerUser/registerUserService.js"></script>
+        <script src="/static/login/js/registerUser/registerUserController.js"></script>
+        <script src="/static/login/js/registerUser/registerUserApp.js"></script>
+
+        <script src="/static/login/js/student-dashboard.js"></script>
+
+        <script src="/static/sections/js/autocomplete_search.js"></script>
+
+    </body>
+</html>

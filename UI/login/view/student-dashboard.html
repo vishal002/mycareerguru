@@ -1,0 +1,139 @@
+<div ng-include="'/static/sections/view/header.html'"></div>
+
+<div class="container" ng-controller="studentDashboardCrt">
+    <div class="row">
+        <div class="span12">
+            <ul class="breadcrumb">
+                <li><a href="#/home">Home</a><span class="divider">/</span></li>
+                <li class="active">Student-Dashboard</li>
+                <li class="pull-right  hidden-phone">
+                    <a href="" data-ng-hide="editMode" data-ng-click="editMode = true;" class="button_red_small">
+                        <span class="icon-edit"></span>Edit
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false;" class="button_red_small">
+                        <span class="icon-save"></span>Save
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false;" class="button_red_small">
+                        <span class="icon-remove"></span>Cancel
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- =========================Start Col left section ============================= -->   
+
+        <section class="span12">
+            <div class="col-right" style="background-color: transparent; border: none; 
+                 margin-bottom: 0px; padding: 25px 13px 0px 13px;">
+                <div class="main-img">
+                    <div class="imageContainerDashboard">
+                        <p class="lead" style="width: 100%;" >
+                            <i class="icon-user"></i> Vishal Kumar<br/>
+                            <small style="font-size: 12px;"><i class="icon-envelope" ></i>kumarvishal.002@gmail.com</small>
+                        </p>
+                        <div class="widget tags pull-right hidden-phone">
+                            <a href=""><i class="icon-dashboard"></i>Dashboard</a>
+                            <a href=""><i class="icon-book"></i>Analysis</a>
+                            <a href=""><i class="icon-gears"></i>Settings</a>
+                        </div>
+                        <!--for mobile -->
+                        <div class="widget tags pull-right hidden-desktop hidden-tablet">
+                            <a style="padding: 0 10px 0 5px; " href=""><i class="icon-dashboard"></i>Dashboard</a>
+                            <a style="padding: 0 10px 0 5px; " href=""><i class="icon-book"></i>Analysis</a>
+                            <a style="padding: 0 10px 0 5px; " href=""><i class="icon-gears"></i>Settings</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="span12">
+            <div class="col-right para-header margin-bot-10px">
+                <h3><span>Track My Application</span></h3>
+            </div>
+
+            <div class="col-right para-header margin-bot-10px">
+                <h3><span>Shortlisted Colleges</span></h3>
+            </div>
+
+            <div class="col-right para-header margin-bot-10px">
+                <h3><span>Followed Exams</span></h3>
+            </div>
+
+            <div class="col-right para-header margin-bot-10px">
+                <h3><span>Feedback Form</span></h3>
+                <div>
+                    <div class="">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Content</th>
+                                    <th>Date/Time</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="feed in testimonialsList">
+                                    <td>{{feed.name}}</td>
+                                    <td ng-if="feed.text" ng-bind-html="feed.text"></td>
+                                    <td ng-if="feed.image"><img width="50" height: 50 ng-src="{{ feed.image }}"></td>
+                                    <td ng-if="feed.video">{{ feed.video }}</td>
+                                    <td></td>
+                                    <td>
+                                        <a class='button_red_small no-margin' ng-click="edit(feed.id,$index)">Edit</a>
+                                        <a class='button_red_small no-margin' ng-click="delete(feed.id,$index)">Delete</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <form name="form"  role="form">
+                        <div class="row">
+                            <div class="span5">
+                                <label for="exampleInput1">Feedback Title</label>
+                                <input type="text" class="span5 ie7-margin" id="exampleInput1" 
+                                       placeholder="Name" ng-model="dataDetail.name">
+                            </div>
+                            <div class="span3">
+                                <label for="exampleInputCon">Select Content Type</label>
+                                <select class="span3 ie7-margin" ng-model="dataDetail.content_type">
+                                    <option value="" ng-selected="dataDetail.content_type == ''">Select Type</option>
+                                    <option value="text" ng-selected="dataDetail.text != ''">Text Content</option>
+                                    <option value="video" ng-selected="dataDetail.video != ''">Video Content (only URL)</option>
+                                    <option value="image" ng-selected="dataDetail.image != ''">Image Content</option>
+                                </select>
+                            </div>
+                            <div class="span2">
+                                <label for="exampleInput1">&nbsp;</label>
+                                <button type="submit" class="span2 ie7-margin btn btn-default" ng-click="createFeedback(dataDetail.itemIndex)" >Submit</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="span10" ng-if="dataDetail.content_type === 'text' ">
+                                <label for="exampleInput2">Text Content</label>
+                                <div style="height: 200px;overflow-y: auto;">
+                                    <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.text"></textarea>
+                                </div>
+                            </div>
+                            <div class="span10" ng-if="content_type === 'video' ">
+                                <label for="exampleInput4">Video Content (only URL)</label>
+                                <input type="text" class="form-control" id="exampleInput4" placeholder="Youtube URL" ng-model="dataDetail.video">
+                            </div>
+                            <div class="span10" ng-if="content_type === 'image' ">
+                                <label for="exampleInputFile">Image Content</label>
+                                <input type="file" id="exampleInputFile" ng-model="dataDetail.image">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+            </div>
+        </section>
+
+    </div><!-- end row-->
+</div> <!-- end container-->
+
+

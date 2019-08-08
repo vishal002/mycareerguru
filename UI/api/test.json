@@ -1,0 +1,17 @@
+[{
+        "question_id": "001",
+        "question": "<p>The ratio between the perimeter and the breadth of a rectangle is 5 : 1. If the area of the rectangle is 216 sq. cm, what is the length of the rectangle?</p>",
+        "options": ["16 cm", "18 cm", "24 cm", "Data inadequate"],
+        "correct": "Data inadequate"
+    }, {
+        "question_id": "002",
+        "question": "<p>At 3:40, the hour hand and the minute hand of a clock form an angle of:</p>",
+        "options": ["120°", "125°", "130°", "135°"],
+        "correct": "130°"
+    }, {
+        "question_id": "003",
+        "question": "<p>39 persons can repair a road in 12 days, working 5 hours a day. In how many days will 30 persons, working 6 hours a day, complete the work?</p>",
+        "options": ["10", "13", "14", "15"],
+        "correct": "13"
+    }
+]

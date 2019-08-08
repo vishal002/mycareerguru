@@ -1,0 +1,219 @@
+<div ng-include="'/static/sections/view/header.html'"></div>
+
+<div class="container margin-top-30px" ng-controller="MentorController">
+    <div class="row">
+        <h2 class="span12">Mentor</h2>
+        <div class="span12">
+            <ul class="breadcrumb">
+                <li><a href="#/home">Home</a><span class="divider">/</span></li>
+                <li class="active">Mentor</li>
+                <li class="pull-right  hidden-phone">
+                    <a href="" data-ng-hide="editMode" data-ng-click="editMode = true;" class="button_red_small">
+                        <span class="icon-edit"></span>Edit
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false;" class="button_red_small">
+                        <span class="icon-save"></span>Save
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false;" class="button_red_small">
+                        <span class="icon-remove"></span>Cancel
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- =========================Start Col left section ============================= -->   
+        <aside class="span12 hidden-phone ">
+            <ul class="nav nav-tabs">
+                <li ng-repeat="menu in sideMenu[0].sub_menu_name" ng-class="{'active': currentSelected == menu.sub_id }"><a href="" ng-click="getMenuContent(menu.sub_id, $index)" >{{menu.sub_menu}}</a></li>
+            </ul>
+        </aside>
+        <!-- for mobile version -->
+        <aside class="span4 hidden-desktop hidden-tablet ">
+            <div class="col-left" >
+                <h5 ng-repeat="menu in sideMenu[0].sub_menu_name" >
+                    <a href="" ng-click="getMenuContent(menu.sub_id, $index)">{{menu.sub_menu}}</a>
+                </h5>
+            </div>
+        </aside>
+
+        <!-- =========================Start Col right section ============================= --> 
+        <section class="span12  ">
+            <div class="col-right">
+                <div class="main-img">
+                    <img src="/static/assets/img/about.jpg" alt="" >
+                    <p class="lead" data-ng-hide="editMode">{{content.sub_menu}}</p>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" 
+                               data-ng-model="content.sub_menu" />
+                        <textarea class="input-large inputfield" 
+                                  data-ng-model="content.sub_menu_description" ></textarea>
+
+                    </div>
+                </div>
+
+                <div data-ng-hide="editMode" dynamic="content.content"></div>
+
+                <div class="container-fluid" data-ng-show="editMode">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <!--<wysiwyg-edit content="content[0].content" config="editorConfig"></wysiwyg-edit> -->
+                            <div data-ng-hide="editMode" dynamic="content.content"></div>
+                            <div data-ng-show="editMode" >
+                                <textarea ui-tinymce="tinymceOptions" ng-model="content.content"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--<p>Lorem ipsum dolor sit amet, elitr nullam ei duo. Duo ut omnes scribentur. <strong>Vim ne quas invidunt intellegam</strong>, quo docendi blandit electram ei, vel ex omittam detracto philosophia. Ei nam reque etiam, possit eripuit ad vel. Aperiri deserunt ea cum. Eam animal principes neglegentur cu, facer audiam forensibus his ex. Tibique dolores adversarium ne vel. At vide errem duo, vis luptatum menandri ullamcorper id. Duo cu <a href>tractatos interesset</a>, at usu soluta tibique principes. Ei cum dicam suavitate, eum ex erant homero mandamus, his te albucius platonem mediocritatem. </p>
+
+                <p>Nec eros iudico labores ut. Id nonumes dolores voluptatibus eam. Ea eum comprehensam mediocritatem, quot splendide in per, moderatius temporibus ne quo. Vix aliquid graecis concludaturque te, no vix justo inani maiorum. Novum minimum qui ex. In cum amet debitis detraxit, cum at altera quodsi, putant explicari reprehendunt in eum.</p>
+
+                <h5>Your list</h5>
+                <ul class=" list_1">
+                    <li>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</li>
+                    <li>Nullam quis risus eget urna mollis ornare vel eu leo.</li>
+                    <li>Nullam id dolor id nibh ultricies vehicula ut id elit.</li>
+                    <li>Donec id elit non mi porta gravida at eget metus.</li>
+                </ul>
+                <h5>Your list with links</h5>
+                <ul class=" list_3">
+                    <li><a href>Vivamus sagittis lacus vel augue laoreet </a></li>
+                    <li><a href>Nullam quis risus eget urna mollis</a></li>
+                    <li><a href>Nullam id dolor id nibh ultricies</a></li>
+                    <li><a href>Donec id elit non mi porta</a></li>
+                </ul>-->
+
+<!--                <h5>How to apply</h5>
+                <p><a href="#">Agam prima ea ius</a>, nec eros iudico labores ut. Id nonumes dolores voluptatibus eam. Ea eum comprehensam mediocritatem, quot splendide in per, moderatius temporibus ne quo. Vix aliquid graecis concludaturque te, no vix justo inani maiorum. Novum minimum qui ex. In cum amet debitis detraxit, cum at altera quodsi, putant explicari reprehendunt in eum.</p>
+                <hr>-->
+
+                <!-- For Mentees tab -->
+                <p class="text-center">
+                    <table class="table table-bordered text-center" ng-if="content.mentees">
+                        <tr>
+                            <th>Mentee</th>
+                            <th>Tasks</th>
+                            <th>Feedback</th>
+                            <th>Meeting schedule</th>
+                        </tr>
+                        <tr ng-repeat="mentee in content.mentees">
+                            <td><a ng-href="{{mentee.profile_url}}" >{{ mentee.name }}</td>
+                            <td>
+                                <ul>
+                                    <li ng-repeat="task in mentee.tasks">
+                                        {{ task }}
+                                    </li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li ng-repeat="feedback in mentee.feedback">
+                                        {{ feedback }}
+                                    </li>
+                                </ul>
+                            </td>
+                            <td>{{ mentee.meeting_schedule }}</span>
+                            </td>
+                        </tr>
+                    </table>
+                </p>
+
+                <!-- For WorkSheet tab -->
+                <p ng-if="content.create_worksheet">
+                    <button class='button_red_small no-margin' type="button" class="btn btn-info" >Create Worksheet</button>
+                </p>
+                <p class="text-center">
+                    <table class="table table-bordered text-center" ng-if="content.worksheets">
+                        <tr>
+                            <th>Worksheet</th>
+                            <th>Description</th>
+                            <th>Edit</th>
+                        </tr>
+                        <tr ng-repeat="worksheet in content.worksheets">
+                            <td>{{ worksheet.name }}</td>
+                            <td>{{ worksheet.description }}</td>
+                            <td><a ng-href="#/edit/{{worksheet.id}}" class="button_red_small"><span class="icon-edit"></span>Edit</a></td>
+                        </tr>
+                    </table>
+                </p>
+
+                <!-- For My Planner tab -->
+                <div class="row" ng-if="content.planner">
+                    <div class="span11">
+                        <div class="row">
+                            <div class="span4">
+                                <label>Select Student</label>
+                                <select ng-change="menteePlanner(selectedMentee)" ng-model="selectedMentee">
+                                    <option value="">Select</option>
+                                    <option value="{{ mentee.id }}" ng-repeat="mentee in content.planner.mentees">{{ mentee.name }}</option>>
+                                </select>
+                                <div ng-if="showCreateButton">
+                                    <a ng-href="#" class="button_red_small"><span class="icon-new"></span>Create New</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="span11">
+                                <table class="table table-bordered text-center" ng-if="menteeHistory">
+                                    <tr>
+                                        <th>Tasks</th>
+                                        <th>Feedback</th>
+                                        <th>Meeting schedule</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    <tr ng-repeat="mentee in menteeHistory.history">
+                                        <td>{{ mentee.task }}</td>
+                                        <td>{{ mentee.feedback }}</td>
+                                        <td>{{ mentee.meeting_schedule }}</td>
+                                        <td>
+                                            <select>
+                                                <option value="">Select</option>
+                                                <option value="0">Pending</option>
+                                                <option value="1">Complete</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <a href=""  class="button_red_small">
+                                                <span class="icon-edit"></span>Edit
+                                            </a>
+                                            <a href="" class="button_red_small">
+                                                <span class="icon-save"></span>Save
+                                            </a>
+                                            <a href="" class="button_red_small">
+                                                <span class="icon-remove"></span>Cancel
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div><!-- end col right-->
+        </section>
+    </div><!-- end row-->
+    <!-- Modal -->
+    <div id="createProfileModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Create Profile</h4>
+          </div>
+          <div class="modal-body">
+            <p>Profile Content</p>
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+</div> <!-- end container-->
+

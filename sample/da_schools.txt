@@ -1,0 +1,18 @@
+LEVEL
+---------------------------
+Data of Schools - 
+	Name of the School	
+	Address Line	
+	City	
+	State	
+	Zip	
+	Country	
+	Phone	
+	Mobile	
+	Fax	
+	Website	
+	Class/Std/Courses	
+	Affiliated Board	
+	Govt/Private	
+	Boys/Girls/Co-Ed	
+	Established											

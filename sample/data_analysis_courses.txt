@@ -1,0 +1,38 @@
+Colleges Accepting applications
+Careers
+Duration
+Recruiting companies
+--------------------------------------------
+College v1 - is actually courses
+	Title	
+	Description	
+	Duration	
+	Level	
+	Type	
+	Eligibility	
+	Overview	
+	Eligibility 2	
+	Syllabus	
+	Colleges	
+	Suitability	
+	Beneficial	
+	Employment Areas	
+	Job Types	
+	Advance Courses	
+	Related Courses
+
+sample data of courses - 
+	Course Title	
+	Description	Duration	
+	Level	
+	Type	
+	Eligibility	Overview
+	Eligibility 2	
+	Syllabus	
+	Colleges	
+	Suitability	
+	Beneficial
+	Employment Areas	
+	Job Types	
+	Advance Courses	
+	Related Courses						

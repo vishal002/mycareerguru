@@ -1,0 +1,198 @@
+<div ng-include="'/static/sections/view/header.html'"></div>
+
+<div class="container  margin-top-30px" ng-controller="careerPlanningCrt">
+    <div class="row">
+        <h2 class="span12">Career Planning</h2>
+        <div class="span12">
+            <ul class="breadcrumb">
+                <li><a href="#/home">Home</a><span class="divider">/</span></li>
+                <li><a href="#/services/career-planning/Career-Planning/0">Career planning</a><span class="divider">/</span></li>
+                <li class="active">{{param_name}}</li>
+
+                <li class="pull-right  hidden-phone">
+                    <a href="" data-ng-hide="editMode" data-ng-click="editMode = true; editItem(dataDetail)" class="button_red_small">
+                        <span class="icon-edit"></span>Edit
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false; doneEditing(dataDetail)" class="button_red_small">
+                        <span class="icon-save"></span>Save
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false; cancelEditing(dataDetail)" class="button_red_small">
+                        <span class="icon-remove"></span>Cancel
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- =========================Start Col left section ============================= -->   
+        <aside class="span4 hidden-phone ">
+            <div class="col-left" ng-repeat="menu in sideMenu" 
+                 ng-class="{
+                             'col-left-current': currentSelected == menu.id }" >
+                <h4><a href="#/services/career-planning/{{menu.menu| spaceless}}/{{menu.id}}" 
+                       ng-click="getMenuContent(menu.id, $index)" >{{menu.menu}}</a></h4>
+                <p>
+                    {{menu.description}}
+                </p>
+                <a href="#/services/career-planning/{{menu.menu| spaceless}}/{{menu.id}}" 
+                   ng-click="getMenuContent(menu.id, $index)" class="button_red_small">Read more</a>
+            </div>
+            <!--<p><img src="img/banner.jpg" alt="Banner" class="img-rounded"></p>-->
+        </aside>
+
+        <!-- for mobile version -->
+        <aside class="span4 hidden-desktop hidden-tablet ">
+            <div class="col-left">
+                <i class="pull-right icon-expand" style="margin-top: -15px" data-toggle="collapse" 
+                   data-target="#collapseExampleNew" aria-expanded="true" 
+                   aria-controls="collapseExampleNew"> Click to Expand</i>
+                   
+                <div class="collapse" id="collapseExampleNew">
+                    <h5 ng-repeat="menu in sideMenu" >
+                        <a href="#/services/career-planning/{{menu.menu| spaceless}}/{{menu.id}}"
+                           ng-click="getMenuContent(menu.id, $index)">{{menu.menu}}</a>
+                    </h5>
+                </div>
+            </div>
+        </aside>
+
+        <!-- =========================Start Col right section ============================= --> 
+        <section class="span8" ng-if="currentSelected != 3" >
+            <div class="col-right">
+                <div class="main-img">
+                    <img src="/static/assets/img/about.jpg" alt="" >
+                    <p class="lead" data-ng-hide="editMode">{{dataDetail.menu}}</p>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" 
+                               data-ng-model="dataDetail.menu" />
+                        <textarea class="input-large inputfield" 
+                                  data-ng-model="dataDetail.description" ></textarea>
+
+                    </div>
+                </div>
+
+                <div data-ng-hide="editMode" dynamic="dataDetail.content"></div>
+
+                <div class="container-fluid" data-ng-show="editMode">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <!--<wysiwyg-edit content="dataDetail.content" config="editorConfig"></wysiwyg-edit>-->
+                            <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.content"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-center">
+                    <a href="staff.html" class="button_large">
+                        <span class="icon-calendar"></span>Book Appointment
+                    </a>
+                </p>
+
+                <div class="row">
+                    <div class="span3">
+                        <label>Select Counselor</label>
+                        <select id="subject_contact" class="span3">
+                            <option value="">Counselor 1</option>
+                            <option value="">Counselor 2</option>
+                            <option value="">Counselor 3</option>
+                        </select>
+                    </div>
+                    <div class="span2">
+                        <label>Select Day</label>
+                        <input type="date" class="span2" />
+                    </div>
+                    <div class="span2">
+                        <label>Select Time Slot</label>
+                        <select id="subject_contact" class="span2">
+                            <option value="">10:00AM - 12:00AM</option>
+                            <option value="">12:00AM - 2:00PM</option>
+                        </select>
+                    </div>
+                    <div class="span2">
+
+                    </div>
+                </div>
+
+            </div><!-- end col right-->
+        </section>
+
+
+        <!-- for explore different curriers  -->
+        <section class="span8" ng-if="currentSelected == 3" >
+            <div class="col-right">
+                <div class="main-img">
+                    <img src="/static/assets/img/about.jpg" alt="" >
+                    <!-- for web -->
+                    <p class="hidden-phone lead lead_custom" data-ng-hide="editMode">
+                        <input type="text" class="form-control search_box_ind" 
+                               placeholder="Type what you want to be." ng-model="typeBasedSearchValue"
+                               list="want_to_be" ng-blur="getCareerList('SEARCH', 'want_to_be', typeBasedSearchValue)" />
+                        <!-- temporary solution for text based search -->
+                        <datalist id="want_to_be">
+                            <option ng-repeat="data in searchOptions.WANT_TO_BE" value="{{data}}"></option>
+                        </datalist>
+
+                        <input type="text" class="form-control search_box_ind" 
+                               placeholder="Search Careers related to Subject" 
+                               list="subject" ng-model="searchCareerRel"
+                               ng-blur="getCareerList('SEARCH', 'subject', searchCareerRel)" />
+                        <!-- temporary solution for text based search -->
+                        <datalist id="subject">
+                            <option ng-repeat="data in searchOptions.SUBJECT" value="{{data}}"></option>
+                        </datalist>
+
+                        <select class="form-control search_select_ind" ng-model="selectCareerfromList" 
+                                ng-blur="getCareerList('SEARCH', 'majorfield', selectCareerfromList)">
+                            <option value="">Select from Careers List</option>
+                            <option ng-repeat="majorFields in searchOptions.MAJORFIELD" value="{{majorFields}}">{{majorFields}}</option>
+                        </select>
+                    </p>
+                    <!-- for mobile -->
+                    <p class="hidden-desktop hidden-tablet lead" style="bottom: -53px; text-align: center;"
+                       data-ng-hide="editMode">
+                        <input type="text" class="form-control" style="margin-bottom: 3px;"
+                               placeholder="Type what you want to be."/>
+                        <input type="text" class="form-control" style="margin-bottom: 3px;"
+                               placeholder="Search Careers related to Subject"/>
+                        <select class="form-control">
+                            <option value="">Select from Careers List</option>
+                            <option ng-repeat="majorFields in majorFieldsList" value="">{{majorFields.name}}</option>
+                        </select>
+                    </p>
+                </div>
+
+                <div data-ng-hide="editMode" dynamic="dataDetail.content"></div>
+
+                <div class="container-fluid" data-ng-show="editMode">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <!--<wysiwyg-edit content="dataDetail.content" config="editorConfig"></wysiwyg-edit>-->
+                            <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.content"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="span2" style="padding-bottom: 20px;" ng-repeat="data in careerList">
+                            <div class="thumbnail" style="border-radius: 5px;">
+                                <!--<img style="width: 70px; height: 70px;" ng-src="{{data.logo}}" />-->
+                                <div class="caption" style="text-align: center;">
+                                    <div style="height: 40px;" title="{{data.name}}">
+                                        <a href="#/services/career-planning/explore-different-careers/{{data.name}}/{{data.id}}">
+                                            {{ data.name | limitTo: 40 }}
+                                            {{data.name.length > 40 ? '...' : ''}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div><!-- end col right-->
+        </section>
+
+    </div><!-- end row-->
+</div> <!-- end container-->
+

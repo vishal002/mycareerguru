@@ -1,0 +1,20 @@
+[{
+        "menu": "Popular Courses",
+        "sub_menu": ["test1","test2","test3","test4"]
+},
+{
+        "menu": "Careers in Demand",
+        "sub_menu": ["test1","test2","test3","test4"]
+},
+{
+        "menu": "Exam results",
+        "sub_menu": ["test1","test2","test3","test4"]
+},
+{
+        "menu": "Search Colleges",
+        "sub_menu": ["test1","test2","test3","test4"]
+},
+{
+        "menu": "Supporters/Donours",
+        "sub_menu": ["test1","test2","test3","test4"]
+}]

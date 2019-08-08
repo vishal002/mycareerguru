@@ -1,0 +1,84 @@
+<div ng-include="'/static/sections/view/header.html'"></div>
+
+<div class="container margin-top-30px" ng-controller="examListCrt as data">
+    <div class="row">
+        <h2 class="span12">Exams List</h2>
+        <div class="span12">
+            <ul class="breadcrumb">
+                <li><a href="#/home">Home</a> <span class="divider">/</span></li>
+                <li><a >Entrance and Scholarship Exams</a> <span class="divider">/</span></li>
+                <li class="active">Exams List</li>
+            </ul>
+        </div>
+        <section class="span1  "></section>
+        <section class="span10  ">
+            <div class="col-right"> 
+
+                <div class="strip-courses">
+                    <div class="title-course">
+                        <h3>Engineering > After X > B.Tech <small>(50)</small>  </h3>
+                        <!--                <ul>
+                                                <li><i class="icon-calendar"></i> Start date: 24/06/13</li>
+                                                <li><i class="icon-bookmark"></i> ID: 012</li>
+                                            </ul>-->
+                    </div>
+                    <div class="description">
+                        <div class="row">
+                            <div class="span3" ng-repeat="user in examList">
+                            <!--<div class="span3" dir-paginate="user in data.users|itemsPerPage:data.itemsPerPage" total-items="data.total_count">-->
+                                <div class="box-style-1 borders" style="padding: 5px;">
+                                    <table class="table table-responsive table-bordered-none">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <img alt="exam name" title="{{user.titel}}" 
+                                                         style="width: 50px; height: 50px;" 
+                                                         src="{{user.logo}}" >
+                                                </td>
+                                                <td>
+                                                    <h5><a href="#/services/entrance_and_scholarship_exams_list/exam/{{user.titel| spaceless}}"
+                                                           ng-click="setExamInDetail(user)">
+                                                            {{user.titel}}</a></h5>
+                                                    <p>{{user.name}}</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <span class="date"><i class="icon-calendar"></i>{{user.exam_date}}</span>
+                                                    <a href="" class="button_red_small" style="margin-bottom: 1px;"> <span class="icon-bell-alt"></span> Get Updates</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                </div><!-- end strip-->
+
+                <hr>
+                <div class="pagination pagination-centered">
+                    <dir-pagination-controls
+                        max-size="8"
+                        direction-links="true"
+                        boundary-links="true" 
+                        on-page-change="data.getData(newPageNumber)" >
+                    </dir-pagination-controls>
+                </div>
+
+                                <div class="pagination pagination-centered">
+                                    <ul>
+                                        <li><a href="#">Prev</a></li>
+                                        <li class="active"><a href="#">1</a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li><a href="#">Next</a></li>
+                                    </ul>
+                                </div> <!--end pagination-->
+
+            </div><!-- end col right-->
+
+        </section>
+        <section class="span1  "></section>
+    </div><!-- end row-->
+</div> <!-- end container-->

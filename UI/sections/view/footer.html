@@ -1,0 +1,115 @@
+<footer ng-controller="footerCrt">
+    <div class="container">
+        <div class="row">
+            <!--            <div class="span2" id="brand-footer">
+                            <p><img src="/static/assets/img/logo-footer.jpg" alt=""></p>
+                            <p><img style="width: 65%;" src="/static/assets/img/logo_dark.png" alt=""></p>
+                            <p>Copyright © 2013</p>
+                            <div class="twitter"><a href="#" >Follow on Twitter</a></div>
+                            <div class="fb"><a href="#">Follow on  Facebook</a></div>  
+                        </div>-->
+
+            <div class="span2 hidden-phone" id="quick-links" ng-repeat="menu in allMenu">
+                <h5>{{menu.menu}}</h5>
+                <ul>
+                    <li ng-repeat="menu1 in menu.sub_menu"><a href="" >{{menu1}}</a></li>
+                </ul>
+            </div>
+            
+
+            <div class="span2 hidden-desktop hidden-tablet">
+                <table class="table table-bordered-none">
+                    <tr>
+                        <td>
+                            <div ng-repeat="menu in allMenu.slice(0, 3)">
+                                <h5>{{menu.menu}}</h5>
+                                <ul>
+                                    <li ng-repeat="menu1 in menu.sub_menu"><a href="" >{{menu1}}</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div ng-repeat="menu in allMenu.slice(3, 5)">
+                                <h5>{{menu.menu}}</h5>
+                                <ul>
+                                    <li ng-repeat="menu1 in menu.sub_menu"><a href="" >{{menu1}}</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5>About us</h5>
+                                <ul>
+                                    <li><a href="" >About My Cureer Guru</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="span2 " id="contacts-footer" style="text-align: center;">
+                <h5>Contacts</h5>
+                <ul>
+                    <li><i class="icon-home"></i> 11 Fifth Ave, Loftus - NEW JERSEY, US</li>
+                    <li><i class="icon-phone"></i> + 61 (2) 8093 3400</li>
+                    <li><i class="icon-phone-sign"></i> +61 (2) 9542 3599</li>
+                    <li><i class="icon-envelope"></i> <a href="#">sussions@domain.com</a></li>
+                </ul>
+            </div>
+
+            <!--<div class="span2" id="quick-links">
+                <h4>Careers in Demand</h4>
+                <ul>
+                    <li><a href="#" >Degrees &amp; Majors</a></li>
+                    <li><a href="#" >Master's online</a></li>
+                    <li><a href="#" >Professional Courses</a></li>
+                    <li><a href="#" >Bacherlor's</a></li>
+                    <li><a href="#" >Courses</a></li>
+                    <li><a href="#" >Departments and Programs</a></li>
+                </ul>
+            </div>
+            <div class="span2" id="quick-links">
+                <h4>Quick links</h4>
+                <ul>
+                    <li><a href="#" >Degrees &amp; Majors</a></li>
+                    <li><a href="#" >Master's online</a></li>
+                    <li><a href="#" >Professional Courses</a></li>
+                    <li><a href="#" >Bacherlor's</a></li>
+                    <li><a href="#" >Courses</a></li>
+                    <li><a href="#" >Departments and Programs</a></li>
+                </ul>
+            </div>
+            <div class="span2" id="quick-links">
+                <h4>Quick links</h4>
+                <ul>
+                    <li><a href="#" >Degrees &amp; Majors</a></li>
+                    <li><a href="#" >Master's online</a></li>
+                    <li><a href="#" >Professional Courses</a></li>
+                    <li><a href="#" >Bacherlor's</a></li>
+                    <li><a href="#" >Courses</a></li>
+                    <li><a href="#" >Departments and Programs</a></li>
+                </ul>
+            </div>
+            <div class="span2" id="quick-links">
+                <h4>Quick links</h4>
+                <ul>
+                    <li><a href="#" >Degrees &amp; Majors</a></li>
+                    <li><a href="#" >Master's online</a></li>
+                    <li><a href="#" >Professional Courses</a></li>
+                    <li><a href="#" >Bacherlor's</a></li>
+                    <li><a href="#" >Courses</a></li>
+                    <li><a href="#" >Departments and Programs</a></li>
+                </ul>
+            </div>-->
+
+            <!--                <h4>Newsletter</h4>
+                <p>Donec adipiscing, quam non faucibus luctus, mi arcu blandit diam. Dolor consul graecis nec ut, scripta eruditi scriptorem et nam.</p>
+
+                <div id="message-newsletter"></div>
+                <form method="post"  action="assets/newsletter.php" name="newsletter" id="newsletter" class="form-inline">
+                    <input name="email_newsletter" id="email_newsletter"  type="email" value="" placeholder="Your Email" >
+                    <button  id="submit-newsletter" class=" button_medium" > Subscribe</button>
+                </form>-->
+
+        </div>
+    </div>
+</footer><!-- End footer-->

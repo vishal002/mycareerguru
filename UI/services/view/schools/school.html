@@ -1,0 +1,154 @@
+<div ng-include="'/static/sections/view/header.html'"></div>
+
+<div class="container margin-top-30px" ng-controller="schoolDetailCrt">
+    <div class="row">
+        <h2 class="span12">School Search</h2>
+        <div class="span12">
+            <ul class="breadcrumb">
+                <li><a href="#/home">Home</a><span class="divider">/</span></li>
+                <li><a href="#/services/schools-list" >School Search <span class="divider">/</span> School list </a><span class="divider">/</span></li>
+                <li class="active">{{paramSchoolName}}</li>
+            
+                
+                <li class="pull-right hidden-phone">
+                    <a href="" data-ng-hide="editMode" data-ng-click="editMode = true; editItem(dataDetail)" class="button_red_small">
+                        <span class="icon-edit"></span>Edit
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false; doneEditing(dataDetail)" class="button_red_small">
+                        <span class="icon-save"></span>Save
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false; cancelEditing(dataDetail)" class="button_red_small">
+                        <span class="icon-remove"></span>Cancel
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- to do <div class="span12">
+            <div class="widget">
+                <div class="form-group">
+                    <form class="form-search form-inline" 
+                          style="background-color: #555;padding: 10px;">
+                        <input type="text" class="input-medium form-control" placeholder="Search /Filter Box for other colleges" style="width: 92%;">
+                        <button type="submit" class="button_medium" style="position:relative; top:2px;">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>-->
+
+        <section class="span12">
+            <div class="col-right" style="background-color: transparent; border: none; margin-bottom: 0px;">
+                <div class="main-img" ng-mouseover="toolTipFun();">
+
+                    <div class="imageContainer">
+                        <p class="lead" style="bottom: 15%;" >{{dataDetail.name}} <br/>
+                            <small>{{dataDetail.city}}, {{dataDetail.state}}</small>
+                        </p>
+                        <div class="widget tags pull-right">
+                            <a href="" data-toggle="tooltip" data-placement="bottom" title="{{dataDetail.email}}">
+                                <span class="icon-envelope"></span> View Email</a>
+                            <a href="" data-toggle="tooltip" data-placement="bottom" title="{{dataDetail.phone}}">
+                                <span class="icon-phone"></span> View Phone</a>
+                            <a href="" data-toggle="tooltip" data-placement="bottom" title="{{dataDetail.website}}">
+                                <span class="icon-globe"></span> View Website</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <aside class="span3">
+            <div class="col-left" ng-repeat="menu in menu_list"  style="margin-bottom: 1px; padding: 15px;"
+                 ng-class="{'col-left-current': currentSelected == $index }" >
+                <h4><a href="" ng-click="getMenuContent(menu.sub_id, $index)" >{{menu.sub_menu}}</a></h4>
+            </div>
+
+            <!--<p><img src="img/banner.jpg" alt="Banner" class="img-rounded"></p>-->
+        </aside>
+
+        <section class="span9">
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>About/Overview</span></h3>
+                    <div data-ng-hide="editMode" dynamic="dataDetail.info_5"></div>
+                    <div data-ng-hide="editMode" dynamic="dataDetail.class_info"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.info_5"></textarea>
+                        <!--<wysiwyg-edit content="dataDetail.about" config="editorConfig"></wysiwyg-edit>-->
+                    </div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.class_info"></textarea>
+                        <!--<wysiwyg-edit content="dataDetail.about" config="editorConfig"></wysiwyg-edit>-->
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Other info</span></h3>
+                    <span data-ng-hide="editMode" dynamic="dataDetail.info_4"></span><br/>
+                    <span data-ng-hide="editMode" dynamic="dataDetail.info_3"></span><br/>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.info_4" />
+                    </div>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.info_3" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Board</span></h3>
+                    <span data-ng-hide="editMode" dynamic="dataDetail.board"></span><br/>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.board" />
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Contact</span></h3>
+                    <b>Address :</b> <div data-ng-hide="editMode" dynamic="dataDetail.full_address"></div></br>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.full_address" />
+                    </div>
+                    <b>City :</b> <span data-ng-hide="editMode" dynamic="dataDetail.city"></span></br>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.city" />
+                    </div>
+                    <b>state :</b> <span data-ng-hide="editMode" dynamic="dataDetail.state"></span></br>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.state" />
+                    </div>
+                    <b>Pin Code :</b> <span data-ng-hide="editMode" dynamic="dataDetail.pin_code"></span></br>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.pin_code" />
+                    </div>
+                    <b>Country :</b> <span data-ng-hide="editMode" dynamic="dataDetail.country"></span></br>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.country" />
+                    </div>
+                    
+                    <b>Phone :</b> <span data-ng-hide="editMode" dynamic="dataDetail.phone"></span></br>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.phone" />
+                    </div>
+                    <b>Fax :</b> <span data-ng-hide="editMode" dynamic="dataDetail.fax"></span></br>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.fax" />
+                    </div>
+                    <b>Email :</b> <span data-ng-hide="editMode" dynamic="dataDetail.email"></span></br>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.email" />
+                    </div>
+                    <b>Website :</b> <span data-ng-hide="editMode" dynamic="dataDetail.website"></span></br>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.website" />
+                    </div>
+                    
+                </div>
+            </div>
+
+        </section>
+        
+    </div>
+</div> <!-- end container-->

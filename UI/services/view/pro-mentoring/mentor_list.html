@@ -1,0 +1,220 @@
+<div ng-include="'/static/sections/view/header.html'"></div>
+
+<div class="container margin-top-30px" ng-controller="proMentoringCrt">
+
+    <div class="row">
+        <h3 class="span12">Professional Mentors List</h3>     
+        <div class="span12">
+            <ul class="breadcrumb">
+                <li><a href="#/home">Home</a> <span class="divider">/</span></li>
+                <li><a >Professional Mentoring Students</a> <span class="divider">/</span></li>
+                <li class="active">Mentor List</li>
+                <li class="pull-right  hidden-phone">
+                    <a href="" data-ng-hide="editMode" data-ng-click="editMode = true;" class="button_red_small">
+                        <span class="icon-edit"></span>Edit
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false;" class="button_red_small">
+                        <span class="icon-save"></span>Save
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false;" class="button_red_small">
+                        <span class="icon-remove"></span>Cancel
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- =========================Start Col left section =============================  
+        <aside class="span4 hidden-phone ">
+            <div class="col-left" >
+
+                <h6>We are looking for</h6>
+                <ul class="list_2">
+                    <li ng-repeat="menu in sideMenu" 
+                        ng-class="{'col-left-current': currentSelected == $index }">
+                        <a href ng-click="getMenuContent(menu.sub_id, $index)">{{menu.sub_menu}}</a>
+                    </li>
+                </ul>
+            </div>
+
+            <p><img src="/static/assets/img/banner.jpg" alt="Banner" class="img-rounded"></p>
+        </aside>
+
+        <!-- for mobile version 
+        <aside class="span4 hidden-desktop hidden-tablet ">
+            <div class="col-left" >
+                <h5 ng-repeat="menu in sideMenu" >
+                    <a href="" ng-click="getMenuContent(menu.sub_id, $index)">{{menu.sub_menu}}</a>
+                </h5>
+            </div>
+        </aside>
+
+        <!-- =========================Start Col right section ============================= -->
+        <section class="span12 ">
+            <div class="col-right">
+
+                <div class="main-img" style="text-align: center;">
+                    <img src="/static/assets/img/BG-Mentoring.png" alt="" >
+                    <p class="lead" data-ng-hide="editMode">{{content[0].sub_menu}}</p>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" 
+                               data-ng-model="content[0].sub_menu" />
+                    </div>
+                </div>
+
+                <div data-ng-hide="editMode" dynamic="content[0].content"></div>
+
+                <div class="container-fluid" data-ng-show="editMode">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <wysiwyg-edit content="content[0].content" config="editorConfig"></wysiwyg-edit>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <!--<div class="row">
+                    <div class="span3">
+                        <label>Sort by proficiency</label>
+                        <select class="span3" ng-model="find">
+                            <option ng-selected value="" >All</option>
+                            <option ng-repeat = "mentor in mentor_list" value="{{mentor.id}}">{{mentor.proficiency}}</option>
+                        </select>
+                    </div>
+                </div>-->
+
+                <div class="row">
+                    <div class="span1"></div>
+                    <div class="span5">
+                        <div class="box-style-1 borders">
+                            <h4>Career Mentors (Based on Major Fields)</h4>
+                            <p>
+                                Mentors having industry experience in the field which you want or plan to pursue by guiding you throughout your journey.
+                            </p>
+                            <select class="span3" ng-model="find">
+                                <option ng-selected value="" >All</option>
+                                <option ng-repeat = "mentor in mentor_list" value="{{mentor.id}}">{{mentor.proficiency}}</option>
+                            </select>
+                        </div>
+
+                    </div> 
+                    <div class="span5">
+                        <div class="box-style-1 borders">
+                            <h4>Academic Mentors (Based on Exams)</h4>
+                            <p>
+                                will guide you from time to time by preparing you for the examinations leading you to the dream career of your choice.
+                            </p>
+                            <select class="span3" ng-model="find">
+                                <option ng-selected value="" >All</option>
+                                <option ng-repeat = "mentor in mentor_list" value="{{mentor.id}}">{{mentor.proficiency}}</option>
+                            </select>
+                        </div>
+                    </div> 
+                    <div class="span1"></div>
+                </div> 
+
+                <div class="strip-staff" ng-repeat= "mentor in mentor_list| filter: find">
+                    <div class="row">
+                        <div class="span2 pic-teacher">
+                            <div class="borders">
+                                <img src="/static/assets/img/mentor_both.png" alt="" class=" img-rounded">
+                            </div>
+                        </div>
+                        <div class="span8">
+                            <h4>{{mentor.name}} <em>{{mentor.proficiency}}</em></h4>
+                            <p>
+                                {{mentor.description}}
+                            </p>
+                            <ul class="data-staff">
+                                <li title="Feedback"><a data-toggle="modal" data-target="#myModal"><i class="icon-user"></i></a></li>
+                                <li title="Mail"><a data-toggle="modal" data-target="#myModal"><i class="icon-envelope"></i></a></li>
+                                <li title="Skype"><a data-toggle="modal" data-target="#myModal"><i class="icon-skype"></i></a></li>
+                                <li title="Linkedin"><a data-toggle="modal" data-target="#myModal"><i class="icon-linkedin"></i></a></li>
+                                <!-- sample modal content -->
+                                <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" 
+                                     aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-header">
+                                        <button type="button" data-dismiss="modal" aria-hidden="true" 
+                                                class="close button_medium">&times;</button>
+                                        <h5 id="myModalLabel">Form request for mentoring</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table class="table table-condensed">
+                                            <tbody>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <td>
+                                                        <input type="text" class="span3 ie7-margin">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>School/College Name</th>
+                                                    <td>
+                                                        <input type="text" class="span3 ie7-margin">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>100 words about the students background</th>
+                                                    <td>
+                                                        <textarea class="span3 ie7-margin"></textarea>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>why he/she wants to pursue this</th>
+                                                    <td>
+                                                        <textarea class="span3 ie7-margin"></textarea>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>What are the expectations from the Mentor?</th>
+                                                    <td>
+                                                        <textarea class="span3 ie7-margin"></textarea>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Preferable Time and days when he/she would be able to communicate</th>
+                                                    <td>
+                                                        <select class="span3 ie7-margin">
+                                                            <option>Select Time</option>
+                                                            <option>1:00pm - 2:00pm</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Preferred mode of communication.</th>
+                                                    <td>
+                                                        <select class="span3 ie7-margin">
+                                                            <option>Select Mode</option>
+                                                            <option>1:00pm - 2:00pm</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Seeking Mentorship till the completion of the course or for the limited period?</th>
+                                                    <td>
+                                                        <textarea class="span3 ie7-margin"></textarea>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Parents consent.</th>
+                                                    <td>
+                                                        <textarea class="span3 ie7-margin"></textarea>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button data-dismiss="modal" class="button_medium">Close</button>
+                                        <button class="button_medium">Save changes</button>
+                                    </div>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- end col right-->
+    </div><!-- end row-->
+</div><!-- end container-->

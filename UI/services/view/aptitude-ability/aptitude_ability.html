@@ -1,0 +1,157 @@
+<div ng-include="'/static/sections/view/header.html'"></div>
+
+<div class="container margin-top-30px" ng-controller="aptitudeAbilityCrt">
+    <div class="row">
+        <h2 class="span12">Aptitude/Ability Tests</h2>
+        <div class="span12">
+            <ul class="breadcrumb">
+                <li><a href="#/home">Home</a><span class="divider">/</span></li>
+                <li class="active">Aptitude/Ability Tests</li>
+                <li class="pull-right  hidden-phone">
+                    <a href="" data-ng-hide="editMode" data-ng-click="editMode = true;" class="button_red_small">
+                        <span class="icon-edit"></span>Edit
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false;" class="button_red_small">
+                        <span class="icon-save"></span>Save
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false;" class="button_red_small">
+                        <span class="icon-remove"></span>Cancel
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- =========================Start Col left section ============================= -->   
+        <aside class="span4 hidden-phone ">
+            <div class="col-left" ng-repeat="menu in sideMenu[0].sub_menu_name" 
+                ng-class="{'col-left-current': currentSelected == menu.sub_id }" >
+                <h4><a ng-href="{{menu.sub_url}}" ng-click="getMenuContent(menu.sub_id, $index)" >{{menu.sub_menu}}</a></h4>
+                <p>
+                    {{menu.sub_menu_description}}
+                </p>
+                <a href="{{menu.sub_url}}" 
+                   ng-click="getMenuContent(menu.sub_id, $index)" class="button_red_small">Read more</a>
+            </div>
+
+            <!--<p><img src="img/banner.jpg" alt="Banner" class="img-rounded"></p>-->
+        </aside>
+        
+        <!-- for mobile version -->
+        <aside class="span4 hidden-desktop hidden-tablet ">
+            <div class="col-left" >
+                <h5 ng-repeat="menu in sideMenu[0].sub_menu_name" >
+                    <a ng-href="{{menu.sub_url}}" ng-click="getMenuContent(menu.sub_id, $index)">{{menu.sub_menu}}</a>
+                </h5>
+            </div>
+        </aside>
+
+        <!-- =========================Start Col right section ============================= --> 
+        <section class="span8  ">
+            <div class="col-right">
+                <div class="main-img">
+                    <img src="/static/assets/img/about.jpg" alt="" >
+                    <p class="lead" data-ng-hide="editMode">{{content.sub_menu}}</p>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" 
+                               data-ng-model="content.sub_menu" />
+                        <textarea class="input-large inputfield" 
+                                  data-ng-model="content.sub_menu_description" ></textarea>
+
+                    </div>
+                </div>
+
+                <div data-ng-hide="editMode" dynamic="content.content"></div>
+
+                <div class="container-fluid" data-ng-show="editMode">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <!--<wysiwyg-edit content="content[0].content" config="editorConfig"></wysiwyg-edit> -->
+                            <div data-ng-hide="editMode" dynamic="content.content"></div>
+                            <div data-ng-show="editMode" >
+                                <textarea ui-tinymce="tinymceOptions" ng-model="content.content"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--<p>Lorem ipsum dolor sit amet, elitr nullam ei duo. Duo ut omnes scribentur. <strong>Vim ne quas invidunt intellegam</strong>, quo docendi blandit electram ei, vel ex omittam detracto philosophia. Ei nam reque etiam, possit eripuit ad vel. Aperiri deserunt ea cum. Eam animal principes neglegentur cu, facer audiam forensibus his ex. Tibique dolores adversarium ne vel. At vide errem duo, vis luptatum menandri ullamcorper id. Duo cu <a href>tractatos interesset</a>, at usu soluta tibique principes. Ei cum dicam suavitate, eum ex erant homero mandamus, his te albucius platonem mediocritatem. </p>
+
+                <p>Nec eros iudico labores ut. Id nonumes dolores voluptatibus eam. Ea eum comprehensam mediocritatem, quot splendide in per, moderatius temporibus ne quo. Vix aliquid graecis concludaturque te, no vix justo inani maiorum. Novum minimum qui ex. In cum amet debitis detraxit, cum at altera quodsi, putant explicari reprehendunt in eum.</p>
+
+                <h5>Your list</h5>
+                <ul class=" list_1">
+                    <li>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</li>
+                    <li>Nullam quis risus eget urna mollis ornare vel eu leo.</li>
+                    <li>Nullam id dolor id nibh ultricies vehicula ut id elit.</li>
+                    <li>Donec id elit non mi porta gravida at eget metus.</li>
+                </ul>
+                <h5>Your list with links</h5>
+                <ul class=" list_3">
+                    <li><a href>Vivamus sagittis lacus vel augue laoreet </a></li>
+                    <li><a href>Nullam quis risus eget urna mollis</a></li>
+                    <li><a href>Nullam id dolor id nibh ultricies</a></li>
+                    <li><a href>Donec id elit non mi porta</a></li>
+                </ul>-->
+
+<!--                <h5>How to apply</h5>
+                <p><a href="#">Agam prima ea ius</a>, nec eros iudico labores ut. Id nonumes dolores voluptatibus eam. Ea eum comprehensam mediocritatem, quot splendide in per, moderatius temporibus ne quo. Vix aliquid graecis concludaturque te, no vix justo inani maiorum. Novum minimum qui ex. In cum amet debitis detraxit, cum at altera quodsi, putant explicari reprehendunt in eum.</p>
+                <hr>-->
+                <p class="text-center">
+                    <table class="table table-bordered text-center" ng-if="content.tests">
+                        <tr>
+                            <th>Test Type</th>
+                            <th>Questions</th>
+                            <th>Duration (mins)</th>
+                            <th>Status</th>
+                        </tr>
+                        <tr ng-repeat="test in content.tests">
+                            <td>{{ test.type }}</td>
+                            <td>{{ test.question_count }}</td>
+                            <td>{{ test.duration }}</td>
+                            <td>
+                                <a ng-if="!test.is_completed" class='button_red_small no-margin' ng-href="#/services/aptitude-ability/online-test/{{ content.sub_id }}/{{ test.id }}">Start Test</a>
+                                <span ng-if="test.is_completed" class='box_green_small no-margin'>Completed</span>
+                            </td>
+                        </tr>
+                    </table>
+                </p>
+
+
+                <p class="text-center" ng-if="content.create_test">
+                    <a ng-if="!test.is_completed" class='button_red_small no-margin' ng-href="#/services/aptitude-ability/create-test">Create Test</a>
+                </p>
+                <!--<p class="text-center">
+                    <a href="staff.html" class="button_large">
+                        <span class="icon-calendar"></span>Book Appointment
+                    </a>
+                </p>
+
+                <div class="row">
+                    <div class="span3">
+                        <label>Select Counselor</label>
+                        <select id="subject_contact" class="span3">
+                            <option value="">Counselor 1</option>
+                            <option value="">Counselor 2</option>
+                            <option value="">Counselor 3</option>
+                        </select>
+                    </div>
+                    <div class="span2">
+                        <label>Select Day</label>
+                        <input type="date" class="span2" />
+                    </div>
+                    <div class="span2">
+                        <label>Select Time Slot</label>
+                        <select id="subject_contact" class="span2">
+                            <option value="">10:00AM - 12:00AM</option>
+                            <option value="">12:00AM - 2:00PM</option>
+                        </select>
+                    </div>
+                    <div class="span2">
+                        
+                    </div>
+                </div>-->
+            </div><!-- end col right-->
+        </section>
+    </div><!-- end row-->
+</div> <!-- end container-->
+

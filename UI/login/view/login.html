@@ -1,0 +1,91 @@
+<div ng-include="'/static/sections/view/header.html'"></div>
+
+<div class="container">
+    <div class="row">
+        <h2 class="span12">Login</h2>
+        <div class="span12">
+            <ul class="breadcrumb">
+                <li><a href="#/home">Home</a><span class="divider">/</span></li>
+                <li class="active">login</li>
+            </ul>
+        </div>
+        <!-- =========================Start Col left section ============================= -->
+        <aside class="span4 hidden-phone">
+            <div class="col-left">
+                <h3>Address</h3>
+                <ul>
+                    <li><i class="icon-home"></i> 11 Fifth Ave, Loftus - NEW JERSEY, US</li>
+                    <li><i class="icon-phone"></i> Telephone: + 61 (2) 8093 3400</li>
+                    <li><i class="icon-phone-sign"></i> Fax: +61 (2) 9542 3599</li>
+                    <li><i class="icon-envelope"></i> Email: <a href="#">submissions@domain.com</a></li>
+                </ul>
+                <hr>
+<!--                <iframe height="250" src="https://maps.google.it/maps?f=q&amp;source=s_q&amp;hl=it&amp;geocode=&amp;q=new+york&amp;sll=40.714353,-74.005973&amp;sspn=0.868126,2.422485&amp;ie=UTF8&amp;hq=&amp;hnear=New+York,+Stati+Uniti&amp;t=m&amp;z=10&amp;iwloc=A&amp;ll=40.714353,-74.005973&amp;output=embed" style="border:0;">
+                </iframe>-->
+                <br/>
+                <!--<small><a href="https://maps.google.it/maps?f=q&amp;source=embed&amp;hl=it&amp;geocode=&amp;q=new+york&amp;sll=40.714353,-74.005973&amp;sspn=0.868126,2.422485&amp;ie=UTF8&amp;hq=&amp;hnear=New+York,+Stati+Uniti&amp;t=m&amp;z=10&amp;iwloc=A&amp;ll=40.714353,-74.005973" style="text-align:left">View bigger</a></small>-->
+                <hr>
+                <p>Get directions writing your start point.</p>
+<!--                <form action="http://maps.google.com/maps" method="get" target="_blank">
+                    <input type="text" name="saddr"  placeholder="Enter your location" class="span3" />
+                    <input type="hidden" name="daddr" value="New York, NY 11430" />  Write here your end point 
+                    <input type="submit" value="Get directions" class=" button_medium" />
+                </form>    -->
+            </div>
+        </aside>
+
+        <!-- =========================Start Col right section ============================= -->
+        <section class="span8 ">
+            <div class="col-right">
+                <div class="alert alert-info">
+                    Username: test@gmail.com<br />
+                    Password: test
+                </div>
+                <div ng-show="error" class="alert alert-danger">{{error}}</div>
+                <!--<hr>-->
+                <div id="message-contact"></div>
+                <div class="row">
+                    <div class="span3">
+                        <label>Select a Login Type  <span class="required">* </span></label>
+                        <select id="subject_contact" class="span3">
+                            <option value="Student">Student</option>
+                            <option value="Parent">Parent</option>
+                            <option value="Professional">Professional</option>
+                        </select>
+                    </div>
+                </div>
+                <form name="form" ng-submit="login()" role="form">
+                    <div class="row">
+                        <div class="span3">
+                            <label>Email <span class="required">* </span></label>
+                            <input type="email" id="email_contact" name="email_contact" ng-model="email_contact" class="span3 ie7-margin" required>
+                            <span ng-show="form.email_contact.$dirty && form.email_contact.$error.required" class="help-block">Email is required</span>
+                        </div>
+                        <div class="span3">
+                            <label>Password <span class="required">* </span></label>
+                            <input type="password" id="password" name="password" ng-model="password" class="span3 ie7-margin" required>
+                            <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="span3">
+                            <label><span class="required">*</span> Are you human? 3 + 1 =</label>
+                            <input type="text" id="verify_contact" class="span2">
+                        </div>
+                        <div class="button-align span3">
+                            <input type="button" id="submit-forget" value="Forget" class=" button_medium">
+                            <button ng-click="login(email_contact, password)" ng-disabled="form.$invalid || dataLoading" class="button_medium">Login</button>
+                            <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+                        </div>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="span3">
+                        <a href="#/register" class=" button_medium">Register</a>
+                    </div>
+                </div>
+            </div><!-- end col right-->
+        </section>
+    </div><!-- end row-->
+</div><!-- end container-->
+

@@ -1,0 +1,104 @@
+<div ng-include="'/static/sections/view/header.html'"></div>
+
+<div class="container margin-top-30px" ng-controller="sectionCrt">
+    <div class="row">
+        <div class="span12" style="padding-top: 15px;">
+            <ul class="breadcrumb" style="margin-bottom: 0px;">
+                <li><a href="#/home">Home</a><span class="divider">/</span></li>
+                <li><a>all-menu</a><span class="divider">/</span></li>
+                <li><a>{{selectedMenu}}</a></li>
+            </ul>
+        </div>
+
+        <section class="span12 all-menu-section" ng-if="selectedMenu == 'college' ">
+            <div class="col-right para-header margin-bot-10px" style="padding: 0px; border: none;">
+                <div class="span3" style="margin-left: 0px;">
+                    <h4>Major Fields</h4>
+                    <ul>
+                        <li class="menu-onhover" ng-class="{'menu-major-f-active-all-menu': $index == curr_sel_index }"
+                            ng-repeat="data in majorFieldsExams"
+                            ng-mouseover="getOtherMenuForDesktop(data.id, $index)">
+                            <a href="" title="{{data.name}}">
+                                {{ data.name | limitTo: 30 }}{{data.name.length > 30 ? '...' : ''}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="span3">
+                    <h4>After X</h4>
+                    <ul class="list-menu">
+                        <li ng-repeat="(key1, value1) in listAfterX" style="padding-bottom: 10px;">
+                            <a href="#/services/colleges/colleges-list/{{key1}}/{{value1| spaceless}}/{{a_10| spaceless}}/{{selectedMF}}" 
+                               title="{{value1}}"> {{value1| limitTo: count_length}}{{value1.length > count_length ? '...' : '' }}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="span3">
+                    <h4>After XII</h4>
+                    <ul class="list-menu">
+                        <li ng-repeat="(key2, value2) in listAfterXII" style="padding-bottom: 10px;">
+                            <a href="#/services/colleges/colleges-list/{{key2}}/{{value2| spaceless}}/{{a_12| spaceless}}/{{selectedMF}}"
+                               title="{{value2}}"> {{value2 | limitTo: count_length}}{{value2.length > count_length ? '...' : '' }}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="span3">
+                    <h4>After UG Degree</h4>
+                    <ul class="list-menu">
+                        <li ng-repeat="(key, value) in listAfterUGDegree" style="padding-bottom: 10px;">
+                            <a href="#/services/colleges/colleges-list/{{key}}/{{value| spaceless}}/{{pg| spaceless}}/{{selectedMF}}"
+                               title="{{value}}"> {{value | limitTo: count_length}}{{value.length > count_length ? '...' : '' }}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        
+        
+        <section class="span12 all-menu-section" ng-if="selectedMenu == 'courses' ">
+            <div class="col-right para-header margin-bot-10px" style="padding: 0px; border: none;">
+                <div class="span3" style="margin-left: 0px;">
+                    <h4>Major Fields</h4>
+                    <ul>
+                        <li class="menu-onhover" ng-class="{'menu-major-f-active-all-menu': $index == curr_sel_index }"
+                            ng-repeat="data in majorFieldsExams"
+                            ng-mouseover="getOtherMenuForDesktop(data.id, $index)">
+                            <a href="" title="{{data.name}}">
+                                {{ data.name | limitTo: 30 }}{{data.name.length > 30 ? '...' : ''}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="span3">
+                    <h4>After X</h4>
+                    <ul class="list-menu">
+                        <li ng-repeat="(key1, value1) in listAfterX" style="padding-bottom: 10px;">
+                            <a href="#/services/courses/{{value1| spaceless}}/{{key1}}"  
+                               title="{{value1}}"> {{value1| limitTo: count_length}}{{value1.length > count_length ? '...' : '' }}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="span3">
+                    <h4>After XII</h4>
+                    <ul class="list-menu">
+                        <li ng-repeat="(key2, value2) in listAfterXII" style="padding-bottom: 10px;">
+                            <a href="#/services/courses/{{value2| spaceless}}/{{key2}}" 
+                               title="{{value2}}"> {{value2 | limitTo: count_length}}{{value2.length > count_length ? '...' : '' }}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="span3">
+                    <h4>After UG Degree</h4>
+                    <ul class="list-menu">
+                        <li ng-repeat="(key, value) in listAfterUGDegree" style="padding-bottom: 10px;">
+                            <a href="#/services/courses/{{value| spaceless}}/{{key}}" 
+                               title="{{value}}"> {{value | limitTo: count_length}}{{value.length > count_length ? '...' : '' }}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</div> 
+

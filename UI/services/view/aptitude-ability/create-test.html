@@ -1,0 +1,298 @@
+<div ng-include="'/static/sections/view/header.html'"></div>
+<div class="container margin-top-30px" ng-controller="AptitudeCreateTestController">
+    <div class="row">
+        <h2 class="span12">Create & List of Tests</h2>
+        <div class="span12">
+            <ul class="breadcrumb">
+                <li><a href="#/home">Home</a><span class="divider">/</span></li>
+                <!--<li><a href="#/services/aptitude-ability/{{content.sub_id}}">Aptitude/Ability Tests</a></li>-->
+                <li>Admin<span class="divider">/</span></li>
+                <li class="active">Create & List of Tests</li>
+                
+<!--                <li class="pull-right">
+                    <a href="" data-ng-hide="editMode" data-ng-click="editMode = true;" class="button_red_small">
+                        <span class="icon-edit"></span>Edit
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false;" class="button_red_small">
+                        <span class="icon-save"></span>Save
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false;" class="button_red_small">
+                        <span class="icon-remove"></span>Cancel
+                    </a>
+                </li>-->
+            </ul>
+        </div>
+        <!-- =========================Start Col left section ============================= -->   
+        <aside class="span3 hidden-phone ">
+            <div class="col-left" ng-repeat="menu in sideMenu[0].sub_menu_name" style="margin-bottom: 1px;"
+                ng-class="{'col-left-current': currentSelected == menu.sub_id }" >
+                <h5><a href="" ng-click="getMenuContent(menu.sub_id, $index)" >{{menu.sub_menu}}</a></h5>
+            </div>
+        </aside>
+        
+        <!-- for mobile version -->
+        <aside class="span12 hidden-desktop hidden-tablet ">
+            <h5>This page is for website version</h5>
+        </aside>
+
+        <!-- =========================Start Col right section ============================= --> 
+        <section class="span9 hidden-phone  ">
+            <div class="col-right">
+                <div class="main-img">
+                    <p class="lead" data-ng-hide="editMode">{{content.sub_menu}}</p>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" 
+                               data-ng-model="content.sub_menu" />
+                        <textarea class="input-large inputfield" 
+                                  data-ng-model="content.sub_menu_description" ></textarea>
+
+                    </div>
+                </div>
+
+                <div data-ng-hide="editMode" dynamic="content.content"></div>
+
+                <div class="container-fluid" data-ng-show="editMode">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <!--<wysiwyg-edit content="content[0].content" config="editorConfig"></wysiwyg-edit> -->
+                            <div data-ng-hide="editMode" dynamic="content.content"></div>
+                            <div data-ng-show="editMode" >
+                                <textarea ui-tinymce="tinymceOptions" ng-model="content.content"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- For Test Type -->
+                <div ng-if="content.sub_id == 1">
+                    <p class="text-center">
+                        <table class="table table-bordered text-center">
+                            <tr>
+                                <th>Test Type</th>
+                                <th>Description</th>
+                                <th>Instruction</th>
+                                <th>Action</th>
+                            </tr>
+                            <tr ng-repeat="item in createdTestArray">
+                                <td>{{ item.test_type }}</td>
+                                <td ng-bind-html="item.test_description"></td>
+                                <td ng-bind-html="item.test_instructions"></td>
+                                <td>
+                                    <a class='button_red_small no-margin' ng-click="editTest(item.id,$index, 'TEST_TYPE')">Edit</a>
+                                    <a class='button_red_small no-margin' ng-click="deleteTest(item.id,$index, 'TEST_TYPE')">Delete</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </p>
+                    <div>
+                        <div class="row row-margin">
+                            <div class="span7">
+                                <label>Test Type <span class="required">* </span></label>
+                                <input type="text" class="span3 ie7-margin" ng-model="create.test_type">
+                            </div>
+                        </div>
+                        <div class="row row-margin">
+                            <div class="span7">
+                                <label>Description <span class="required">* </span></label>
+                                <textarea ui-tinymce="tinymceOptions" ng-model="create.test_description"></textarea>
+                            </div>
+                        </div>
+                        <div class="row row-margin">
+                            <div class="span7">
+                                <label>Instruction <span class="required">* </span></label>
+                                <textarea ui-tinymce="tinymceOptions" ng-model="create.test_instructions"></textarea>
+                            </div>
+                        </div>
+                        <div class="row row-margin">
+                            <div class="span7">
+                                <a class='button_large' ng-click="createTest(createTest.index, 'TEST_TYPE')">Save</a>
+                                <a class='button_large' ng-click="clearTest()">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- For Sub-test Type -->
+                <div ng-if="content.sub_id == 2">
+                    <p class="text-center">
+                        <table class="table table-bordered text-center">
+                            <tr>
+                                <th>Test Type</th>
+                                <th>Sub-test type</th>
+                                <th>Total Marks</th>
+                                <th>Total Time</th>
+                                <th>Total Questions</th>
+                                <th>Action</th>
+                            </tr>
+                            <tr ng-repeat="item in createdTestArray">
+                                <td>{{ item.test_type }}</td>
+                                <td>{{ item.sub_test_type }}</td>
+                                <td>{{ item.total_marks }}</td>
+                                <td>{{ item.total_time }}</td>
+                                <td>{{ item.total_questions }}</td>
+                                <td>
+                                    <a class='button_red_small no-margin' ng-click="editTest(item.test_sub_type_id,$index, 'SUB_TEST_TYPE')">Edit</a>
+                                    <a class='button_red_small no-margin' ng-click="deleteTest(item.test_sub_type_id,$index, 'SUB_TEST_TYPE')">Delete</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </p>
+                    <div>
+                        <div class="row row-margin">
+                            <div class="span7">
+                                <label>Test Type <span class="required">* </span></label>
+                                <select ng-model="create.selected_test_type">
+                                    <option value="">Select</option>
+                                    <option value="{{type.test_type_id}}" ng-selected="create.selected_test_type == type.test_type_id || create.test_type_id == type.test_type_id" ng-repeat="type in test_type_array">{{type.test_type}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row row-margin">
+                            <div class="span7">
+                                <label>Sub-Test Type <span class="required">* </span></label>
+                                <input type="text" class="span3 ie7-margin" ng-model="create.sub_test_type">
+                            </div>
+                        </div>
+                        <div class="row row-margin">
+                            <div class="span7">
+                                <label>Total Marks <span class="required">* </span></label>
+                                <input type="text" class="span3 ie7-margin" ng-model="create.total_marks">
+                            </div>
+                        </div>
+                        <div class="row row-margin">
+                            <div class="span7">
+                                <label>Total Time <span class="required">* </span></label>
+                                <input type="text" class="span3 ie7-margin" ng-model="create.total_time">
+                            </div>
+                        </div>
+                        <div class="row row-margin">
+                            <div class="span7">
+                                <label>Total Questions <span class="required">* </span></label>
+                                <input type="text" class="span3 ie7-margin" ng-model="create.total_questions">
+                            </div>
+                        </div>
+                        <div class="row row-margin">
+                            <div class="span7">
+                                <a class='button_large' ng-click="createSubTest(createTest.index, 'SUB_TEST_TYPE')">Save</a>
+                                <a class='button_large' ng-click="clearTest()">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- For Question -->
+                <div ng-if="content.sub_id == 3">
+                    <p class="text-center">
+                        <table class="table table-bordered text-center">
+                            <tr>
+                                <th>Test Type</th>
+                                <th>Sub-test type</th>
+                                <th>Question</th>
+                                <th>Options</th>
+                                <th>Correct Option</th>
+                                <th>Marks</th>
+                                <th>Action</th>
+                            </tr>
+                            <tr ng-repeat="item in createdTestArray">
+                                <td>{{ item.test_type }}</td>
+                                <td>{{ item.sub_test_type }}</td>
+                                <td ng-bind-html="item.test_question"></td>
+                                <td>
+                                    <div ng-bind-html="item.test_option_a"></div>
+                                    <div ng-bind-html="item.test_option_b"></div>
+                                    <div ng-bind-html="item.test_option_c"></div>
+                                    <div ng-bind-html="item.test_option_d"></div>
+                                    <div ng-bind-html="item.test_option_e"></div>
+                                </td>
+                                <td>{{ correctOptions[item.selectedCorrectOption].name }}</td>
+                                <td>{{ item.marks }}</td>
+                                <td>
+                                    <a class='button_red_small no-margin' ng-click="editTest(item.test_id,$index, 'QUESTION')">Edit</a>
+                                    <a class='button_red_small no-margin' ng-click="deleteTest(item.test_id,$index, 'QUESTION')">Delete</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </p>
+                    <div>
+                        <div class="row row-margin">
+                            <div class="span7">
+                                <label>Test Type <span class="required">* </span></label>
+                                <select ng-model="create.selected_test_type">
+                                    <option value="">Select</option>
+                                    <option value="{{type.id}}" ng-selected="create.selected_test_type == type.id || create.test_type_id == type.id" ng-repeat="type in test_type_array">{{type.test_type}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row row-margin">
+                            <div class="span7">
+                                <label>Sub Test Type <span class="required">* </span></label>
+                                <select ng-model="create.selected_sub_test_type">
+                                    <option value="">Select</option>
+                                    <option value="{{type.id}}" ng-selected="create.selected_sub_test_type == type.id || create.test_sub_type_id == type.id" ng-repeat="type in sub_test_type_array | filter: subTestTypeFilter"
+                                    >{{type.sub_test_type}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row row-margin">
+                            <div class="span7">
+                                <label>Question <span class="required">* </span></label>
+                                <textarea ui-tinymce="tinymceOptions" ng-model="create.test_question"></textarea>
+                            </div>
+                        </div>
+                        <div class="row row-margin">
+                            <div class="span7">
+                                <label>Option A <span class="required">* </span></label>
+                                <textarea ui-tinymce="tinymceOptions" ng-model="create.test_option_a"></textarea>
+                            </div>
+                        </div>
+                        <div class="row row-margin">
+                            <div class="span7">
+                                <label>Option B <span class="required">* </span></label>
+                                <textarea ui-tinymce="tinymceOptions" ng-model="create.test_option_b"></textarea>
+                            </div>
+                        </div>
+                        <div class="row row-margin">
+                            <div class="span7">
+                                <label>Option C <span class="required">* </span></label>
+                                <textarea ui-tinymce="tinymceOptions" ng-model="create.test_option_c"></textarea>
+                            </div>
+                        </div>
+                        <div class="row row-margin">
+                            <div class="span7">
+                                <label>Option D <span class="required">* </span></label>
+                                <textarea ui-tinymce="tinymceOptions" ng-model="create.test_option_d"></textarea>
+                            </div>
+                        </div>
+                        <div class="row row-margin">
+                            <div class="span7">
+                                <label>Option E <span class="required">* </span></label>
+                                <textarea ui-tinymce="tinymceOptions" ng-model="create.test_option_e"></textarea>
+                            </div>
+                        </div>
+                        <div class="row row-margin">
+                            <div class="span7">
+                                <label>Correct Option <span class="required">* </span></label>
+                                <select ng-model="create.selectedCorrectOption">
+                                    <option value="">Select</option>
+                                    <option ng-selected="create.selectedCorrectOption == option.id" ng-repeat="option in correctOptions" value="{{option.id}}">{{option.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row row-margin">
+                            <div class="span7">
+                                <label>Marks <span class="required">* </span></label>
+                                <input type="text" class="span3 ie7-margin" ng-model="create.marks">
+                            </div>
+                        </div>
+                        <div class="row row-margin">
+                            <div class="span7">
+                                <a class='button_large' ng-click="createQuestion(createTest.index, 'QUESTION')">Save</a>
+                                <a class='button_large' ng-click="clearTest()">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- end col right-->
+        </section>
+    </div><!-- end row-->
+</div> <!-- end container-->

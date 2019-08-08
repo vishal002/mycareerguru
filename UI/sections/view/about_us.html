@@ -1,0 +1,47 @@
+<div ng-include="'/static/sections/view/header.html'"></div>
+
+<div class="container margin-top-30px">
+    <div class="row">
+        <h2 class="span12">About Us</h2>
+        <div class="span12">
+            <ul class="breadcrumb">
+                <li><a href="#/home">Home</a><span class="divider">/</span></li>
+                <li><a href="">About us</a></li>
+
+                <li class="pull-right  hidden-phone">
+                    <a href="" data-ng-hide="editMode" data-ng-click="editMode = true; editItem(dataDetail)" 
+                       class="button_red_small">
+                        <span class="icon-edit"></span>Edit
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false; doneEditing(dataDetail)" class="button_red_small">
+                        <span class="icon-save"></span>Save
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false; cancelEditing(dataDetail)" class="button_red_small">
+                        <span class="icon-remove"></span>Cancel
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <section class="span12">
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <div data-ng-hide="editMode" dynamic="dataDetail.aboutus"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.aboutus"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Contact Us</span></h3>
+                    <div data-ng-hide="editMode" dynamic="dataDetail.contactus"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.contactus"></textarea>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div> 
+

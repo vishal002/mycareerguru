@@ -1,0 +1,283 @@
+<div ng-include="'/static/sections/view/header.html'"></div>
+
+<div class="container margin-top-30px" ng-controller="examDetailController">
+    <div class="row">
+        <h2 class="span12">Exams</h2>
+        <div class="span12">
+            <ul class="breadcrumb">
+                <li><a href="#/home">Home</a><span class="divider">/</span></li>
+                <li><a href="#/services/entrance_and_scholarship_exams_list/">Exams Search 
+                        <span class="divider">/</span> </a>
+                </li>
+                <li class="hidden-phone active">{{dataDetail.name}}</li>
+
+
+                <li class="pull-right  hidden-phone">
+                    <a href="" data-ng-hide="editMode" data-ng-click="editMode = true; editItem(dataDetail)" class="button_red_small">
+                        <span class="icon-edit"></span>Edit
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false; doneEditing(dataDetail)" class="button_red_small">
+                        <span class="icon-save"></span>Save
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false; cancelEditing(dataDetail)" class="button_red_small">
+                        <span class="icon-remove"></span>Cancel
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <section class="span12">
+            <div class="col-right" style="background-color: transparent; border: none; margin-bottom: 0px;">
+                <div class="main-img" ng-mouseover="toolTipFun();">
+                    <div class="imageContainer">
+                        <p class="lead" style="bottom: 15%;" >{{dataDetail.name}} <br/></p>
+                        <div class="widget tags pull-right">
+                            <a href="" data-toggle="tooltip" data-placement="bottom" title="{{dataDetail.email}}">
+                                <span class="icon-envelope"></span> View Email</a>
+                            <a href="" data-toggle="tooltip" data-placement="bottom" title="{{dataDetail.phone}}">
+                                <span class="icon-phone"></span> View Phone</a>
+                            <a href="" data-toggle="tooltip" data-placement="bottom" title="{{dataDetail.website}}">
+                                <span class="icon-globe"></span> View Website</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <aside class="span3">
+            <div class="hidden-desktop hidden-tablet">
+                <div class="col-left">
+                    <i class="pull-right icon-expand" style="margin-top: -15px" data-toggle="collapse" 
+                       data-target="#collapseExampleNew" aria-expanded="true" 
+                       aria-controls="collapseExampleNew"> Click to Expand</i>
+                    <div class="collapse" id="collapseExampleNew">
+                        <div class="col-left" ng-repeat="menu in menu_list"  
+                             style="margin-bottom: 1px; padding: 15px;">
+                            <h5>
+                                <a href="" ng-click="getMenuContent(menu.sub_id, $index)" >
+                                    {{menu.sub_menu}}</a>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hidden-phone col-left" ng-repeat="menu in menu_list"  style="margin-bottom: 1px; padding: 15px;"
+                 ng-class="{'col-left-current': currentSelected == $index }" >
+                <h4><a href="" ng-click="getMenuContent(menu.sub_id, $index)" >{{menu.sub_menu}}</a></h4>
+            </div>
+        </aside>
+
+        <section class="span9">
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>About/Overview</span></h3>
+                    <div data-ng-hide="editMode" dynamic="dataDetail.about"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.about"></textarea>
+                        <!--<wysiwyg-edit content="dataDetail.about" config="editorConfig"></wysiwyg-edit>-->
+                    </div>
+
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Date ofExam</span></h3>
+                    <span data-ng-hide="editMode" dynamic="dataDetail.exam_date"></span><br/>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.exam_date" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Duration of the Exam</span></h3>
+                    <span data-ng-hide="editMode" dynamic="dataDetail.exam_duration"></span><br/>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.exam_duration" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Conducting Body</span></h3>
+                    <span data-ng-hide="editMode" dynamic="dataDetail.conducting_body"></span><br/>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.conducting_body" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Exam Fee</span></h3>
+                    <span data-ng-hide="editMode" dynamic="dataDetail.application_fee"></span><br/>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.application_fee" />
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Mode of Exam</span></h3>
+                    <span data-ng-hide="editMode" dynamic="dataDetail.exam_mode"></span><br/>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.exam_mode" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Pattern of Exam</span></h3>
+                    <span data-ng-hide="editMode" dynamic="dataDetail.exam_pattern"></span><br/>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.exam_pattern" />
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Exam Level</span></h3>
+                    <span data-ng-hide="editMode" dynamic="dataDetail.level"></span><br/>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.level" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Exam Type</span></h3>
+                    <span data-ng-hide="editMode" dynamic="dataDetail.exam_type"></span><br/>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.exam_type" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Application Date</span></h3>
+                    <span data-ng-hide="editMode" dynamic="dataDetail.application_date"></span><br/>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.application_date" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Eligibility</span></h3>
+                    <span data-ng-hide="editMode" dynamic="dataDetail.eligibility"></span><br/>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.eligibility" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Age Limit</span></h3>
+                    <span data-ng-hide="editMode" dynamic="dataDetail.age_limit"></span><br/>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.age_limit" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Marital Status</span></h3>
+                    <span data-ng-hide="editMode" dynamic="dataDetail.marital_status"></span><br/>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.marital_status" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Physical Fitness</span></h3>
+                    <span data-ng-hide="editMode" dynamic="dataDetail.physical_standard"></span><br/>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.physical_standard" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Procedure</span></h3>
+                    <span data-ng-hide="editMode" dynamic="dataDetail.application_procedure"></span><br/>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.application_procedure" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Exam Centers</span></h3>
+                    <span data-ng-hide="editMode" dynamic="dataDetail.exam_centres"></span><br/>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.exam_centres" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Total Students appear</span></h3>
+                    <span data-ng-hide="editMode" dynamic="dataDetail.total_students"></span><br/>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.total_students" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Total Number of Seats</span></h3>
+                    <span data-ng-hide="editMode" dynamic="dataDetail.total_seats"></span><br/>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.total_seats" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Syllabus</span></h3>
+                    <span data-ng-hide="editMode" dynamic="dataDetail.syllabus"></span><br/>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.syllabus" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Validity</span></h3>
+                    <span data-ng-hide="editMode" dynamic="dataDetail.validity"></span><br/>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.validity" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>How to prepare ?</span></h3>
+                    <div data-ng-hide="editMode" dynamic="dataDetail.preparation_tips"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.preparation_tips"></textarea>
+                        <!--<wysiwyg-edit content="dataDetail.about" config="editorConfig"></wysiwyg-edit>-->
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Books Recommended</span></h3>
+                    <div data-ng-hide="editMode" dynamic="dataDetail.study_material"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.study_material"></textarea>
+                        <!--<wysiwyg-edit content="dataDetail.about" config="editorConfig"></wysiwyg-edit>-->
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+
+
+    </div>
+</div> <!-- end container-->

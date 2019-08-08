@@ -1,0 +1,417 @@
+<div ng-include="'/static/sections/view/header.html'"></div>
+
+<div class="container margin-top-30px" ng-controller="coachingDetailCrt">
+    <div class="row">
+        <h2 class="span12">Coaching/ Tuitions Search</h2>
+        <div class="span12">
+            <ul class="breadcrumb">
+                <li class="hidden-phone"><a href="#/home">Home</a><span class="divider">/</span></li>
+                <li class="hidden-phone active"><a href="#/services/coaching-tuitions-list">Coaching Tuitions list</a><span class="divider">/</span></li>
+                <li class="active">{{}}</li>
+
+
+                <li class="pull-right  hidden-phone">
+                    <a href="" data-ng-hide="editMode" data-ng-click="editMode = true; editItem(dataDetail)" class="button_red_small">
+                        <span class="icon-edit"></span>Edit
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false; doneEditing(dataDetail)" class="button_red_small">
+                        <span class="icon-save"></span>Save
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false; cancelEditing(dataDetail)" class="button_red_small">
+                        <span class="icon-remove"></span>Cancel
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- to do <div class="span12">
+            <div class="widget">
+                <div class="form-group">
+                    <form class="form-search form-inline" 
+                          style="background-color: #555;padding: 10px;">
+                        <input type="text" class="input-medium form-control" placeholder="Search /Filter Box for other colleges" style="width: 92%;">
+                        <button type="submit" class="button_medium" style="position:relative; top:2px;">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>-->
+
+        <section class="span12">
+            <div class="col-right" style="background-color: transparent; border: none; margin-bottom: 0px;">
+                <div class="main-img">
+                    <div class="imageContainer">
+                        <p class="lead hidden-phone" style="bottom: 15%;" >{{dataDetail.name}} <br/>
+                            <small>{{dataDetail.city}}, {{dataDetail.state}}</small>
+                        </p>
+
+                        <p class="lead hidden-desktop hidden-tablet" 
+                           style="bottom: -12%;" >{{dataDetail.name}} <br/>
+                            <small>{{dataDetail.city}}, {{dataDetail.state}}</small>
+                        </p>
+
+                        <div class="widget tags pull-right">
+                            <a href="#"><span class="icon-envelope"></span> View Email</a>
+                            <a href="#"><span class="icon-phone"></span> View Phone</a>
+                            <a href="#"><span class="icon-globe"></span> View Website</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <aside class="span3">
+            <div class="hidden-desktop hidden-tablet">
+                <div class="col-left">
+                    <i class="pull-right icon-expand" style="margin-top: -15px" data-toggle="collapse" 
+                       data-target="#collapseExampleNew" aria-expanded="true" 
+                       aria-controls="collapseExampleNew"> Click to Expand</i>
+                    <div class="collapse" id="collapseExampleNew">
+                        <div class="col-left" ng-repeat="menu in menu_list"  
+                             style="margin-bottom: 1px; padding: 15px;">
+                            <h5>
+                                <a href="" ng-click="getMenuContent(menu.sub_id, $index)" >
+                                    {{menu.sub_menu}}</a>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hidden-phone">
+                <div class="col-left" ng-repeat="menu in menu_list" style="margin-bottom: 1px; padding: 15px;"
+                     ng-class="{'col-left-current': currentSelected == $index }" >
+                    <h4><a href="" ng-click="getMenuContent(menu.sub_id, $index)" >{{menu.sub_menu}}</a></h4>
+                </div>
+            </div>
+        </aside>
+
+        <section class="span9">
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>About / Overview</span></h3>
+                    <div data-ng-hide="editMode" dynamic="dataDetail.about"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.about"></textarea>
+                        <!--<wysiwyg-edit content="dataDetail.about" config="editorConfig"></wysiwyg-edit>-->
+                    </div>
+                    <b>Establishment Year :</b> <span data-ng-hide="editMode" dynamic="dataDetail.establishment"></span><br/>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.establishment" />
+                    </div>
+                    <b>Institute Type :</b> <span data-ng-hide="editMode" dynamic="dataDetail.institute_type"></span><br/>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.institute_type" />
+                    </div>
+                    <b>Accredited By :</b> <span data-ng-hide="editMode" dynamic="dataDetail.accreditted_by"></span><br/>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.accreditted_by" />
+                    </div>
+                    <b>Affiliated To :</b> <span data-ng-hide="editMode" dynamic="dataDetail.affiliated_to"></span><br/>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.affiliated_to" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Courses Offered</span></h3>
+                    <div class="row">
+                        <div class="span9">
+                            <div data-ng-hide="editMode" dynamic="dataDetail.eligibility"></div>
+                        </div>
+                    </div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.eligibility"></textarea>
+                        <!--<wysiwyg-edit content="eligibility" config="editorConfig"></wysiwyg-edit>-->
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Courses & Branches</span></h3>
+                    <div class="row">
+                        <div class="span9">
+                            <div data-ng-hide="editMode" dynamic="dataDetail.eligibility"></div>
+                        </div>
+                    </div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.eligibility"></textarea>
+                        <!--<wysiwyg-edit content="eligibility" config="editorConfig"></wysiwyg-edit>-->
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Eligibility & Admission process</span></h3>
+                    <div class="row">
+                        <div class="span9">
+                            <div data-ng-hide="editMode" dynamic="dataDetail.admission_process"></div>
+                        </div>
+                    </div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.admission_process"></textarea>
+                        <!--<wysiwyg-edit content="eligibility" config="editorConfig"></wysiwyg-edit>-->
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Eligibility</span></h3>
+                    <div class="row">
+                        <div class="span9">
+                            <div data-ng-hide="editMode" dynamic="dataDetail.eligibility"></div>
+                        </div>
+                    </div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.eligibility"></textarea>
+                        <!--<wysiwyg-edit content="eligibility" config="editorConfig"></wysiwyg-edit>-->
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Admission process</span></h3>
+                    <div class="row">
+                        <div class="span9">
+                            <div data-ng-hide="editMode" dynamic="dataDetail.admission_process"></div>
+                        </div>
+                    </div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.admission_process"></textarea>
+                        <!--<wysiwyg-edit content="eligibility" config="editorConfig"></wysiwyg-edit>-->
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Fees</span></h3>
+                    <div class="row">
+                        <div class="span9">
+                            <div data-ng-hide="editMode" dynamic="dataDetail.fees"></div>
+                        </div>
+                    </div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.fees"></textarea>
+                        <!--<wysiwyg-edit content="eligibility" config="editorConfig"></wysiwyg-edit>-->
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Visiting companies</span></h3>
+                    <div class="row">
+                        <div class="span9">
+                            <div data-ng-hide="editMode" dynamic="dataDetail.visiting_companies"></div>
+                        </div>
+                    </div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.visiting_companies"></textarea>
+                        <!--<wysiwyg-edit content="eligibility" config="editorConfig"></wysiwyg-edit>-->
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Naac Rating</span></h3>
+                    <div class="row">
+                        <div class="span9">
+                            <div data-ng-hide="editMode" dynamic="dataDetail.naac_rating"></div>
+                        </div>
+                    </div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.naac_rating"></textarea>
+                        <!--<wysiwyg-edit content="eligibility" config="editorConfig"></wysiwyg-edit>-->
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Scholarship and Finance</span></h3>
+                    <div class="row">
+                        <div class="span9">
+                            <div data-ng-hide="editMode" dynamic="dataDetail.scholarship_and_finance"></div>
+                        </div>
+                    </div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.scholarship_and_finance"></textarea>
+                        <!--<wysiwyg-edit content="eligibility" config="editorConfig"></wysiwyg-edit>-->
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Facilities</span></h3>
+                    <div class="row">
+                        <div class="span9">
+                            <div data-ng-hide="editMode" dynamic="dataDetail.facilities"></div>
+                        </div>
+                    </div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.facilities"></textarea>
+                        <!--<wysiwyg-edit content="eligibility" config="editorConfig"></wysiwyg-edit>-->
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Rank Index</span></h3>
+                    <div class="row">
+                        <div class="span9">
+                            <div data-ng-hide="editMode" dynamic="dataDetail.rank_index"></div>
+                        </div>
+                    </div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.rank_index"></textarea>
+                        <!--<wysiwyg-edit content="eligibility" config="editorConfig"></wysiwyg-edit>-->
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Avg Salary</span></h3>
+                    <div class="row">
+                        <div class="span9">
+                            <div data-ng-hide="editMode" dynamic="dataDetail.avg_salary"></div>
+                        </div>
+                    </div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.avg_salary"></textarea>
+                        <!--<wysiwyg-edit content="eligibility" config="editorConfig"></wysiwyg-edit>-->
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Faculty</span></h3>
+                    <div class="row">
+                        <div class="span9">
+                            <div data-ng-hide="editMode" dynamic="dataDetail.faculty"></div>
+                        </div>
+                    </div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.faculty"></textarea>
+                        <!--<wysiwyg-edit content="eligibility" config="editorConfig"></wysiwyg-edit>-->
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Placements</span></h3>
+                    <div class="row">
+                        <div class="span9">
+                            <div data-ng-hide="editMode" dynamic="dataDetail.placements"></div>
+                        </div>
+                    </div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.placements"></textarea>
+                        <!--<wysiwyg-edit content="eligibility" config="editorConfig"></wysiwyg-edit>-->
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Cutoffs</span></h3>
+                    <div class="row">
+                        <div class="span9">
+                            <div data-ng-hide="editMode" dynamic="dataDetail.cutoffs"></div>
+                        </div>
+                    </div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.cutoffs"></textarea>
+                        <!--<wysiwyg-edit content="eligibility" config="editorConfig"></wysiwyg-edit>-->
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Remarks</span></h3>
+                    <div class="row">
+                        <div class="span9">
+                            <div data-ng-hide="editMode" dynamic="dataDetail.remarks"></div>
+                        </div>
+                    </div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.remarks"></textarea>
+                        <!--<wysiwyg-edit content="eligibility" config="editorConfig"></wysiwyg-edit>-->
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Noted Alumni</span></h3>
+                    <div class="row">
+                        <div class="span9">
+                            <div data-ng-hide="editMode" dynamic="dataDetail.noted_alumni"></div>
+                        </div>
+                    </div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.noted_alumni"></textarea>
+                        <!--<wysiwyg-edit content="eligibility" config="editorConfig"></wysiwyg-edit>-->
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Contact</span></h3>
+                    <b>Address :</b> <div data-ng-hide="editMode" dynamic="dataDetail.full_address"></div></br>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.full_address" />
+                    </div>
+                    <b>City :</b> <span data-ng-hide="editMode" dynamic="dataDetail.city"></span></br>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.city" />
+                    </div>
+                    <b>state :</b> <span data-ng-hide="editMode" dynamic="dataDetail.state"></span></br>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.state" />
+                    </div>
+                    <b>Pin Code :</b> <span data-ng-hide="editMode" dynamic="dataDetail.pin_code"></span></br>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.pin_code" />
+                    </div>
+                    <b>Country :</b> <span data-ng-hide="editMode" dynamic="dataDetail.country"></span></br>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.country" />
+                    </div>
+
+                    <b>Phone :</b> <span data-ng-hide="editMode" dynamic="dataDetail.phone"></span></br>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.phone" />
+                    </div>
+                    <b>Fax :</b> <span data-ng-hide="editMode" dynamic="dataDetail.fax"></span></br>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.fax" />
+                    </div>
+                    <b>Email :</b> <span data-ng-hide="editMode" dynamic="dataDetail.email"></span></br>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.email" />
+                    </div>
+                    <b>Website :</b> <span data-ng-hide="editMode" dynamic="dataDetail.website"></span></br>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.website" />
+                    </div>
+
+                </div>
+            </div>
+
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Other Details</span></h3>
+                    <div class="row">
+                        <div class="span9">
+                            <div data-ng-hide="editMode" dynamic="dataDetail.other_details"></div>
+                        </div>
+                    </div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.other_details"></textarea>
+                        <!--<wysiwyg-edit content="eligibility" config="editorConfig"></wysiwyg-edit>-->
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+
+    </div>
+</div> <!-- end container-->

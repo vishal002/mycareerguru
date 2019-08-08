@@ -1,0 +1,146 @@
+<h1 class="span12">Scholarships</h1>
+        <div class="span12">
+            <ul class="breadcrumb">
+                <li><a href="#/home">Home</a> <span class="divider">/</span></li>
+                <li class="active">Scholarships List</li>
+            </ul>
+        </div>
+
+        <div class="span12">
+            <div class="col-right" style="padding: 0px;"> 
+                <div class="strip-courses" style="background: none;">
+                    <div class="widget">
+                        <div class="form-group">
+                            <form class="form-search form-inline" 
+                                  style="background-color: #555;padding: 10px;">
+
+                                <table class="table table-responsive table-bordered-none">
+                                    <tr class="hidden-phone">
+                                        <td style="text-align: center; width: 40%; ">
+                                            <select class="form-control" style="width: 100%;">
+                                                <option selected value="">Search by Foundation Name</option>
+                                                <option value="" >Foundation Name1</option>
+                                                <option value="" >Foundation Name2</option>
+                                            </select>
+                                            <br/>
+                                            <span style="color: white;">OR</span>
+                                            <br/>
+                                            <select class="form-control" style="width: 100%;">
+                                                <option selected value="">Search by Level/Subject/National/International</option>
+                                                <option value="" >High School Scholarships</option>
+                                                <option value="" >Scholarships for Undergraduate Studies</option>
+                                                <option value="">Scholarships for Graduate Studies</option>
+                                                <option value="">Scholarships for Postgraduate Studies</option>
+                                                <option value="">Scholarships for PhDs</option>
+                                                <option value="">Subject/Specialisation Scholarships</option>
+                                                <option value="">National Scholarships</option>
+                                                <option value="">International Scholarships</option>
+                                                <option value="">Minority Scholarships</option>
+                                            </select>
+                                        </td>
+                                        <td style="width: 50%; ">
+                                            <div style="margin-top: 20px;" >
+                                                <input type="text" class="form-control" style="width: 75%;" />
+                                                <input type="button" class="btn btn-primary btn-sm" value="Search" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- for mobile view -->
+                                    <tr class="hidden-desktop hidden-tablet">
+                                        <td >
+                                            <select style="width: 300px;">
+                                                <option selected value="">Search by Foundation Name</option>
+                                                <option value="" >Foundation Name1</option>
+                                                <option value="" >Foundation Name2</option>
+                                            </select>
+                                            <span style="color: white;">OR</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="hidden-desktop hidden-tablet">
+                                        <td>
+                                            <select style="width: 300px;">
+                                                <option selected value="">Search by Level/Subject/National/International</option>
+                                                <option value="" >High School Scholarships</option>
+                                                <option value="" >Scholarships for Undergraduate Studies</option>
+                                                <option value="">Scholarships for Graduate Studies</option>
+                                                <option value="">Scholarships for Postgraduate Studies</option>
+                                                <option value="">Scholarships for PhDs</option>
+                                                <option value="">Subject/Specialisation Scholarships</option>
+                                                <option value="">National Scholarships</option>
+                                                <option value="">International Scholarships</option>
+                                                <option value="">Minority Scholarships</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr class="hidden-desktop hidden-tablet">
+                                        <td style="width: 50%; ">
+                                                <input type="text" class="form-control" style="width: 70%; height: 12px;" />
+                                                <input type="button" class="btn btn-primary btn-sm" value="Search" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="description">
+                        <div class="row">
+                            <div class="span3" ng-repeat="user in scholarshipList">
+                                <!--<div class="span3" dir-paginate="user in data.users|itemsPerPage:data.itemsPerPage" total-items="data.total_count">-->
+                                <div class="box-style-1 borders" style="padding: 5px;">
+                                    <table class="table table-responsive table-bordered-none">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <img alt="school name" title="{{user.name}}" 
+                                                         style="width: 50px; height: 50px;" 
+                                                         src="{{user.logo}}" >
+                                                </td>
+                                                <td colspan="2">
+                                                    <h5><a href="#/services/scholarships-list/scholarships/{{user.name| spaceless}}"
+                                                           ng-click="setScholarshipsInDetail(user)">
+                                                            {{user.name}}</a></h5>
+                                                    <p style="margin: 0px;">{{user.city}}</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Viewed<br/> 200
+                                                </td>
+                                                <td>
+                                                    Deadline<br/> Mar 20, 2017
+                                                </td>
+                                                <td>
+                                                    Amount<br/> Varies
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                </div><!-- end strip-->
+
+                <hr>
+                <div class="pagination pagination-centered">
+                    <dir-pagination-controls
+                        max-size="8"
+                        direction-links="true"
+                        boundary-links="true" 
+                        on-page-change="data.getData(newPageNumber)" >
+                    </dir-pagination-controls>
+                </div>
+
+                <div class="pagination pagination-centered">
+                    <ul>
+                        <li><a href="#">Prev</a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">Next</a></li>
+                    </ul>
+                </div> <!--end pagination-->
+
+            </div><!-- end col right-->
+
+        </div>

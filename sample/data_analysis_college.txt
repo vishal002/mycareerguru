@@ -1,0 +1,42 @@
+----------------------------------
+Fees
+Exams
+NAAC Rating
+----------------------------------
+
+College V2 - 
+	Name of the Institution	
+	City
+	State
+	Established in	
+	Accredited By
+	Type	
+	Affiliated To	
+	Facilities	
+	Rank Index	
+	About	
+	Visiting Companies	
+	# of Courses	
+	Courses	
+	Placements	
+	Available College Facilities	
+	Faculty	Scholarship and Finance	PIN	Email	
+	Website	
+	Phone	
+	Address	
+	Average Salary
+
+
+College data 1 - College V3 - 
+	Name of the Institution
+	Address Line 1
+	City
+	State
+	Zip	
+	Country
+	Phone
+	Mobile
+	Fax
+	Website
+	Affiliated with	Approvals
+	Courses

@@ -1,0 +1,61 @@
+<div ng-include="'/static/sections/view/header.html'"></div>
+
+<div class="container margin-top-30px" ng-controller="collageMobileMenuCrt">
+    <h2>Colleges Search</h2>
+    <div class="row">  
+        <div class="span12">
+            <ul class="tabs">
+                <li><a class="active" href="#section-1">After X</a></li>
+                <li><a href="#section-2">After XII</a></li>
+                <li><a href="#section-3">After UG</a></li>
+            </ul>
+            <ul class="tabs-content">
+                <li class="active" id="section-1">
+                    <div class="row">
+                        <div class="span4">
+                            <!--<h5>After X</h5>-->
+                            <ul class="list-menu">
+                                <!--<li><a href="#/services/courses-&-colleges" title="All courses">All courses</a></li>-->
+                                <li ng-repeat="(key1, value1) in listAfterX">
+                                    <a href="#/services/colleges/colleges-list/{{key1}}/{{value1| spaceless}}/{{a_10| spaceless}}/{{selectedMF}}" 
+                                       title="{{value1}}">
+                                        {{value1}}</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div><!-- End row -->
+                </li>
+                <li id="section-2">
+                    <div class="row">
+                        <div class="span4">
+                            <!--<h5>After XII</h5>-->
+                            <ul class="list-menu">
+                                <!--<li><a href="all-courses.html" title="All courses">All courses</a></li>-->
+                                <li ng-repeat="(key2, value2) in listAfterXII">
+                                    <a href="#/services/colleges/colleges-list/{{key2}}/{{value2| spaceless}}/{{a_12| spaceless}}/{{selectedMF}}"
+                                       title="{{value2}}">{{value2}}</a></li>
+                            </ul>
+                        </div>
+                    </div><!-- End row -->
+                </li>
+                <li id="section-3">
+                    <div class="row">
+                        <div class="span4">
+                            <!--<h5>After UG Degree</h5>-->
+                            <ul class="list-menu">
+                                <!--<li><a href="all-courses.html" title="All courses">All courses</a></li>-->
+                                <li ng-repeat="(key, value) in listAfterUGDegree">
+                                    <a href="#/services/colleges/colleges-list/{{key}}/{{value| spaceless}}/{{pg| spaceless}}/{{selectedMF}}"
+                                       title="{{value}}">{{value}}</a></li>
+                            </ul>
+                        </div>
+                    </div><!-- End row -->
+                </li>
+            </ul><!-- End tabs-->
+        </div><!-- End span9 -->
+    </div><!-- end row-->
+</div> <!-- end container-->
+
+
+

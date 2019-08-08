@@ -1,0 +1,91 @@
+<div ng-include="'/static/sections/view/header.html'"></div>
+
+<div class="container margin-top-30px" ng-controller="coachingListCrt" cg-busy="myPromise">
+    <div class="row">
+        <!--<h1 class=" span12">Colleges Search</h1>-->
+        <h2 class="span12">Coaching/ Tuitions Search</h2>
+        <div class="span12">
+            <ul class="breadcrumb">
+                <li class="hidden-phone"><a href="#/home">Home</a><span class="divider">/</span></li>
+                <li class="hidden-phone active">Coaching Tuitions list </li>
+            </ul>
+        </div>
+
+        <section class="span12">
+            <div class="col-right" style="background-color: transparent; 
+                 border: none; margin-bottom: 0px; padding: 0px;">
+                <div class="main-img">
+                    <div class="imageContainer">
+                        <p class="lead hidden-phone" style="bottom: 18%; left: 20%; width: 60%; padding: 15px 20px 0px; " >
+                            <input type="text" class="form-control" style="width: 98%; height: 30px;"
+                                   placeholder="Type Coaching Tuitions Name" ng-model="fliter_coachin_name"/>
+                        </p>
+                        <!-- mobile -->
+                        <p class="lead hidden-desktop hidden-tablet" style="bottom: 0%; left: 5%; width: 80%; padding: 15px 20px 0px; " >
+                            <input type="text" class="form-control" style="width: 96%; height: 30px;"
+                                   placeholder="Type Coaching Tuitions Name" ng-model="fliter_coachin_name" />
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="span12">
+            <div class="col-right para-header">
+                <!--Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing-->
+                <!--<div data-ng-hide="editMode" dynamic="eligibility"></div>-->
+                <div style="text-align: center;"><b>{{msg}}</b></div>
+                <div data-ng-show="editMode" >
+                    <wysiwyg-edit content="eligibility" config="editorConfig"></wysiwyg-edit>
+                </div>
+                <br/>
+                <br/>
+
+                <div class="row">
+                    <div class="span3" style="padding-bottom: 20px; width: 250px !important;" 
+                         ng-repeat="data in dataList | filter: fliter_coachin_name">
+                        <div class="thumbnail" style="border-radius: 25px;">
+                            <img style="width: 70px; height: 70px;" ng-src="{{data.logo_img}}" />
+                            <div class="caption" style="text-align: center;">
+                                <h5 title="{{data.name}}">{{ data.name | limitTo: 20 }}{{data.name.length > 20 ? '...' : ''}}</h5>
+                                <div style="font-size: 10px;">
+                                    {{data.street}}, {{data.city}}, {{data.state| limitTo: 15 }}{{data.state.length > 15 ? '...' : ''}}
+                                </div>
+                                <table class="table table-bordered" style="margin-bottom: 15px; font-size: 10px;">
+                                    <tr>
+                                        <td>
+                                            Exam: <span ng-repeat="da in data.exam">{{da}}{{$last ? '' : ', '}}</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Course: <span ng-repeat="da in data.course">{{da}}{{$last ? '' : ', '}}</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Class: <span ng-repeat="da in data.class">{{da}}{{$last ? '' : ', '}}</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <p style="margin: 0 0 10px 0;">
+                                    <a href="#/services/coaching-tuitions-list/{{data.name| spaceless}}/{{data.id}}" 
+                                       class="btn btn-default btn-sm" role="button">
+                                        <i class="icon icon-envelope"></i></a>
+                                    <a href="#/services/coaching-tuitions-list/{{data.name| spaceless}}/{{data.id}}" 
+                                       class="btn btn-default btn-sm" role="button">
+                                        <i class="icon icon-mobile-phone"></i></a>
+
+                                    <a href="#/services/coaching-tuitions-list/{{data.name| spaceless}}/{{data.id}}"
+                                       ng-click="getCoachingInDetail(data.id)" class="btn btn-primary" role="button">
+                                        View Details</a> 
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div><!-- end row-->
+</div><!-- end container-->
+

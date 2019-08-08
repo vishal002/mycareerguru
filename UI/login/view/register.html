@@ -1,0 +1,170 @@
+<div ng-include="'/static/sections/view/header.html'"></div>
+
+<div class="container" ng-controller="RegisterUserController">
+    <div class="row">
+        <h2 class="span12">Register</h2>
+        <div class="span12">
+            <ul class="breadcrumb">
+                <li><a href="#/home">Home</a><span class="divider">/</span></li>
+                <li class="active">Register</li>
+            </ul>
+        </div>
+        <!-- =========================Start Col left section ============================= -->
+        <aside class="span4 hidden-phone">
+            <div class="col-left">
+                <h3>Address</h3>
+                <ul>
+                    <li><i class="icon-home"></i> 11 Fifth Ave, Loftus - NEW JERSEY, US</li>
+                    <li><i class="icon-phone"></i> Telephone: + 61 (2) 8093 3400</li>
+                    <li><i class="icon-phone-sign"></i> Fax: +61 (2) 9542 3599</li>
+                    <li><i class="icon-envelope"></i> Email: <a href="#">submissions@domain.com</a></li>
+                </ul>
+                <hr>
+                <iframe height="250" src="https://maps.google.it/maps?f=q&amp;source=s_q&amp;hl=it&amp;geocode=&amp;q=new+york&amp;sll=40.714353,-74.005973&amp;sspn=0.868126,2.422485&amp;ie=UTF8&amp;hq=&amp;hnear=New+York,+Stati+Uniti&amp;t=m&amp;z=10&amp;iwloc=A&amp;ll=40.714353,-74.005973&amp;output=embed" style="border:0;">
+                </iframe>
+                <br/>
+                <small><a href="https://maps.google.it/maps?f=q&amp;source=embed&amp;hl=it&amp;geocode=&amp;q=new+york&amp;sll=40.714353,-74.005973&amp;sspn=0.868126,2.422485&amp;ie=UTF8&amp;hq=&amp;hnear=New+York,+Stati+Uniti&amp;t=m&amp;z=10&amp;iwloc=A&amp;ll=40.714353,-74.005973" style="text-align:left">View bigger</a></small>
+                <hr>
+                <p>Get directions writing your start point.</p>
+                <form action="http://maps.google.com/maps" method="get" target="_blank">
+                    <input type="text" name="saddr"  placeholder="Enter your location" class="span3" />
+                    <input type="hidden" name="daddr" value="New York, NY 11430" /> <!-- Write here your end point -->
+                    <input type="submit" value="Get directions" class=" button_medium" />
+                </form>    
+            </div>
+        </aside>
+
+        <!-- =========================Start Col right section ============================= -->
+        <section class="span8 ">
+            <div class="col-right">
+                <div id="message-contact"></div>
+                <div class="row">
+                    <div class="span3">
+                        <label>Select a Registration Type</label>
+                        <select id="subject_contact" class="span3" ng-model="register_type">
+                            <option value="" selected >Select</option>
+                            <option value="Student">Student</option>
+                            <option value="Parent">Parent</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <div class="row">
+                        <div class="span3">
+                            <label>Name <span class="required">* </span></label>
+                            <input type="text" class="span3 ie7-margin" id="name_contact">
+                        </div>
+                        <div class="span3">
+                            <label>Last name <span class="required">* </span></label>
+                            <input type="text" class="span3 ie7-margin" id="lastname_contact">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="span3">
+                            <label>Email <span class="required">* </span></label>
+                            <input type="email" ng-model="user.email" id="email_contact" class="span3 ie7-margin">
+                        </div>
+                        <div class="span3">
+                            <label>Phone <span class="required">* </span></label>
+                            <input type="text" id="phone_contact" class="span3 ie7-margin">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="span3">
+                            <label>City <span class="required">*</span></label>
+                            <select class="span3 ie7-margin" ng-model="selectedCity">
+                                <option value="">Select</option>
+                                <option value="{{ $index }}" ng-repeat="val in city">{{ val }}</option>
+                            </select>
+                        </div>
+                        <div class="span3">
+                            <label>Pincode<span class="required">*</span></label>
+                            <select class="span3 ie7-margin" ng-model="selectedPincode">
+                                <option value="">Select</option>
+                                <option value="{{ $index }}" ng-repeat="val in pincode">{{ val }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="span3">
+                            <label>Higher Education<span class="required">*</span></label>
+                            <select class="span3 ie7-margin" ng-model="selectedHigherEducation">
+                                <option value="">Select</option>
+                                <option value="{{ $index }}" ng-repeat="val in currentEducation">{{ val }}</option>
+                            </select>
+                        </div>
+                        <div class="span3" ng-show="selectedHigherEducation == '16' || selectedHigherEducation == '26'">
+                            <label>Please specify other <span class="required">*</span></label>
+                            <input type="text" class="span3 ie7-margin" ng-model="higherEducationOther">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="span3">
+                            <label>Need Guidance For <span class="required">*</span></label>
+                            <select class="span3 ie7-margin" ng-model="selectedNeedGuidanceFor">
+                                <option value="">Select</option>
+                                <option value="{{ $index }}" ng-repeat="val in needGuidanceFor">{{ val }}</option>
+                            </select>
+                        </div>
+                        <div class="span3">
+                            <label>Major Field Of Interest<span class="required">*</span></label>
+                            <select class="span3 ie7-margin" ng-model="selectedMajorFieldOfInterest">
+                                <option value="">Select</option>
+                                <option value="{{ $index }}" ng-repeat="val in majorFieldOfInterest">{{ val }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="span3">
+                            <label>Heard About Us <span class="required">*</span></label>
+                            <select class="span3 ie7-margin" ng-model="selectedHeardAboutUs">
+                                <option value="">Select</option>
+                                <option value="{{ $index }}" ng-repeat="val in heardAboutUs">{{ val }}</option>
+                            </select>
+                        </div>
+                        <div class="span3">
+                            <label>Password <span class="required">*</span></label>
+                            <input type="password" ng-model="user.password" class="span3 ie7-margin">
+                        </div>
+                    </div>
+                    <!--<div class="row">
+                        <div class="span3">
+                            <label><span class="required">*</span> Are you human? 3 + 1 =</label>
+                            <input type="text" id="verify_contact" class="span2">
+                        </div>
+                    </div>-->
+                    <div class="row">
+                        <div class="span6">
+                            <label>By Signing up you agree to our 
+                                <a ng-href="#/policy">Policy</a> 
+                                and 
+                                <a ng-href="#/terms-condition">Terms&condition</a>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="button-align-3 span3">
+                            <input ng-disabled="recieveUpdates"
+                            ng-click="registerUser()" type="button" value="Sign Up" class=" button_medium">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="span6">
+                            <label>
+                                <input type="checkbox" ng-model="recieveUpdates" style="margin-top: 0px;">
+                                <span>I would like to be contacted or recieve updates through Email, SMS & Calls</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="span6">
+                            <label>
+                                Already have an account with MyCareerGuru ? <a ng-href="#/login">Login Here</a>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- end col right-->
+        </section>
+    </div><!-- end row-->
+</div><!-- end container-->

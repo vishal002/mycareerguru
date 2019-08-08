@@ -1,0 +1,416 @@
+<div ng-controller="sectionCrt">
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="span3 hidden-phone"> <!-- id="logo" -->
+                    <a href="#/home">
+                        <img style="width: 75%;"  src="/static/assets/img/logo_light.png" alt="Logo">
+                    </a>
+                </div>
+                <div class="span6 hidden-phone" style="padding-top: 14px;">
+                    <div class="input-group" style="display: -webkit-box;">
+                        <div class="input-group-btn">
+                            <select ng-model="search_type" style="height: 38px; width: 150px; 
+                                    background: #f8f8f8 url(/static/assets/img/pattern.jpg) repeat;" 
+                                    ng-change="search_name = ''; dataList = '';">
+                                <option value="">Select Search By</option>
+                                <option value="course">Course</option>
+                                <!--<option value="careers">Careers</option>-->
+                                <option value="colleges">Colleges</option>
+                                <option value="exams">Exams</option>
+                            </select>
+                        </div>
+                        <input class="inputSearch" style="width: 250%; height: 22px;" type="text" ng-model="search_name"
+                               ng-change="mainSearch(search_type, search_name)" >
+                        <ul class="main-search">
+                            <li ng-repeat="name in dataList">
+                                <a href ng-click="redirectFun(search_type, name.name, name.id)" >{{name.name}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="span3 hidden-phone">
+                    <div id="phone">
+                        <strong>+91 98677 76555 </strong>
+                        <div>
+                            <a href="#/login" title="Login" style="color:#d0dbeb;"
+                               ng-if="!(globals.currentUser.username === userName)" >Sign In |</a> 
+                            <a href="#/register" title="Registration" style="color:#d0dbeb;" 
+                               ng-if="!(globals.currentUser.username === userName)">Sign Up</a>
+                            <a href="#/dashboard" title="My Account" style="color:#d0dbeb;"
+                               ng-if="(globals.currentUser.username === userName)" >My Account |</a>
+                            <a href="#/login" title="Logout" style="color:#d0dbeb;"
+                               ng-if="globals.currentUser.username === userName" >Sign Out</a>
+                        </div>
+                        <div><a href="#/about-us" style="color:#d0dbeb;">About us |</a> 
+                            <a href="#/donation" style="color:#d0dbeb;">Donation</a></div>
+                    </div>
+                </div>
+
+                <!--mobile view -->
+                <div>
+                    <div class="hidden-desktop hidden-tablet"> <!-- id="logo" -->
+                        <div class="pull-right" style="padding-left: 20%;">
+                            <a href="#/home">
+                                <img style="width: 65%;" src="/static/assets/img/logo_light.png" alt="Logo">
+                            </a>
+                            <div class="pull-right" style="padding-right: 3%; padding-top: 20px;">
+                                <a data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" 
+                                   aria-controls="collapseExample" href class="pull-right" style="color:#d0dbeb; text-decoration: blink; " >
+                                    <span style="font-size: x-large;" class="icon-search"></span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div style="width: 20%;">
+                            <span class="megamenu_container">
+                                <a style="width: 1%" id="megamenu-button-mobile">
+                                </a>
+                                <!-- Menu button responsive-->
+                                <!-- Begin Mega Menu Container -->
+                                <ul class="megamenu" style="width: 480%; padding-top: 40px;">
+                                        <div class="row" style="margin-bottom: -10px;">
+                                            <div class="megamenu_mobile">
+                                                <h4> <span class="icon icon-user-md"></span> Welcome </h4>
+                                                <div>
+                                                    <span ng-if="!(globals.currentUser.username === userName)" 
+                                                          ng-click="loginLogoutClick()"> 
+                                                        <i class="icon icon-signin"></i> Sign In</span>
+                                                    <span ng-if="globals.currentUser.username === userName" 
+                                                          ng-click="loginLogoutClick()">
+                                                        <i class="icon icon-signout"></i> Sign Out</span>
+                                                    <span class="pull-right">
+                                                        <i class="icon icon-money"></i> Donation
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    
+
+                                    <!-- Begin Mega Menu -->
+                                    <li ng-repeat="menu in allMenu" class="sub-dropdown">
+                                        <a class="drop-down" >{{menu.mo_menu_name}}</a>
+
+                                        <div style="width: 300% !important; " class="drop-down-container" ng-if="menu.menu_name == 'Career Planning'" >
+                                            <div class="row">
+                                                <div class="span2" style="background: #161a1f;padding: 7px;">
+                                                    <ul>
+                                                        <li class="menu-onhover" ng-repeat="submenun in carrerPlanningSideMenu" >
+                                                            <a href="#/services/career-planning/{{submenun.menu| spaceless}}/{{submenun.id}}"
+                                                               title="{{submenun.menu}}">{{submenun.menu}} </a>
+                                                        </li> 
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div style="width: 300% !important; " class="drop-down-container" ng-if="menu.menu_name == 'Colleges'" >
+                                            <div class="row">
+                                                <div class="span2" style="background: #161a1f;padding: 7px;">
+                                                    <h4>Major Fields</h4>
+                                                    <ul>
+                                                        <li class="menu-onhover" ng-repeat="(key, value) in menu.major_fields" 
+                                                            ng-click="getOtherMenu(value, key)">
+                                                            <a style="font-size: 16px;" href="#/services/colleges/major-fields/{{key}}" 
+                                                               title="{{value}}">{{value}} </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div style="width: 300% !important; " class="drop-down-container" ng-if="menu.menu_name == 'Courses'" >
+                                            <div class="row">
+                                                <div class="span2" style="background: #161a1f;padding: 7px;">
+                                                    <h4>Major Fields </h4>
+                                                    <ul>
+                                                        <li class="menu-onhover" ng-repeat="(key, value) in menu.major_fields" 
+                                                            ng-click="getOtherMenu(value)">
+                                                            <a style="font-size: 16px;" href="#/services/courses/major-fields/via/{{key}}" 
+                                                               title="{{value}}">{{value}} </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li><a href="#/services/entrance_and_scholarship_exams_list/" class="nodrop-down">Exams</a></li>
+                                    <li><a href="#/services/career-planning/Explore-Different-Careers/3" class="nodrop-down">Explore different Careers</a></li>
+                                    <li><a href="#/services/mentoring" class="nodrop-down">Find Specialized Mentoring</a></li>
+                                    <li><a href="#/services/aptitude-ability" class="nodrop-down">Aptitude/Ability Tests</a></li>
+                                    <li><a href="#/services/schools-list" class="nodrop-down">School Search</a></li>
+                                    <li><a href="" class="nodrop-down">Coaching/Tuitions Search</a></li>
+                                    <li class="sub-dropdown">
+                                        <a class="drop-down" >Planning to Study Abroad?</a>
+                                        <div style="width: 300% !important; " class="drop-down-container">
+                                            <div class="row">
+                                                <div class="span2" style="background: #161a1f;padding: 7px;">
+                                                    <ul>
+                                                        <li class="menu-onhover">
+                                                            <a href="#/services/study-abroad/after-12" title="After XII for undergraduate studies">
+                                                                After XII for undergraduate studies</a>
+                                                        </li>
+                                                        <li class="menu-onhover">
+                                                            <a href="#/services/study-abroad/after-12" title="After UG Degree for Masters or PG degree">
+                                                                After UG Degree for Masters or PG degree</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li><a href="#//services/scholarships-list" class="nodrop-down">Educational Scholarships</a></li>
+                                    <li><a href="#/services/schools-list" class="nodrop-down">Home Schooling decoded</a></li>
+                                    <li><a href="#/about-us" class="nodrop-down">About us</a></li>
+                                    <!-- End Item -->
+                                </ul><!-- End Mega Menu -->
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden-desktop hidden-tablet collapse" id="collapseExample" style="width: 100%;" >
+                    <div class="input-group" style="display: -webkit-box;">
+                        <div class="input-group-btn">
+                            <select ng-model="search_type" 
+                                    style="max-width: 150px; height: 36px; margin-bottom: 0px; 
+                                    background: #f8f8f8 url(/static/assets/img/pattern.jpg) repeat;">
+                                <option value="">Select Search By</option>
+                                <option value="course">Course</option>
+                                <!--<option value="careers">Careers</option>-->
+                                <option value="colleges">Colleges</option>
+                                <option value="exams">Exams</option>
+                            </select>
+                        </div>
+                        <input class="inputSearch" style="max-width: 300px;min-width: 245px;"
+                               placeholder="Enter Search Item" type="text" ng-model="search_name"
+                               ng-change="mainSearch(search_type, search_name)">
+                        <ul class="main-search" style="z-index: 3002;position: fixed;top: 86px;left: 156px;">
+                            <li ng-repeat="name in dataList">
+                                <a href ng-click="redirectFun(search_type, name.name, name.id)" >{{name.name}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div><!-- End row-->
+        </div><!-- End container-->
+    </header><!-- End Header-->
+
+
+    <!--Desktop view -->
+    <nav>
+        <div class="megamenu_container hidden-phone">
+            <a style="width: 1%" id="megamenu-button-mobile">
+                &nbsp;
+            </a>
+            <!-- Menu button responsive-->
+            <!-- Begin Mega Menu Container -->
+            <ul class="megamenu">
+                <!-- Begin Mega Menu -->
+                <li ng-repeat="menu in allMenu" 
+                    ng-class="{
+                            'drop-normal'
+                                    : menu.menu_name == 'Open Schooling' || menu.menu_name == 'Schools' }">
+                    <a class="drop-down" >{{menu.menu_name}}</a>
+                    <div class="drop-down-container" ng-if="menu.menu_name == 'Career Planning'" >
+                        <div class="row">
+                            <div class="span3" style="font-size: 15px;">
+                                <ul>
+                                    <li class="menu-onhover" ng-repeat="submenun in carrerPlanningSideMenu" >
+                                        <a href="#/services/career-planning/{{submenun.menu| spaceless}}/{{submenun.id}}"
+                                           title="{{submenun.menu}}">
+                                            {{submenun.menu}}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="drop-down-container" ng-if="menu.menu_name == 'Colleges'" style="width: 98%;">
+                        <div class="row">
+                            <div class="hidden-phone" style="font-size: 15px;">
+                                <div class="span3" style="background: #161a1f;">
+                                    <ul>
+                                        <li class="menu-onhover" ng-class="{
+                                                'menu-major-f-active'
+                                                        : $index == curr_sel_index }"
+                                            ng-repeat="data in majorFieldsExams" ng-show="$index < count_list"
+                                            ng-mouseover="getOtherMenuForDesktop(data.id, $index)">
+                                            <a href="" title="{{data.name}}">
+                                                {{ data.name | limitTo: 26 }}{{data.name.length > 26 ? '...' : ''}}
+                                            </a>
+                                        </li>
+                                        <li class="menu-onhover-last">
+                                            <a href="#/all-menu/college" title="See All">See All Major Fields</a> </li>
+                                    </ul>
+                                </div>                      
+                                <div class="span3" style="padding-top: 15px;">
+                                    <h4>After X</h4>
+                                    <ul class="list-menu">
+                                        <li ng-repeat="(key1, value1) in listAfterX" ng-show="$index < count_list" 
+                                            style="padding-bottom: 10px;">
+                                            <a href="#/services/colleges/colleges-list/{{key1}}/{{value1| spaceless}}/{{a_10| spaceless}}/{{selectedMF}}" 
+                                               title="{{value1}}"> {{value1| limitTo: count_length}}{{value1.length > count_length ? '...' : '' }}</a>
+                                        </li>
+                                        <li ng-if="listAfterX_length > count_explore_btn || !listAfterX_length == undefined" >
+                                            <a href="#/all-menu/college" class="button_red_small" >Explore more</a></li>
+                                    </ul>
+                                </div>
+                                <div class="span3" style="padding-top: 15px;">
+                                    <h4>After XII</h4>
+                                    <ul class="list-menu">
+                                        <li ng-repeat="(key2, value2) in listAfterXII" ng-show="$index < count_list"
+                                            style="padding-bottom: 10px;">
+                                            <a href="#/services/colleges/colleges-list/{{key2}}/{{value2| spaceless}}/{{a_12| spaceless}}/{{selectedMF}}"
+                                               title="{{value2}}"> {{value2| limitTo: count_length}}{{value2.length > count_length ? '...' : '' }}</a>
+                                        </li>
+                                        <li ng-if="listAfterXII_length > count_explore_btn || !listAfterXII_length == undefined" >
+                                            <a href="#/all-menu/college" class="button_red_small">Explore more</a></li>
+                                    </ul>
+                                </div>
+                                <div class="span3" style="padding-top: 15px;">
+                                    <h4>After UG Degree</h4>
+                                    <ul class="list-menu">
+                                        <li ng-repeat="(key, value) in listAfterUGDegree" ng-show="$index < count_list"
+                                            style="padding-bottom: 10px;">
+                                            <a href="#/services/colleges/colleges-list/{{key}}/{{value| spaceless}}/{{pg| spaceless}}/{{selectedMF}}"
+                                               title="{{value}}"> {{value| limitTo: count_length}}{{value.length > count_length ? '...' : '' }}</a>
+                                        </li>
+                                        <li ng-if="listAfterUGDegree_length > count_explore_btn || !listAfterUGDegree_length == undefined">
+                                            <a href="#/all-menu/college" class="button_red_small">Explore more</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="hidden-desktop hidden-tablet">
+                                <div class="span2" style="background: #161a1f;padding: 7px;">
+                                    <h4>Major Fields </h4>
+                                    <ul>
+                                        <li class="menu-onhover" ng-repeat="data in majorFieldsExams" 
+                                            ng-mouseover="getOtherMenu(data.id)">
+                                            <a style="font-size: 16px;" href="" title="{{data.name}}">{{data.name}} </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><!-- End row -->
+                    </div>
+                    <div class="drop-down-container" ng-if="menu.menu_name == 'Courses'" style="width: 98%;">
+                        <div class="row">
+                            <div class="hidden-phone" style="font-size: 15px;">
+                                <div class="span3" style="background: #161a1f;">
+                                    <ul>
+                                        <li class="menu-onhover" ng-class="{
+                                                'menu-major-f-active'
+                                                : $index == curr_sel_index }"
+                                            ng-repeat="data in majorFieldsExams" ng-show="$index < count_list"
+                                            ng-mouseover="getOtherMenuForDesktop(data.id, $index)">
+                                            <a href="" title="{{data.name}}">
+                                                {{ data.name | limitTo: 26 }}{{data.name.length > 26 ? '...' : ''}}
+                                            </a>
+                                        </li>
+                                        <li class="menu-onhover-last">
+                                            <a href="#/all-menu/courses" title="See All">See All Major Fields</a> </li>
+                                    </ul>
+                                </div>                      
+                                <div class="span3" style="padding-top: 15px;">
+                                    <h4>After X</h4>
+                                    <ul class="list-menu">
+                                        <li ng-repeat="(key1, value1) in listAfterX" ng-show="$index < count_list" 
+                                            style="padding-bottom: 10px;">
+                                            <a href="#/services/courses/{{value1| spaceless}}/{{key1}}"  
+                                               title="{{value1}}"> {{value1| limitTo: count_length}}{{value1.length > count_length ? '...' : '' }}</a>
+                                        </li>
+                                        <li ng-if="listAfterX_length > count_explore_btn || !listAfterX_length == undefined" >
+                                            <a href="#/all-menu/courses" class="button_red_small" >Explore more</a></li>
+                                    </ul>
+                                </div>
+                                <div class="span3" style="padding-top: 15px;">
+                                    <h4>After XII</h4>
+                                    <ul class="list-menu">
+                                        <li ng-repeat="(key2, value2) in listAfterXII" ng-show="$index < count_list"
+                                            style="padding-bottom: 10px;">
+                                            <a href="#/services/courses/{{value2| spaceless}}/{{key2}}" 
+                                               title="{{value2}}"> {{value2| limitTo: count_length}}{{value2.length > count_length ? '...' : '' }}</a>
+                                        </li>
+                                        <li ng-if="listAfterXII_length > count_explore_btn || !listAfterXII_length == undefined" >
+                                            <a href="#/all-menu/courses" class="button_red_small">Explore more</a></li>
+                                    </ul>
+                                </div>
+                                <div class="span3" style="padding-top: 15px;">
+                                    <h4>After UG Degree</h4>
+                                    <ul class="list-menu">
+                                        <li ng-repeat="(key, value) in listAfterUGDegree" ng-show="$index < count_list"
+                                            style="padding-bottom: 10px;">
+                                            <a href="#/services/courses/{{value| spaceless}}/{{key}}" 
+                                               title="{{value}}"> {{value| limitTo: count_length}}{{value.length > count_length ? '...' : '' }}</a>
+                                        </li>
+                                        <li ng-if="listAfterUGDegree_length > count_explore_btn || !listAfterUGDegree_length == undefined">
+                                            <a href="#/all-menu/courses" class="button_red_small">Explore more</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><!-- End row -->
+                    </div>
+                </li>
+                <li class="drop-normal">
+                    <a href="#/services/entrance_and_scholarship_exams_list/" class="drop-down"
+                       style="background-image: none;" >Exams</a>
+                </li>
+                <li class="drop-normal">
+                    <a href="#/services/mentoring" class="drop-down"
+                       style="background-image: none;" >Mentoring</a>
+                </li>
+                <li class="drop-normal">
+                    <a class="drop-down" >Study Abroad</a>
+                    <div class="drop-down-container">
+                        <div class="row">
+                            <div class="span3" style="font-size: 15px;">
+                                <ul>
+                                    <li class="menu-onhover">
+                                        <a href="#/services/study-abroad/after-12" title="After XII for undergraduate studies">After XII for undergraduate studies</a>
+                                    </li>
+                                    <li class="menu-onhover">
+                                        <a href="#/services/study-abroad/after-ug" title="After UG Degree for Masters or PG degree">After UG Degree for Masters or PG degree</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="drop-normal"><a href="#/services/scholarships-list" class="drop-down"
+                                           style="background-image: none;">Scholarships</a></li>
+                <li class="drop-normal">
+                    <a href="" class="drop-down">Home Schooling</a>
+                    <div class="drop-down-container">
+                        <div class="row">
+                            <div class="span3" style="font-size: 15px;">
+                                <ul>
+                                    <li class="menu-onhover">
+                                        <a href="#/services/home-schooling/" title="About HomeSchooling">About</a>
+                                    </li>
+                                    <li class="menu-onhover">
+                                        <a href="#/services/home-schooling/" title="HomeSchooling What, Why & How?">What, Why & How?</a>
+                                    </li>
+                                    <li class="menu-onhover">
+                                        <a href="#/services/home-schooling/" title="Myths about Homeschooling?">Myths</a>
+                                    </li>
+                                    <li class="menu-onhover">
+                                        <a href="#/services/home-schooling/" title="Advantages & Disadvantages">Advantages & Disadvantages</a>
+                                    </li>
+                                    <li class="menu-onhover">
+                                        <a href="#/services/home-schooling/" title="Where to Start?">Where to Start?</a>
+                                    </li>
+                                    <li class="menu-onhover">
+                                        <a href="#/services/home-schooling/" title="How we can be of help?">How we can be of help?</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!-- End Item -->
+            </ul><!-- End Mega Menu -->
+        </div>
+    </nav>
+</div>

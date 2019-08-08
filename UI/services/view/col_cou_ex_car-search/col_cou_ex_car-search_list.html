@@ -1,0 +1,73 @@
+<div ng-include="'/static/sections/view/header.html'"></div>
+
+<div class="container margin-top-30px" ng-controller="listController"  cg-busy="myPromise">
+    <div class="row">
+        <h2 class="span12">College, Courses, Exam and Careers Search</h2>
+        <div class="span12">
+            <ul class="breadcrumb">
+                <li><a href="#/home">Home</a> <span class="divider">/</span></li>
+                <li class="active">college-courses-exam-career-search</li>
+            </ul>
+        </div>
+
+        <div class="span4" ng-repeat="mf in majorFieldsExams">
+            <div class="col-right" style="padding: 0px;"> 
+                <div class="strip-courses" style="background: none;">
+                    <div class="widget">
+                        <div class="form-group">
+                            <form class="form-search form-inline" 
+                                  style="padding: 10px;">
+
+                                <table class="table table-responsive table-bordered-none">
+                                    <tr> 
+                                        <td colspan="2" style="text-align: center;" title="mf.name">
+                                            <h3>{{mf.name| limitTo: 20 }}{{mf.name.length > 20 ? '...' : ''}}</h3>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="50%">
+                                            <select class="form-control" style="width: 100%;" 
+                                                    ng-model="coruse_id" ng-change="courseInDetail(coruse_id)">
+                                                <option selected value="">Select Course ({{mf.courses.length || 0}})</option>
+                                                <option ng-repeat="data in mf.courses" value="{{data.id}}" >
+                                                    {{data.name}}</option>
+                                            </select>
+                                        </td> 
+                                        <td>
+                                            <select class="form-control" style="width: 100%;"
+                                                    ng-model="careers_id" ng-change="careersInDetail(careers_id)">
+                                                <option selected value="">Select Careers ({{mf.career_options.length || 0}})</option>
+                                                <option ng-repeat="data in mf.career_options" value="{{data.id}}"  >
+                                                    {{data.name}}</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="50%">
+                                            <select class="form-control" style="width: 100%;"
+                                                    ng-model="colleges_id" ng-change="collegesInDetail(colleges_id)">
+                                                <option selected value="">Select Colleges ({{college.length || 0}})</option>
+                                                <option ng-repeat="data in mf.college" value="{{data.name}}"  >
+                                                    {{data.name}}</option>
+                                            </select>
+                                        </td> 
+                                        <td>
+                                            <select class="form-control" style="width: 100%;"
+                                                    ng-model="exams_id" ng-change="examsInDetail(exams_id)">
+                                                <option selected value="">Select Exams ({{mf.exams.length || 0}})</option>
+                                                <option ng-repeat="data in mf.exams" value="{{data.id}}"  >
+                                                    {{data.name}}</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+                </div><!-- end strip-->
+
+            </div><!-- end col right-->
+
+        </div>
+    </div><!-- end row-->
+</div> <!-- end container-->

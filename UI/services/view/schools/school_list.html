@@ -1,0 +1,122 @@
+<div ng-include="'/static/sections/view/header.html'"></div>
+
+<div class="container margin-top-30px" ng-controller="schoolListCrt as data" cg-busy="myPromise">
+    <div class="row">
+        <h2 class="span12">School Search</h2>
+        <div class="span12">
+            <ul class="breadcrumb">
+                <li><a href="#/home">Home</a><span class="divider">/</span></li>
+                <li class="active">School Search <span class="divider">/</span> School list </li>
+            </ul>
+        </div>
+
+        <section class="span12">
+            <div class="col-right" style="background-color: transparent; 
+                 border: none; margin-bottom: 0px; padding: 0px;">
+                <div class="main-img">
+                    <div class="imageContainer">
+                        <p class="lead hidden-phone" style="bottom: 18%; left: 20%; width: 60%; padding: 15px 20px 0px; " >
+                            <input type="text" class="form-control" style="width: 47%; height: 30px;"
+                                   placeholder="Type School Name" ng-model="filter_school_name" />
+                            <select class="form-control" style="width: 50%; height: 45px;" ng-model="filter_field_board">
+                                <option value="">Search by Selecting a Board</option>
+                                <option ng-repeat="board in field_board_list" value="{{board}}">
+                                    {{board}}</option>
+                            </select>
+                        </p>
+                        <!-- mobile -->
+                        <p class="lead hidden-desktop hidden-tablet" style="bottom: 0%; left: 5%; width: 80%; padding: 15px 20px 0px; " >
+                            <input type="text" class="form-control" style="width: 96%; height: 30px;"
+                                   placeholder="Type School Name" ng-model="filter_school_name" />
+                            <select class="form-control" style="width: 100%; height: 45px;" ng-model="filter_field_board">
+                                <option value="">Search by Selecting a Board</option>
+                                <option ng-repeat="board in field_board_list" value="{{board}}">
+                                    {{board}}</option>
+                            </select>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="span12">
+            <div class="col-right para-header">
+                About Different School boards:  This para will have a basic introduction of schools with links of different boards . These links will take them to the static pages where that board is explained. Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+                <!--<div data-ng-hide="editMode" dynamic="eligibility"></div>-->
+
+                <div data-ng-show="editMode" >
+                    <wysiwyg-edit content="eligibility" config="editorConfig"></wysiwyg-edit>
+                </div>
+                <br/>
+                <br/>
+
+                <div class="row">
+                    <div class="description span8 pull-left">
+                        <div class="span4 margin-left-zero margin-right-exam-list" 
+                             ng-repeat="user in schoolList| filter:{board: filter_field_board, name:filter_school_name}">
+                            
+                            <div class="thumbnail" style="border-radius: 25px;">
+                                <div class="caption" style="text-align: center;">
+                                    <a href="#/services/schools-list/{{user.id}}/{{user.name| spaceless}}">
+                                        <h5 title="{{user.name}}">{{ user.name | limitTo: 50 }}{{user.name.length > 50 ? '...' : ''}}</h5>
+                                    </a>
+                                    <div style="font-size: 10px;">
+                                        <div ng-if="user.full_address == '' ">
+                                            No date is available or date is yet to be announced
+                                        </div>
+                                        {{user.full_address| limitTo: 85 }}{{user.full_address.length > 85 ? '...' : ''}}
+                                    </div>
+                                    <div style="font-size: 10px;">
+                                        Board: {{user.board}}
+                                    </div>
+                                    <p style="margin: 0 0 10px 0;" ng-mouseover="toolTipFun()">
+                                        <a href=""
+                                           class="button_red_small" role="button" 
+                                           data-toggle="tooltip" data-placement="bottom" title="{{user.email}}"
+                                           ng-class="{'cust-lightgrey': user.email == '' }" >
+                                            <i class="icon icon-envelope"></i>
+                                        </a>
+                                        <a href="" 
+                                           class="button_red_small" role="button"
+                                           data-toggle="tooltip" data-placement="bottom" title="{{user.phone}}"
+                                           ng-class="{'cust-lightgrey': user.phone == '' }" >
+                                            <i class="icon icon-mobile-phone"></i>
+                                        </a>
+
+                                        <a href="#/services/schools-list/{{user.id}}/{{user.name| spaceless}}"
+                                            class="button_red_small" role="button">
+                                            Apply Now
+                                        </a> 
+
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <aside class="span3 hidden-phone">
+                        <h5>Explore Schools based on major fields</h5>
+                        <div class="col-left" style="margin: 1px; padding: 10px 30px 5px 20px;"
+                             ng-repeat="exam in majorFieldsList">
+                            <h4>
+                                <a ng-click="filterOnMajorFields(exam.name)">{{exam.name}}</a>
+                            </h4>
+                        </div>
+                    </aside>
+
+
+                    <!-- for mobile version -->
+                    <aside class="span3 hidden-desktop hidden-tablet pull-right margin-left-zero">
+                        <div class="col-left" >
+                            <h5 ng-repeat="exam in majorFieldsList" >
+                                <a ng-click="filterOnMajorFields(exam.name)">{{exam.name}}</a>
+                            </h5>
+                        </div>
+                    </aside>
+                    
+                </div>
+            </div>
+        </section>
+    </div><!-- end row-->
+</div><!-- end container-->
+

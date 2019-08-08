@@ -1,0 +1,162 @@
+<div ng-include="'/static/sections/view/header.html'"></div>
+
+<div class="container margin-top-30px" ng-controller="exploreDiffCareerPlanningCrt">
+    <div class="row">
+        <h2 class="span12">Explore Different Careers</h2>
+        <div class="span12">
+            <ul class="breadcrumb">
+                <li><a href="#/home">Home</a><span class="divider">/</span></li>
+                <li class="active"><a href="#/services/career-planning">Career planning</a><span class="divider">/</span></li>
+                <li class="active">Explore Different Careers<span class="divider">/</span></li>
+                <li >{{param_name}}</li>
+                
+                <li><div growl></div></li>
+
+                <li class="pull-right  hidden-phone">
+                    <a href="" data-ng-hide="editMode" data-ng-click="editMode = true; editItem(dataDetail)" class="button_red_small">
+                        <span class="icon-edit"></span>Edit
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false; doneEditing(dataDetail)" class="button_red_small">
+                        <span class="icon-save"></span>Save
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false; cancelEditing(dataDetail)" class="button_red_small">
+                        <span class="icon-remove"></span>Cancel
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- =========================Start Col left section ============================= -->   
+        <aside class="span3 hidden-phone ">
+            <h5>Explore Careers in major fields</h5>
+            <div class="col-left" ng-repeat="menu in majorFieldsList" style="margin: 1px; padding: 10px 30px 5px 20px;">
+                <h5>
+                    <a href="" ng-click="getCareerDetails($index, $index)" >{{menu.name}}</a>
+                </h5>
+            </div>
+        </aside>
+
+        <!-- for mobile version -->
+        <aside class="span4 hidden-desktop hidden-tablet ">
+            <div class="col-left" >
+                <h5 ng-repeat="menu in majorFieldsList" >
+                    <a href="" ng-click="getCareerDetails(menu.name, $index)">Explore Careers in {{menu.name}}</a>
+                </h5>
+            </div>
+        </aside>
+
+        <!-- =========================Start Col right section ============================= --> 
+        <section class="span9">
+            <div class="col-right">
+                <div class="main-img">
+                    <div class="imageContainerCountry">
+                        <p class="lead" data-ng-hide="editMode">{{dataDetail.name}}</p>
+                        <div class="widget tags pull-right">
+                            <a href=""><span class="icon-money"></span> Growth: {{dataDetail.growth}}</a>
+                            <a href=""><span class="icon-cloud"></span> Academic Efforts: {{dataDetail.academic_effort}}</a>
+                            <a href=""><span class="icon-cloud"></span> Income: {{dataDetail.income}}</a>
+                        </div>
+                    </div>
+
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.name" />
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.growth" />
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.academic_effort" />
+                        <input class="input-large inputfield" type="text" data-ng-model="dataDetail.income" />
+                    </div>
+                </div>
+
+                <div>
+                    <div class="col-right para-header margin-bot-10px">
+                        <h3><span>Description/Overview</span></h3>
+                        <div data-ng-hide="editMode" dynamic="dataDetail.description"></div>
+                        <div data-ng-show="editMode" >
+                            <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.description"></textarea>
+                        </div>
+
+                    </div>
+                </div>
+                <div>
+                    <div class="col-right para-header margin-bot-10px">
+                        <h3><span>Duties and Responsibilities</span></h3>
+                        <div data-ng-hide="editMode" dynamic="dataDetail.duties_and_responsibilities"></div>
+                        <div data-ng-show="editMode" >
+                            <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.duties_and_responsibilities"></textarea>
+                        </div>
+
+                    </div>
+                </div>
+                <div>
+                    <div class="col-right para-header margin-bot-10px">
+                        <h3><span>Where do they work?</span></h3>
+                        <div data-ng-hide="editMode" dynamic="dataDetail.work_place"></div>
+                        <div data-ng-show="editMode" >
+                            <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.work_place"></textarea>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div>
+                    <div class="col-right para-header margin-bot-10px">
+                        <h3><span>What skills / Qualities you should develop?</span></h3>
+                        <div data-ng-hide="editMode" dynamic="dataDetail.skills"></div>
+                        <div data-ng-show="editMode" >
+                            <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.skills"></textarea>
+                        </div>
+
+                    </div>
+                </div>
+                <div>
+                    <div class="col-right para-header margin-bot-10px">
+                        <h3><span>Important knowledge areas of “{{param_name}}” </span></h3>
+                        <div data-ng-hide="editMode" dynamic="dataDetail.knowledge_areas"></div>
+                        <div data-ng-show="editMode" >
+                            <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.knowledge_areas"></textarea>
+                        </div>
+
+                    </div>
+                </div>
+                <div>
+                    <div class="col-right para-header margin-bot-10px">
+                        <h3><span>How to become one?</span></h3>
+                        <div data-ng-hide="editMode" dynamic="dataDetail.how_to_become"></div>
+                        <div data-ng-show="editMode" >
+                            <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.how_to_become"></textarea>
+                        </div>
+
+                    </div>
+                </div>
+                <div>
+                    <div class="col-right para-header margin-bot-10px">
+                        <h3><span>Caveat</span></h3>
+                        <div data-ng-hide="editMode" dynamic="dataDetail.caveat"></div>
+                        <div data-ng-show="editMode" >
+                            <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.caveat"></textarea>
+                        </div>
+
+                    </div>
+                </div>
+                <div>
+                    <div class="col-right para-header margin-bot-10px">
+                        <h3><span>Where do they work?</span></h3>
+                        <div data-ng-hide="editMode" dynamic="dataDetail.work_place"></div>
+                        <div data-ng-show="editMode" >
+                            <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.work_place"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-right para-header margin-bot-10px">
+                        <h3><span>Remarks</span></h3>
+                        <div data-ng-hide="editMode" dynamic="dataDetail.remarks"></div>
+                        <div data-ng-show="editMode" >
+                            <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.remarks"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- end col right-->
+        </section>
+
+    </div><!-- end row-->
+</div> <!-- end container-->
+

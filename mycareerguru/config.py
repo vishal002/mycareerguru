@@ -1,0 +1,1 @@
+LOG_FILE = "log_file.log"

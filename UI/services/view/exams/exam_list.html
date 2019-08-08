@@ -1,0 +1,152 @@
+<div ng-include="'/static/sections/view/header.html'"></div>
+
+<div class="container margin-top-30px" ng-controller="examListController as data" cg-busy="myPromise">
+    <div class="row">
+        <h2 class="span12">Exams Search</h2>
+        <div class="span12">
+            <ul class="breadcrumb">
+                <li><a href="#/home">Home</a><span class="divider">/</span></li>
+                <li class="active">Exams list</li>
+            </ul>
+        </div>
+        <section class="span12">
+            <div class="col-right" style="background-color: transparent; 
+                 border: none; margin-bottom: 0px; padding: 0px;">
+                <div class="main-img">
+                    <div class="imageContainer">
+                        <p class="lead hidden-phone" style="bottom: 18%; left: 20%; width: 60%; padding: 15px 20px 0px; " >
+                            <input type="text" class="form-control" style="width: 47%; height: 30px;"
+                                   placeholder="Type Exam Name" ng-model="filter_exam_name" />
+                            <select class="form-control" style="width: 50%; height: 45px;" ng-model="filter_field_name" >
+                                <option value="">Select Field of Interest</option>
+                                <option ng-repeat="field in field_name_list track by $index" >{{field}}</option>
+                            </select>
+                        </p>
+                        <!-- mobile -->
+                        <p class="lead hidden-desktop hidden-tablet" style="bottom: 0%; left: 5%; width: 80%; padding: 15px 20px 0px; " >
+                            <input type="text" class="form-control" style="width: 96%; height: 30px;"
+                                   placeholder="Type Exam Name" ng-model="filter_exam_name" />
+                            <select class="form-control" style="width: 100%; height: 45px;" ng-model="filter_field_name" >
+                                <option value="">Select Field of Interest</option>
+                                <option ng-repeat="field in field_name_list track by $index" >{{field}}</option>
+                            </select>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="span12">
+            <div class="col-right para-header" style="padding-left: 0px; padding-top: 0px; border: none; padding-right: 0px;" >
+                <!--Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing-->
+                <!--<div data-ng-hide="editMode" dynamic="eligibility"></div>-->
+                <div style="text-align: center;"><b>{{msg}}</b></div>
+                <div data-ng-show="editMode" >
+                    <wysiwyg-edit content="eligibility" config="editorConfig"></wysiwyg-edit>
+                </div>
+                <br/>
+                <br/>
+
+                <div class="row">
+                    <div class="span9">
+                        <div class="span3" style="padding-bottom: 20px; width: 250px !important;" 
+                             ng-repeat="data in examList| filter:{field_name: filter_field_name, name:filter_exam_name}">
+                            <div class="thumbnail" style="border-radius: 25px;">
+                                <div class="caption" style="text-align: center;">
+                                    <a href="#/services/exams/exams/{{data.id}}/{{data.name| spaceless}}"
+                                       ng-click="setExamInDetail(data)">
+                                        <h5 title="{{data.name}}">{{ data.name | limitTo: 50 }}{{data.name.length > 50 ? '...' : ''}}</h5>
+                                    </a>
+                                    <div style="font-size: 10px;">
+                                        <div ng-if="data.exam_date == ''">
+                                            No date is available or date is yet to be announced
+                                        </div>
+                                        {{data.exam_date| limitTo: 85 }}{{data.exam_date.length > 85 ? '...' : ''}}
+                                    </div>
+                                    <!-- to do <table class="table table-bordered" style="margin-bottom: 15px; font-size: 10px;">
+                                        <tr>
+                                            <td style="width: 50%;">
+                                                Branch<br/>
+                                                {{data.branch}}
+                                            </td>
+                                            <td>
+                                                Duration<br/>
+                                                {{data.duaration}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 50%;">
+                                                Institute Type<br/>
+                                                {{data.institute_type}}
+                                            </td>
+                                            <td>
+                                                Fees<br/>
+                                                {{data.fees}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 50%;">
+                                                Avg. Placement<br/>
+                                                {{data.plac_avg}}
+                                            </td>
+                                            <td>
+                                                Max. Placement<br/>
+                                                {{data.plac_higest}}
+                                            </td>
+                                        </tr>
+                                    </table>-->
+                                    <p style="margin: 0 0 10px 0;" ng-mouseover="toolTipFun()">
+                                        <a href=""
+                                           class="button_red_small" role="button" 
+                                           data-toggle="tooltip" data-placement="bottom" title="{{data.email}}"
+                                           ng-class="{'cust-lightgrey': data.email == '' }" >
+                                            <i class="icon icon-envelope"></i>
+                                        </a>
+                                        <a href="" 
+                                           class="button_red_small" role="button"
+                                           data-toggle="tooltip" data-placement="bottom" title="{{data.phone}}"
+                                           ng-class="{'cust-lightgrey': data.phone == '' }" >
+                                            <i class="icon icon-mobile-phone"></i>
+                                        </a>
+
+                                        <a href="#/services/exams/exams/{{data.id}}/{{data.name| spaceless}}"
+                                           ng-click="setExamInDetail(data)" class="button_red_small" role="button">
+                                            Apply Now
+                                        </a> 
+
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="span3 hidden-phone" style="margin-left: 5px;">
+                        <h4>Exams based on Major Fields</h4>
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr ng-repeat="exam in majorFieldsExams">
+                                    <td>
+                                        <a ng-click="filterOnMajorFields(exam.name)">{{exam.name}}</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- for mobile version -->
+                    <aside class="span3 hidden-desktop hidden-tablet pull-right margin-left-zero">
+                        <div class="col-left" >
+                            <h5 ng-repeat="exam in majorFieldsExams" >
+                                <a ng-click="filterOnMajorFields(exam.name)">{{exam.name}}</a>
+                            </h5>
+                        </div>
+                    </aside>
+
+
+
+                </div>
+            </div>
+        </section>
+    </div><!-- end row-->
+</div><!-- end container-->
+

@@ -1,0 +1,294 @@
+<div ng-include="'/static/sections/view/header.html'"></div>
+
+<div ng-controller="homeCrt" ng-init="loadSlider()">
+    <!--Star slider-->
+    <section class="slider">
+        <div class="fullwidthbanner-container">
+            <div class="fullwidthbanner">
+                <ul>
+                    <!-- THE FIRST SLIDE -->
+                    <li data-transition="flyin" data-slotamount="1" data-masterspeed="300"  data-thumb="images/thumbs/thumb1.jpg" data-delay="4000" >
+                        <img src="/static/assets/images/slides/slide-intro.jpg" alt="">
+                        <div class="caption randomrotate"
+                             data-x="center"
+                             data-y="120"
+                             data-speed="300"
+                             data-start="1200"
+                             data-easing="easeOutExpo"  >
+                            <!--<img src="/static/assets/images/slides/logo.png" alt="">-->
+                            <img style="width: 80%;" src="/static/assets/img/logo_dark.png" alt="">
+                        </div>
+                    </li>
+                    <!-- THE SECOND SLIDE -->
+                    <li data-transition="3dcurtain-horizontal" data-slotamount="1" data-masterspeed="300"  data-thumb="images/thumbs/thumb2.jpg">
+                        <img src="/static/assets/images/slides/slide-1.jpg" alt="">
+
+                        <div class="caption randomrotate"
+                             data-x="center"
+                             data-y="90"
+                             data-speed="300"
+                             data-start="1000"
+                             data-easing="easeOutExpo"  ><img src="/static/assets/images/slides/diagram.png" alt="Image 9"></div>
+
+                        <div class="caption randomrotate"
+                             data-x="150"
+                             data-y="80"
+                             data-speed="300"
+                             data-start="2000"
+                             data-easing="easeOutExpo"  ><img src="/static/assets/images/slides/icon-slide-1.png" alt=""></div>
+
+                        <div class="caption randomrotate"
+                             data-x="180"
+                             data-y="300"
+                             data-speed="300"
+                             data-start="2500"
+                             data-easing="easeOutExpo"  ><img src="/static/assets/images/slides/icon-slide-2.png" alt=""></div>
+
+                        <div class="caption randomrotate"
+                             data-x="620"
+                             data-y="80"
+                             data-speed="300"
+                             data-start="3000"
+                             data-easing="easeOutExpo"  ><img src="/static/assets/images/slides/icon-slide-3.png" alt=""></div>
+
+                        <div class="caption randomrotate"
+                             data-x="605"
+                             data-y="300"
+                             data-speed="300"
+                             data-start="3500"
+                             data-easing="easeOutExpo"  ><img src="/static/assets/images/slides/icon-slide-4.png" alt=""></div>
+                    </li>
+                    <!-- THE THIRD SLIDE -->
+                    <li data-transition="3dcurtain-horizontal" data-slotamount="1" data-masterspeed="300"  data-thumb="images/thumbs/thumb2.jpg">
+                        <img src="/static/assets/images/slides/slide-2.jpg" alt="">
+
+                        <div class="caption very_big_white lfl stl"
+                             data-x="right"
+                             data-y="180"
+                             data-speed="300"
+                             data-start="500"
+                             data-easing="easeOutExpo" data-end="8800" data-endspeed="300" data-endeasing="easeInSine">JOIN THE COMMUNITY</div>
+
+                        <div class="caption lfb stl"
+                             data-x="right"
+                             data-y="250"
+                             data-speed="300"
+                             data-start="500"
+                             data-easing="easeOutExpo" data-end="8800" data-endspeed="300" data-endeasing="easeInSine" ><a href="about.html" class="button_large">Read more</a></div>
+                    </li>
+                    <!-- THE FOURTH SLIDE -->
+                    <li data-transition="cube" data-slotamount="1" data-masterspeed="300"  data-thumb="images/thumbs/thumb2.jpg">
+                        <img src="/static/assets/images/slides/slide-3.jpg" alt="">
+
+                        <div class="caption very_big_white lfl stl"
+                             data-x="right"
+                             data-y="180"
+                             data-speed="300"
+                             data-start="500"
+                             data-easing="easeOutExpo" data-end="8800" data-endspeed="300" data-endeasing="easeInSine">DIFFERENT COURSES AVAILABLE</div>
+
+                        <div class="caption lfr stl"
+                             data-x="right"
+                             data-y="250"
+                             data-speed="300"
+                             data-start="500"
+                             data-easing="easeOutExpo" data-end="8800" data-endspeed="300" data-endeasing="easeInSine" ><a href="all-courses.html" class="button_large">Read more</a></div>
+                    </li>
+                    <!-- THE FIFTH SLIDE -->
+                    <li data-transition="slideleft" data-slotamount="1" data-masterspeed="300"  data-thumb="images/thumbs/thumb2.jpg">
+                        <img src="/static/assets/images/slides/slide-5.jpg" alt="">
+                        <div class="caption very_big_white lfl stl"
+                             data-x="30"
+                             data-y="180"
+                             data-speed="300"
+                             data-start="500"
+                             data-easing="easeOutExpo" data-end="8800" data-endspeed="300" data-endeasing="easeInSine">IMPROVE YOUR SKILLS</div>
+
+                        <div class="caption big_white lfl stl"
+                             data-x="30"
+                             data-y="250"
+                             data-speed="300"
+                             data-start="800"
+                             data-easing="easeOutExpo" data-end="9100" data-endspeed="300" data-endeasing="easeInSine">with expert teachers</div>
+                    </li>
+
+                </ul>
+
+                <div class="tp-bannertimer tp-bottom"></div>
+            </div>
+        </div>
+    </section><!--End slider-->
+
+    <div class="container">
+        <div class="row" id="main-boxes">
+            <div class="hidden-phone">
+                <div class="span3" ng-repeat="section in sections.slice(0, 8)">
+                    <div class="box-style-2" ng-class="{
+                                'green': $even, 'red': $odd }">
+                        <a ng-href="{{section.link}}" title="{{section.section_name}}">
+                            <!--<img src="/static/assets/img/icon-home-course.png" alt="">-->
+                            <h4>{{section.section_name}}</h4>
+                            <p>{{section.description}}</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="span3 hidden-desktop hidden-tablet">
+                    <div class="box-style-2 red" >
+                        <a ng-href="#/services/career-planning/Explore-Different-Careers/3" 
+                           title="Explore Different Careers">
+                            <h4>Explore Different Careers</h4>
+                            <p>Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table hidden-desktop hidden-tablet">
+                <table class="table table-bordered">
+                    <tr>
+                        <td ng-repeat="section in sections.slice(0, 2)" style="width: 50%;">
+                            <div style="text-align: center;">
+                                <span class="{{section.section_img}}"></span>
+                                <a href="{{section.link}}"><h5>{{section.section_name}}</h5></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td ng-repeat="section in sections.slice(2, 4)" style="width: 50%;">
+                            <div style="text-align: center;">
+                                <span class="{{section.section_img}}"></span>
+                                <a href="{{section.link}}"><h5>{{section.section_name}}</h5></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td ng-repeat="section in sections.slice(4, 6)" style="width: 50%;">
+                            <div style="text-align: center;">
+                                <span class="{{section.section_img}}"></span>
+                                <a href="{{section.link}}"><h5>{{section.section_name}}</h5></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td ng-repeat="section in sections.slice(6, 8)" style="width: 50%;">
+                            <div style="text-align: center;">
+                                <span class="{{section.section_img}}"></span>
+                                <a href="{{section.link}}"><h5>{{section.section_name}}</h5></a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+    </div> <!-- end container-->
+
+    <!--MCG - After Discussion- Home page both mobile and desktop view-->
+    <div class="container">
+        <div class="row">
+            <aside  class="span3 ">
+                <div class="box-style-1 ribbon borders">
+                    <div>
+                        <a href="#/services/knowledge-society">
+                            <!--<div class="feat" >-->
+                            <!--<i class="icon-group icon-2x"></i>-->
+                            <h4>Knowledge Society</h4>
+                            <p>An utinam reprimique duo, putant mandamus cu qui. Autem possim his cu, 
+                                quodsi nominavi fabellas ut sit, mea ea ullum epicurei. </p>
+                            <!--</div>-->
+                        </a>
+                        <hr class="double">
+                    </div>
+                    <div>
+                        <!--                        <div class="feat" >
+                                                    <i class="icon-group icon-2x"></i>-->
+                        <a href="#/services/home-schooling-decoded">
+                            <h4>Home Schooling Decoded</h4>
+                            <p>An utinam reprimique duo, putant mandamus cu qui. Autem possim his cu, 
+                                quodsi nominavi fabellas ut sit, mea ea ullum epicurei. </p>
+                            <!--</div>-->
+                            <!--<hr class="double">-->
+                        </a>
+                    </div>
+                </div>
+                <p class="hidden-phone" ><a  href="" title="All courses"><img src="/static/assets/img/banner.jpg" alt="Banner" class="img-rounded" ></a></p>
+            </aside>
+
+            <section class="span9">
+                <div class="col-right" style="max-height: 292px; overflow-y: hidden; margin-bottom: 10px;">
+                    <h4>Latest happenings in the education industry</h4>
+                    <!--<p>An utinam reprimique duo, putant mandamus cu qui. Autem possim his cu, quodsi nominavi fabellas ut sit, mea ea ullum epicurei. Saepe tantas ocurreret duo ea, has facilisi vulputate an. Priaeque iuvaret nominati et, ad mea clita numquam. Maluisset dissentiunt et per, dico liber erroribus vis te. Dolor consul graecis nec ut, scripta eruditi scriptorem et nam.</p>-->
+                    <hr>
+                    <div class="strip-lessons">
+                        <div class="row">
+                            <div class="span5">
+                                <marquee scrollamount="2" direction="up" loop="true"> 
+                                    <div ng-repeat="lp in latestUpdates">
+                                        <h4>{{lp.title}}</h4>
+                                        <p>{{lp.desc}}</p>
+                                    </div>
+                                </marquee>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-if="testimonialsList" class="col-right" style="margin-bottom: 10px;">
+                    <h4>Testimonials/ Feedback</h4>
+                    <div class="row-fluid">
+
+                        <data-owl-carousel class="owl-carousel" 
+                                           data-options="{navigation: false, pagination: true, rewindNav : false}">
+                            <div owl-carousel-item="" ng-repeat="item in testimonialsList" class="item">
+                                <div class="span10 picture" ng-if="item.show == true">
+                                    <div ng-if="item.video != ''">
+                                        <a class="fancybox-media" ng-href="{{item.video}}" 
+                                           title="{{item.name}}" >
+                                            <span class="video_icon_vimeo"></span>
+                                            <img ng-src="/static/assets/img/gallery/4.jpg" alt="image">
+                                        </a>
+                                    </div>
+                                    <div ng-if="item.image != ''">
+                                        <a class="fancybox-media" ng-href="{{item.image}}" 
+                                           title="{{item.name}}" rel="gallery1">
+                                            <span class="photo_icon"></span>
+                                            <img style="width: 134px; height: 101px;"
+                                                 ng-src="{{item.image}}" alt="image">
+                                        </a>
+                                    </div>
+                                    <div ng-if="item.text != ''" style="width: 134px; height: 101px;">
+                                        <a class="fancybox-media" >
+                                            <div dynamic="item.text"></div>
+                                        </a>
+                                    </div>
+
+                                    <b>{{item.name}}</b>
+                                </div>
+                            </div>
+                        </data-owl-carousel>
+
+                        <!--<div class="span4 picture">
+                            <a class="fancybox-media" href="http://vimeo.com/36031564" title="Video Vimeo" >
+                                <span class="video_icon_vimeo"></span>
+                                <img src="/static/assets/img/gallery/4.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="span4 picture">
+                            <a href="img/gallery/5.jpg" title="Title" class="fancybox" rel="gallery1">
+                                <span class="photo_icon"></span>
+                                <img src="/static/assets/img/gallery/5.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="span4 picture">
+                            <a href="img/gallery/6.jpg" title="Title" class="fancybox" rel="gallery1">
+                                <span class="photo_icon"></span>
+                                <img src="/static/assets/img/gallery/6.jpg" alt="">
+                            </a>
+                        </div>-->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div><!-- end container-->
+
+</div>

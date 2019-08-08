@@ -1,0 +1,390 @@
+
+<div class="description span8 pull-left">
+                            <div class="span4 margin-left-zero margin-right-exam-list"
+                                 ng-repeat="user in examList | filter: fliter_exam_name">
+                                 <!--ng-repeat="user in examList | filter: {'field_name': majorFieldFilterValue}">-->
+                            <!--<div class="span3" dir-paginate="user in data.users|itemsPerPage:data.itemsPerPage" total-items="data.total_count">-->
+                                <div class="box-style-1 borders" style="padding: 5px;">
+                                    <table class="table table-responsive table-bordered-none">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <img alt="exam name" title="{{user.titel}}" 
+                                                         style="width: 50px; height: 50px;" 
+                                                         src="{{user.logo}}" >
+                                                </td>
+                                                <td>
+                                                    <h5><a href="#/services/exams/exams/{{user.id}}/{{user.name| spaceless}}"
+                                                           ng-click="setExamInDetail(user)">
+                                                            {{user.title}}</a></h5>
+                                                    <p style="height:20px;"><a href="#/services/exams/exams/{{user.id}}/{{user.name| spaceless}}"
+                                                           ng-click="setExamInDetail(user)">{{user.name}}</a></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <span class="date" title="{{user.exam_date}}" >
+                                                        <i class="icon-calendar"></i>
+                                                        {{user.exam_date| limitTo: 20 }}{{data.exam_date.length > 20 ? '...' : ''}}</span>
+                                                    <!--<a href="" class="button_red_small" style="margin-bottom: 1px;"> 
+                                                        <span class="icon-bell-alt"></span> Get Updates</a>-->
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+<div class="container margin-top-30px" ng-controller="examDetailCrt">
+    <div class="row">
+        <h2 class="span12">All Exams</h2>
+        <div class="span12">
+            <ul class="breadcrumb">
+                <li><a href="#/home">Home</a> <span class="divider">/</span></li>
+                <li><a >Entrance and Scholarship Exams</a> <span class="divider">/</span></li>
+                <li><a href="#/services/entrance_and_scholarship_exams_list">Exams List</a><span class="divider">/</span></li>
+                <li class="active">Exam</li>
+                <li class="pull-right  hidden-phone">
+                    <a href="" data-ng-hide="editMode" data-ng-click="editMode = true;" class="button_red_small">
+                        <span class="icon-edit"></span>Edit
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false;" class="button_red_small">
+                        <span class="icon-save"></span>Save
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false;" class="button_red_small">
+                        <span class="icon-remove"></span>Cancel
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="span12">
+            <div class="widget">
+                <div class="form-group">
+                    <form class="form-search form-inline" 
+                          style="background-color: #555;padding: 10px;">
+                        <input type="text" class="input-medium form-control" placeholder="Search /Filter Box for other colleges" style="width: 92%;">
+                        <button type="submit" class="button_medium" style="position:relative; top:2px;">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <section class="span12">
+            <div class="col-right" style="background-color: transparent; border: none; margin-bottom: 0px;">
+                <div class="main-img">
+                    <div class="imageContainerExam">
+                        <p class="lead" style="bottom: 15%; min-width: 30%;" >
+                            {{selectedExam.titel}} <br/>
+                            <small>{{selectedExam.name}}</small><br/>
+                            <small>
+                                <span class="date"><i class="icon-calendar"></i>{{selectedExam.exam_date}}</span>
+                            </small>
+                        </p>
+                        <div class="widget tags pull-right">
+                            <a href="#"><span class="icon-envelope"></span> View Email</a>
+                            <a href="#"><span class="icon-phone"></span> View Phone</a>
+                            <a href="#"><span class="icon-globe"></span> View Website</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="span11" ng-controller="headerCtrl">
+            <div class="fixed-header" >
+                <a href="" ng-click="scrollTo('about')">About</a>
+                <a href="" ng-click="scrollTo('preparation')">Preparation</a>
+                <a href="" ng-click="scrollTo('dates')">Dates</a>
+                <a href="" ng-click="scrollTo('result')">Result</a>
+                <a href="" ng-click="scrollTo('accepting-colleges')">Accepting Colleges</a>
+            </div>
+            <div id="about">
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>About {{selectedExam.titel}}</span></h3>
+                    <div data-ng-hide="editMode" dynamic="selectedExamabout"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="selectedExamabout"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>{{selectedExam.titel}} Latest Developments</span></h3>
+                    <div data-ng-hide="editMode" dynamic="selectedExamlatest_developement"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="selectedExamlatest_developement"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Previous years question papers</span></h3>
+                    <div data-ng-hide="editMode">
+                        <data-owl-carousel class="owl-carousel" data-options="{navigation: false, pagination: true, rewindNav : false}">
+                            <div owl-carousel-item="" ng-repeat="item in selectedExamprevious_years_question_papers" class="item">
+                                <div class="col-xs-6 col-md-3">
+                                    <a ng-href="item.link" class="thumbnail">
+                                        <img src="/static/assets/img/gen_sample_paper.jpg"  alt="{{item.lable}}">
+                                    </a>
+                                </div>
+                                <p style="text-align: center;">
+                                    <a href="item.download_link" target="_blank" >{{item.lable}}</a>
+                                </p>
+                            </div>
+                        </data-owl-carousel>
+                    </div>
+                    <div data-ng-show="editMode" >
+                        <!--<textarea ui-tinymce="tinymceOptions" ng-model="selectedExamprevious_years_question_papers"></textarea>-->
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Notification</span></h3>
+                    <div data-ng-hide="editMode" dynamic="selectedExamnotification"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="selectedExamnotification"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Important dates</span></h3>
+                    <div data-ng-hide="editMode" dynamic="selectedExamimportant_dates"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="selectedExamimportant_dates"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Eligibility</span></h3>
+                    <div data-ng-hide="editMode" dynamic="selectedExameligibility"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="selectedExameligibility"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Application procedure</span></h3>
+                    <div data-ng-hide="editMode" dynamic="selectedExamapplication_procedure"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="selectedExamapplication_procedure"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Application fee</span></h3>
+                    <div data-ng-hide="editMode" dynamic="selectedExamapplication_fee"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="selectedExamapplication_fee"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Syllabus</span></h3>
+                    <div data-ng-hide="editMode" dynamic="selectedExamsyllabus"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="selectedExamsyllabus"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Exam Pattern</span></h3>
+                    <div data-ng-hide="editMode" dynamic="selectedExamexam_pattern"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="selectedExamexam_pattern"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Preparation tips</span></h3>
+                    <div data-ng-hide="editMode" dynamic="selectedExampreparation_tips"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="selectedExampreparation_tips"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Study_material</span></h3>
+                    <div data-ng-hide="editMode" dynamic="selectedExamstudy_material"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="selectedExamstudy_material"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Answer keys</span></h3>
+                    <div data-ng-hide="editMode">
+                        <data-owl-carousel class="owl-carousel" data-options="{navigation: false, pagination: true, rewindNav : false}">
+                            <div owl-carousel-item="" ng-repeat="item in selectedExamanswer_keys" class="item">
+                                <div class="col-xs-6 col-md-3">
+                                    <a ng-href="item.link" class="thumbnail">
+                                        <img src="/static/assets/img/gen_sample_paper.jpg"  alt="{{item.lable}}">
+                                    </a>
+                                </div>
+                                <p style="text-align: center;">
+                                    <a href="item.download_link" target="_blank" >{{item.lable}}</a>
+                                </p>
+                            </div>
+                        </data-owl-carousel>
+                    </div>
+                    <div data-ng-show="editMode" >
+                        <!--<textarea ui-tinymce="tinymceOptions" ng-model="selectedExamanswer_keys"></textarea>-->
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Admin card</span></h3>
+                    <div data-ng-hide="editMode" dynamic="selectedExamadmin_card"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="selectedExamadmin_card"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Exam toppers</span></h3>
+                    <div data-ng-hide="editMode" dynamic="selectedExamexam_toppers"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="selectedExamexam_toppers"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Exam centers</span></h3>
+                    <div data-ng-hide="editMode" dynamic="selectedExamexam_centers"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="selectedExamexam_centers"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Subject experts</span></h3>
+                    <div data-ng-hide="editMode" dynamic="selectedExamsubject_experts"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="selectedExamsubject_experts"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Exam results</span></h3>
+                    <div data-ng-hide="editMode" dynamic="selectedExamexam_results"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="selectedExamexam_results"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Exam cut-Offs</span></h3>
+                    <div data-ng-hide="editMode" dynamic="selectedExamexam_cut_Offs"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="selectedExamexam_cut_Offs"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Preparation videos</span></h3>
+                    <div data-ng-hide="editMode">
+                        <div class="row-fluid">
+                            <div class="span3 picture">
+                                <a class="fancybox-media" href="http://vimeo.com/36031564" title="Video Vimeo" >
+                                    <span class="video_icon_vimeo"></span>
+                                    <img src="/static/assets/img/gallery/4.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="selectedExampreparation_videos"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Documents to be carried</span></h3>
+                    <div data-ng-hide="editMode" dynamic="selectedExamdocuments_to_be_carried"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="selectedExamdocuments_to_be_carried"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Acknowledgment of form</span></h3>
+                    <div data-ng-hide="editMode" dynamic="selectedExamacknowledgement_of_form"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="selectedExamacknowledgement_of_form"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Score evaluation</span></h3>
+                    <div data-ng-hide="editMode" dynamic="selectedExamscore_evaluation"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="selectedExamscore_evaluation"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Top colleges</span></h3>
+                    <div data-ng-hide="editMode">
+                        <data-owl-carousel class="owl-carousel" data-options="{navigation: false, pagination: true, rewindNav : false}">
+                            <div owl-carousel-item="" ng-repeat="item in selectedExamtop_colleges" class="item">
+                                <div class="col-xs-6 col-md-3">
+                                    <a ng-href="{{item.link}}" class="thumbnail" style="margin: 15px;">
+                                        <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRCcwD4TKYZSnCzI_ibVVuM_abCT4CmLVc3tYoRkvcJW9cTEuSD_A">
+                                    </a>
+                                </div>
+                                <p style="text-align: center;">
+                                    <a>{{item.college_name}} <small>{{item.state}}</small></a><br/>
+                                    Course: {{item.course}}<br/>
+                                    Fee: {{item.fee}}<br/>
+                                    Duration: {{item.duration}}
+                                </p>
+                            </div>
+                        </data-owl-carousel>
+                    </div>
+                    <div data-ng-show="editMode" >
+                        <!--<textarea ui-tinymce="tinymceOptions" ng-model="selectedExamtop_colleges"></textarea>-->
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Faq's</span></h3>
+                    <div data-ng-hide="editMode" dynamic="selectedExamLatestfaqs"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="selectedExamLatestfaqs"></textarea>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+
+    </div>
+</div> <!-- end container-->

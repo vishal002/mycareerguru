@@ -1,0 +1,158 @@
+<div ng-include="'/static/sections/view/header.html'"></div>
+
+<div class="container margin-top-30px" ng-controller="studyAbroadAfter12Ctrl" >
+    <div class="row">
+        <h2 class="span12">Study Abroad</h2>
+        <div class="span12">
+            <ul class="breadcrumb">
+                <li><a href="#/home">Home</a><span class="divider">/</span></li>
+                <li class="active">Study Abroad<span class="divider">/</span></li>
+                <li class="active">After XII for undergraduate studies</li>
+                <li class="pull-right hidden-phone">
+                    <a href="" data-ng-hide="editMode" data-ng-click="editMode = true; editItem(dataDetail)" class="button_red_small">
+                        <span class="icon-edit"></span>Edit
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false; doneEditing(dataDetail)" class="button_red_small">
+                        <span class="icon-save"></span>Save
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false; cancelEditing(dataDetail)" class="button_red_small">
+                        <span class="icon-remove"></span>Cancel
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="span12">
+            <div class="widget">
+                <div class="form-group">
+                    <form class="form-search form-inline" style="background-color: #555;padding: 10px;">
+                        <div class="row">
+                            <data-owl-carousel class="owl-carousel" data-options="{navigation: false, pagination: true, rewindNav : false}">
+                                <div owl-carousel-item="" ng-repeat="item in ::countryList">
+                                    <div class="span2 col-xs-2">
+                                        <a ng-href class="thumbnail" ng-click="getCountryDetails(item.id)">
+                                            <img src="{{item.img_path|| '../static/assets/img/country/album-default.png' }}"
+                                                 alt="{{item.country_name}}">
+                                        </a>
+                                        <p style="text-align: center; color: white;">
+                                            <a href ng-click="getCountryDetails(item.id)" >{{item.country_name}}</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </data-owl-carousel>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <section class="span12">
+            <div class="col-right" style="background-color: transparent; border: none; margin-bottom: 0px;">
+                <div class="main-img">
+                    <div class="imageContainerCountry">
+                        <p class="lead" style="bottom: 15%;" >{{dataDetail.country_name}}</p>
+                        <div class="widget tags pull-right">
+                            <a href="#"><span class="icon-money"></span> {{dataDetail.currency}}</a>
+                            <a href="#"><span class="icon-cloud"></span> Highest Temp: {{dataDetail.highest_temp}}</a>
+                            <a href="#"><span class="icon-cloud"></span> Lowest Temp: {{dataDetail.lowest_temp}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="span12">
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>About Country</span></h3>
+                    <div data-ng-hide="editMode" dynamic="dataDetail.about"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.about"></textarea>
+                    </div>
+                </div>
+            </div>
+            <!--            <div>
+                            <div class="col-right para-header margin-bot-10px">
+                                <h3><span>College Application And VISA Consultancy</span></h3>
+                                <div data-ng-hide="editMode" dynamic="dataDetail.visa_info"></div>
+                                <div data-ng-show="editMode" >
+                                    <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.visa_info"></textarea>
+                                </div>
+                            </div>
+                        </div>-->
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>EXAMINATIONS</span></h3>
+                    <div data-ng-hide="editMode" dynamic="dataDetail.exam"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.exam"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>TOP UNIVERSITIES</span></h3>
+                    <div data-ng-hide="editMode" dynamic="dataDetail.top_universities"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.top_universities"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>VISA INFORMATION</span></h3>
+                    <div data-ng-hide="editMode" dynamic="dataDetail.visa_info"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.visa_info"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>TRAVEL</span></h3>
+                    <div data-ng-hide="editMode" dynamic="dataDetail.travel"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.travel"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>SCHOLARSHIP</span></h3>
+                    <div data-ng-hide="editMode" dynamic="dataDetail.scholarship"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.scholarship"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>COST OF LIVING</span></h3>
+                    <div data-ng-hide="editMode" dynamic="dataDetail.cost_of_livings"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.cost_of_livings"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>LIFE IN THE COUNTRY</span></h3>
+                    <div data-ng-hide="editMode" dynamic="dataDetail.life_in_country"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.life_in_country"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Admission Consultants</span></h3>
+                    <div data-ng-hide="editMode" dynamic="dataDetail.admission_consultants"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.admission_consultants"></textarea>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+</div> <!-- end container-->

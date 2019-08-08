@@ -1,0 +1,437 @@
+
+
+ for mobile 
+<div class="hidden-desktop hidden-tablet collapse" id="collapseExample" style="width: 100%;" >
+                    <div ng-controller="DemoCtrl as ctrl" 
+                         layout="column" ng-cloak="" 
+                         class="autocompletedemoCustomTemplate" >
+                        <md-content layout-padding="" layout="column" stype="padding: 1px; " >
+                            <!--<form ng-submit="$event.preventDefault()">-->
+                            <md-autocomplete ng-disabled="ctrl.isDisabled" md-no-cache="ctrl.noCache" 
+                                             md-selected-item="ctrl.selectedItem" 
+                                             md-search-text-change="ctrl.searchTextChange(ctrl.searchText)" 
+                                             md-search-text="ctrl.searchText" md-selected-item-change="ctrl.selectedItemChange(item)" 
+                                             md-items="item in ctrl.querySearch(ctrl.searchText)" md-item-text="item.name" 
+                                             md-min-length="0" placeholder="Search here for Courses/ Colleges/ Exam" 
+                                             md-menu-class="autocomplete-custom-template">
+                                <md-item-template>
+                                    <span class="item-title">
+                                        <md-icon md-svg-icon="img/icons/octicon-repo.svg"></md-icon>
+                                        <span> {{item.name}} </span>
+                                    </span>
+                                    <span class="item-metadata">
+                                        <span class="item-metastat">
+                                            <strong>{{item.watchers}}</strong> watchers
+                                        </span>
+                                        <span class="item-metastat">
+                                            <strong>{{item.forks}}</strong> forks
+                                        </span>
+                                    </span>
+                                </md-item-template>
+                            </md-autocomplete>
+                            <!--</form>-->
+                        </md-content>
+                    </div>
+                </div>
+
+for desk top
+<div ng-controller="DemoCtrl as ctrl" 
+                         layout="column" ng-cloak="" 
+                         class="autocompletedemoCustomTemplate" style="background-color: transparent; padding-top: 13px;" >
+                        <md-content layout-padding="" layout="column" style="background-color: transparent;" >
+                            <!--<form ng-submit="$event.preventDefault()">-->
+                            <md-autocomplete ng-disabled="ctrl.isDisabled" md-no-cache="ctrl.noCache" 
+                                             md-selected-item="ctrl.selectedItem" 
+                                             md-search-text-change="ctrl.searchTextChange(ctrl.searchText)" 
+                                             md-search-text="ctrl.searchText" md-selected-item-change="ctrl.selectedItemChange(item)" 
+                                             md-items="item in ctrl.querySearch(ctrl.searchText)" md-item-text="item.name" 
+                                             md-min-length="0" placeholder="Search here for Courses/ Colleges/ Exam" 
+                                             md-menu-class="autocomplete-custom-template"
+                                             style="background-color: white;" >
+                                <md-item-template>
+                                    <span class="item-title">
+                                        <md-icon md-svg-icon="img/icons/octicon-repo.svg"></md-icon>
+                                        <span> {{item.name}} </span>
+                                    </span>
+                                    <span class="item-metadata">
+                                        <span class="item-metastat">
+                                            <strong>{{item.watchers}}</strong> watchers
+                                        </span>
+                                        <span class="item-metastat">
+                                            <strong>{{item.forks}}</strong> forks
+                                        </span>
+                                    </span>
+                                </md-item-template>
+                            </md-autocomplete>
+                        </md-content>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="span6">
+                    <!--                    <input type="text" class="inputSearch" /><span class="add-on">
+                                            <i class="icon-calendar" data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                                        </span>-->
+                    <div class="input-append" style="width: 100%; margin-bottom: -10px;">
+                        <button class="btn btn-default btn-lg btn-block" type="button" data-toggle="collapse" 
+                                data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            Explore/ Search
+                        </button>
+                        <div class="collapse" id="collapseExample" 
+                             style="height: 0px; z-index: 20001; position: fixed; width: 44%;">
+                            <div class="well">
+                                <table class="table table-condensed">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <select>
+                                                    <option>School</option>
+                                                    <option>After X</option>
+                                                    <option>After XII</option>
+                                                    <option>After UG</option>
+                                                    <option>Coaching</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select>
+                                                    <option>Select Board</option>
+                                                    <option>CBSE</option>
+                                                    <option>ICSE</option>
+                                                    <option>NIOS</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <select>
+                                                    <option>Select Branch</option>
+                                                    <option>After X</option>
+                                                    <option>After XII</option>
+                                                    <option>After UG</option>
+                                                    <option>Coaching</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select>
+                                                    <option>Select Entrance Exam</option>
+                                                    <option>CBSE</option>
+                                                    <option>ICSE</option>
+                                                    <option>NIOS</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <button type="button" class="btn btn-default btn-lg btn-block" 
+                                                        data-toggle="modal" href="#myModal" style="width: 220px;" >
+                                                    Select Location
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-success btn-sm">Search</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div id="myModal" style="z-index: 20002;" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-header">
+                                <button type="button" data-dismiss="modal" aria-hidden="true" class="close button_medium">&times;</button>
+                                <h2 id="myModalLabel">Modal Heading</h2>
+                            </div>
+                            <div class="modal-body">
+                                <h4>Text in a modal</h4>
+                                <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem.</p>
+
+                                <h4>Popover in a modal</h4>
+                                <p>This <a href="#" role="button" class="btn popover-test" title="A Title" data-content="And here's some amazing content. It's very engaging. right?">button</a> should trigger a popover on click.</p>
+
+                                <h4>Tooltips in a modal</h4>
+                                <p><a href="#" class="tooltip-test" title="Tooltip">This link</a> and <a href="#" class="tooltip-test" title="Tooltip">that link</a> should have tooltips on hover.</p>
+
+                                <hr>
+
+                                <h4>Overflowing text to show optional scrollbar</h4>
+                                <p>We set a fixed <code>max-height</code> on the <code>.modal-body</code>. Watch it overflow with all this extra lorem ipsum text we've included.</p>
+                                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                                <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                                <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button data-dismiss="modal" class="button_medium">Close</button>
+                                <button class="button_medium">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--                    <button type="button" class="btn btn-primary btn-lg btn-block" 
+                                                data-toggle="modal" href="#myModal">
+                                            Explore/ Search
+                                        </button>-->
+
+
+                    <!--                                                <input class="inputSearch" type="text">
+                                                                    <span class="add-on" style="margin-top: 1%">
+                                                                        <i class="icon-search" data-time-icon="icon-time" 
+                                                                           data-date-icon="icon-calendar"></i>
+                                                                    </span>-->
+                    <!--</div>-->
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="javascript:void(0)" class="drop-down">School &amp; Academics</a>
+                    <!-- Begin Item -->
+                    <div class="drop-down-container">
+
+                        <div class="row">
+                            <div class="span7">
+                                <iframe height="300" src="http://www.youtube.com/embed/pgk-719mTxM?wmode=transparent"></iframe>
+                            </div>
+                            <div class="span5">
+                                <h4>Youtube video</h4>
+                                <p>
+                                    An utinam reprimique duo, putant mandamus cu qui. Autem possim his cu, quodsi nominavi fabellas ut sit, mea ea ullum epicurei. Saepe tantas ocurreret duo ea, has facilisi vulputate an. Pri aeque iuvaret nominati et, ad mea clita numquam.
+                                </p>
+                                <p>
+                                    An utinam reprimique duo, putant mandamus cu qui. Autem possim his cu, quodsi nominavi fabellas ut sit, mea ea ullum epicurei. Saepe tantas ocurreret duo ea, has facilisi vulputate an. Pri aeque iuvaret nominati et, ad mea clita numquam.
+                                </p>
+                                <p><a href="all-courses.html" title="All courses" class="button_red_small">Read more</a></p>
+                            </div>
+                        </div><!-- End row -->
+
+                        <hr>
+
+                        <div class="row">
+
+                            <div class="span3">
+                                <h5>Degrees</h5>
+                                <ul class="list-menu">
+                                    <li><a href="all-courses.html" title="All courses">Prospect</a></li>
+                                    <li><a href="all-courses.html" title="All courses">Mission</a></li>
+                                    <li><a href="all-courses.html" title="All courses">President of the College</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="span3">
+                                <h5>Bacherlors</h5>
+                                <ul class="list-menu">
+                                    <li><a href="all-courses.html" title="All courses">Quick Facts</a></li>
+                                    <li><a href="all-courses.html" title="All courses">Mission</a></li>
+                                    <li><a href="all-courses.html" title="All courses">President of the College</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="span3">
+                                <h5>Masters</h5>
+                                <ul class="list-menu">
+                                    <li><a href="all-courses.html" title="All courses">Quick Facts</a></li>
+                                    <li><a href="all-courses.html" title="All courses">Mission</a></li>
+                                    <li><a href="all-courses.html" title="All courses">President of the College</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="span3">
+                                <h5>Courses</h5>
+                                <ul class="list-menu">
+                                    <li><a href="all-courses.html" title="All courses">Quick Facts</a></li>
+                                    <li><a href="all-courses.html" title="All courses">Mission</a></li>
+                                    <li><a href="all-courses.html" title="All courses">President of the College</a></li>
+                                </ul>
+                            </div>
+
+                        </div><!-- End row -->
+                    </div><!-- End Item Container -->
+                </li><!-- End Item -->
+
+                <li><a href="javascript:void(0)" class="drop-down">About</a>
+                    <!-- Begin Item -->
+                    <div class="drop-down-container">
+
+                        <div class="row">
+
+                            <div class="span3">
+                                <h4>Quick links</h4>
+                                <ul class="list-menu">
+                                    <li><a href="all-courses.html" title="All courses">All courses</a></li>
+                                    <li><a href="course-detail.html" title="Course detail">Course detail</a></li>
+                                    <li><a href="staff.html" title="Meet the team">Meet the team</a></li>
+                                    <li><a href="contact.html" title="Apply for a course">Apply for a course</a></li>
+                                    <li><a href="about-us.html" title="About">About </a></li>
+                                    <li><a href="news-events.html" title="News">News</a></li>
+                                    <li><a href="contact.html" title="Contact">Ask for more information</a></li>
+                                </ul>
+                                <p><a href="all-courses.html" title="Courses" class="button_medium add-bottom-20">View all courses</a></p>
+                            </div>
+
+                            <div class="span9">
+                                <ul class="tabs">
+                                    <li><a class="active" href="#section-1">Staff</a></li>
+                                    <li><a href="#section-2">History</a></li>
+                                </ul>
+
+                                <ul class="tabs-content">
+
+                                    <li class="active" id="section-1">
+                                        <div class="row">
+
+                                            <div class="span3">
+                                                <p><img src="img/teacher-small.jpg" class="img-rounded shadow" alt=""></p>
+                                                <h5>Ms. Annie Ann <em>Management</em></h5>
+                                                <p>An utinam reprimique duo, putant mandamus cu qui. Autem possim his cu, quodsi nominavi fabellas ut sit, mea ea ullum epicurei.</p>
+                                                <p><a href="staff.html" class="button_red_small" title="staff">Read more</a></p>
+                                            </div>
+
+                                            <div class="span3">
+                                                <p><img src="img/teacher-small-2.jpg" class="img-rounded shadow" alt=""></p>
+                                                <h5>Ms. Annie Ann <em>Business</em></h5>
+                                                <p>An utinam reprimique duo, putant mandamus cu qui. Autem possim his cu, quodsi nominavi fabellas ut sit, mea ea ullum epicurei.</p>
+                                                <p><a href="staff.html" class="button_red_small" title="staff">Read more</a></p>
+                                            </div>
+
+                                            <div class="span3">
+                                                <p><img src="img/teacher-small-3.jpg" class="img-rounded shadow" alt=""></p>
+                                                <h5>Ms. Annie Ann <em>Administration</em></h5>
+                                                <p>An utinam reprimique duo, putant mandamus cu qui. Autem possim his cu, quodsi nominavi fabellas ut sit, mea ea ullum epicurei.</p>
+                                                <p><a href="staff.html" class="button_red_small" title="staff">Read more</a></p>
+                                            </div>
+
+                                        </div><!-- End row -->
+                                    </li>
+
+                                    <li id="section-2">
+                                        <p class="lead ">An utinam reprimique duo, putant mandamus cu qui. Autem possim his cu, quodsi nominavi fabellas ut sit, mea ea ullum epicurei. An utinam reprimique duo, putant mandamus cu qui.</p>
+                                        <hr>
+
+                                        <div class="row">
+
+                                            <div class="span4">
+                                                <h5>History</h5>
+                                                <p>An utinam reprimique duo, putant mandamus cu qui. Autem possim his cu, quodsi nominavi fabellas ut sit, mea ea ullum epicurei. An utinam reprimique duo, putant mandamus cu qui. Autem possim his cu, quodsi nominavi fabellas ut sit, mea ea ullum epicurei.</p>
+                                            </div>
+
+                                            <div class="span4">
+                                                <h5>Mission</h5>
+                                                <p>An utinam reprimique duo, putant mandamus cu qui. <strong>Autem possim his cu</strong>, quodsi nominavi fabellas ut sit, mea ea ullum epicurei. An utinam reprimique duo, putant mandamus cu qui. Autem possim his cu, quodsi nominavi fabellas ut sit, mea ea ullum epicurei.</p>
+                                            </div>
+
+                                        </div><!-- End row -->
+                                    </li>
+
+                                </ul><!-- End tabs-->
+                            </div><!-- End span9 -->
+
+                        </div><!-- End row -->
+                    </div><!-- End Item Container -->
+                </li><!-- End Item -->
+
+                <li><a href="#/home" class="drop-down">Pages</a>
+                    <!-- Begin Item -->
+                    <div class="drop-down-container" id="icon-menu">
+                        <div class="row">
+                            <div class="span3 "><a href="about-us.html" title="About "><i class="icon-building icon-3x"></i>About </a></div>
+                            <div class="span3"><a href="about-us.html" title="Academics"><i class="icon-flag icon-3x"></i>Academics</a></div>
+                            <div class="span3"><a href="all-courses.html" title="All courses"><i class="icon-list icon-3x"></i>All courses </a></div>
+                            <div class="span3"><a href="course-detail.html" title="Course detail"><i class="icon-book icon-3x"></i>Course detail</a></div>
+                            <div class="span3"><a href="staff.html" title="Staff page"><i class="icon-group icon-3x"></i>Staff page</a></div>
+                            <div class="span3 "><a href="contact.html" title="Contact"><i class="icon-envelope icon-3x"></i>Contact</a></div>
+                            <div class="span3"><a href="contact.html" title="Plan a visit"><i class="icon-eye-open icon-3x"></i>Plan a visit</a></div>
+                            <div class="span3"><a href="news-events.html" title="News"><i class="icon-chevron-right icon-3x"></i>News</a></div>
+                            <div class="span3"><a href="blog.html" title="Blog"><i class="icon-comments-alt icon-3x"></i>Blog</a></div>
+                            <div class="span3"><a href="blog_post.html" title="Single Post"><i class="icon-comments icon-3x"></i>Single Post</a></div>
+                            <div class="span3"><a href="typography.html" title="Typography"><i class="icon-font icon-3x"></i>Typography</a></div>
+                            <div class="span3"><a href="javascripts.html" title="Javascript"><i class="icon-code icon-3x"></i>Javascript</a></div>
+                            <div class="span3"><a href="gallery.html" title="gallery"><i class=" icon-picture icon-3x"></i>Photo/Video Gallery</a></div>
+                            <div class="span3"><a href="events_calendar.html" title="calendar"><i class=" icon-calendar icon-3x"></i>Events calendar</a></div>
+                        </div><!-- End row -->
+                    </div><!-- End Item Container -->
+                </li><!-- End Item -->
+
+                <li><a href="blog.html" class="nodrop-down">Blog</a></li>
+
+                <li class="drop-normal"><a href="javascript:void(0)" class="drop-down">Simple drop</a>
+                    <div class="drop-down-container normal">
+                        <ul>
+                            <li><a href="about-us.html" title="About">About</a></li>
+                            <li><a href="all-courses.html" title="All courses">All Courses</a></li>
+                            <li><a href="course-detail.html" title="Course detail">Course detail</a></li>
+                        </ul>
+                    </div><!-- End dropdown normal -->
+                </li>
+
+                <li><a href="javascript:void(0)" class="drop-down">Contacts</a>
+                    <!-- Begin Item -->
+                    <div class="drop-down-container">
+
+                        <div class="row">
+
+                            <div class="span6">
+                                <div id="map_1"></div>
+                            </div>
+
+                            <div class="span6">
+                                <h4>Address</h4>
+                                <ul>
+                                    <li><i class="icon-home"></i> 11 Fifth Ave, Loftus - NEW JERSEY, US</li>
+                                    <li><i class="icon-phone"></i> Telephone: + 61 (2) 8093 3400</li>
+                                    <li><i class="icon-phone-sign"></i> Fax: +61 (2) 9542 3599</li>
+                                    <li><i class="icon-envelope"></i> Email: <a href="#">submissions@domain.com</a></li>
+                                </ul>
+                                <br>
+                                <hr>
+
+                                <div class="row">
+
+                                    <div class="span3">
+                                        <h5>Questions?</h5>
+                                        <p>An utinam reprimique duo, putant mandamus cu qui. Autem possim his cu, quodsi nominavi fabellas ut sit, mea ea ullum epicurei.</p>
+                                        <p><a href="contact.html" class="button_red_small">Read more</a></p>
+                                    </div>
+
+                                    <div class="span3">
+                                        <h5>Apply now</h5>
+                                        <p>An utinam reprimique duo, putant mandamus cu qui. Autem possim his cu, quodsi nominavi fabellas ut sit, mea ea ullum epicurei.</p>
+                                        <p><a href="contact.html" class="button_red_small" title="Contact">Contact us</a></p>
+                                    </div>
+
+                                </div><!-- End row -->
+                            </div><!-- End Span6 -->
+                        </div><!-- End row-->
+                    </div><!-- End Item Container -->
+                </li><!-- End Item -->

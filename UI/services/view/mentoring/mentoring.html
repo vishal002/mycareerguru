@@ -1,0 +1,133 @@
+<div ng-include="'/static/sections/view/header.html'"></div>
+
+<div class="container margin-top-30px" ng-controller="MentoringController">
+    <div class="row">
+        <h2 class="span12">Mentoring</h2>
+        <div class="span12">
+            <ul class="breadcrumb">
+                <li><a href="#/home">Home</a><span class="divider">/</span></li>
+                <li class="active">Mentoring</li>
+                <li class="pull-right  hidden-phone">
+                    <a href="" data-ng-hide="editMode" data-ng-click="editMode = true; editItem(dataDetail)" class="button_red_small">
+                        <span class="icon-edit"></span>Edit
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false; doneEditing(dataDetail)" class="button_red_small">
+                        <span class="icon-save"></span>Save
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false; cancelEditing(dataDetail)" class="button_red_small">
+                        <span class="icon-remove"></span>Cancel
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Student/Mentor sign up/login. -->
+        <div class="span12">
+            <ul class="breadcrumb">
+                <li class="pull-left">
+                    <h4>
+                        Student/ Mentee
+                    </h4>
+                    <h5>
+                        <a href="#/services/mentee" >
+                            Login
+                        </a>
+                        |
+                        <a href="" >
+                            Sign up
+                        </a>
+                    </h5>
+                </li>
+                <li class="pull-right">
+                    <h4>
+                        Mentor's 
+                    </h4>
+                    <h5>
+                        <a href="#/services/mentor" >
+                            Login
+                        </a>
+                        |
+                        <a href="" >
+                            Sign up
+                        </a>
+                    </h5>
+                </li>
+            </ul>
+        </div>
+        <!-- =========================Start Col left section ============================= -->   
+        <aside class="span4 hidden-phone ">
+            <div class="col-left" style="margin-bottom: 1px;" ng-repeat="menu in sideMenu" 
+                 ng-class="{'col-left-current': currentSelected == menu.id }" >
+                <h4><a href="" ng-click="getMenuContent(menu.id)" >{{menu.menu}}</a></h4>
+                <!--<p>
+                    {{menu.sub_menu_description}}
+                </p>
+                <a href="" 
+                   ng-click="getMenuContent(menu.sub_id, $index)" class="button_red_small">Read more</a>
+                -->
+            </div>
+
+            <!--<p><img src="img/banner.jpg" alt="Banner" class="img-rounded"></p>-->
+        </aside>
+
+        <!-- for mobile version -->
+        <aside class="span4 hidden-desktop hidden-tablet ">
+            <div class="col-left" >
+                <h5 ng-repeat="menu in sideMenu" >
+                    <a href="" ng-click="getMenuContent(menu.id)">{{menu.menu}}</a>
+                </h5>
+            </div>
+        </aside>
+
+        <!-- =========================Start Col right section ============================= --> 
+        <section class="span8  ">
+            <div class="col-right">
+                <div class="main-img">
+                    <img src="/static/assets/img/about.jpg" alt="" >
+                    <p class="lead" data-ng-hide="editMode">{{dataDetail.menu}}</p>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" 
+                               data-ng-model="dataDetail.menu" />
+                        <!--                        <textarea class="input-large inputfield" 
+                                                          data-ng-model="dataDetail.description" ></textarea>-->
+
+                    </div>
+                </div>
+
+                <div data-ng-hide="editMode" dynamic="dataDetail.content"></div>
+
+                <div class="container-fluid" data-ng-show="editMode">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div data-ng-hide="editMode" dynamic="dataDetail.content"></div>
+                            <div data-ng-show="editMode" >
+                                <textarea ui-tinymce="tinymceOptions" ng-model="dataDetail.content"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div><!-- end col right-->
+        </section>
+    </div><!-- end row-->
+    <!-- Modal -->
+    <div id="createProfileModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Create Profile</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Profile Content</p>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- end container-->
+

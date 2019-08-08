@@ -1,0 +1,69 @@
+Data Structure - (Name in each table has unique constraint)
+
+Major Fields - (Need final list of fields)
+	1 to Many mapping with Course 
+	Can we replace - with ~ in case of : UPSC - Civil Services
+
+Course - 
+	Many to 1 mapping with MajorField
+	Each course to have MajorFields - If MF not present it should create one? 
+	LEVEL
+	Issue with course data - 
+		Information Technology Courses - M.Tech. (Embedded Systems) - 2 Years
+		(IT is not present in any major fields name.)
+		**** 
+		Management Courses - Post Graduate Diploma in Management - Retail - 2 Years
+		****
+		Mass Communications Courses - B.Sc. (Mass Communication, Journalism & Advertising) - 3 Years
+
+College - 
+	Many to Many mapping with Course
+	Each college has list of courses attached with it - 
+		- In format : Engineering Courses - B.Tech. (Mechanical Engineering) - 4 Years, 
+		- i.e. <Major Field name> Courses - <Course Name> - <Duration>, 
+		- If given course is not present in Courses database, should one be created with given fields?
+
+Exam - 
+	Many to one mapping with MajorFields.
+	Many to Many mapping with College.
+	No association with Course as per given database. 
+	**LEVEL - (Need to be added)
+	**Major Field - (Need to be added against each)
+	**COllege mapping need to added
+
+School - 
+	LEVEL(Not present in sample data, there is class/std/courses. But we need a level too..
+			Should we assume, all schools have are at same 'school' level.)
+	BOARD
+
+Level (Used in Course & Exam)- 
+	Need to confirm on the list of levels 
+	Current list of levels as per sample Courses data-
+		+--------------------------+
+		| level                    |
+		+--------------------------+
+		| Certificate              |
+		| Diploma After 10+2       |
+		| Diploma After 10th       |
+		| Diploma After Graduation |
+		| Doctorate                |
+		| Graduation               |
+		| M.Phil                   |
+		| Post Graduation          |
+		+--------------------------+
+	List of level options to be given on our site :
+		School
+		After X
+		After XII
+		After UG
+	I think courses data should have addition column, to have one of the 4 above options.
+
+User - 
+	Types
+	Registration info
+
+Career Options - 
+	Data not available with us 
+
+Universities - 
+	We dont have any pages planned to show Universities.

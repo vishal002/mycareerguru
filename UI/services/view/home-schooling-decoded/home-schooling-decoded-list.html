@@ -1,0 +1,66 @@
+<div ng-include="'/static/sections/view/header.html'"></div>
+
+<div class="container margin-top-30px" ng-controller="homeSchoolingDecodedCrt">
+    <div class="row">
+        <h2 class="span12">Home Schooling Decoded</h2>
+        <div class="span12">
+            <ul class="breadcrumb">
+                <li><a href="#/home">Home</a><span class="divider">/</span></li>
+                <li class="active">Home Schooling Decoded</li>
+<!--                <li class="pull-right">
+                    <a href="" data-ng-hide="editMode" data-ng-click="editMode = true;" class="button_red_small">
+                        <span class="icon-edit"></span>Edit
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false;" class="button_red_small">
+                        <span class="icon-save"></span>Save
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false;" class="button_red_small">
+                        <span class="icon-remove"></span>Cancel
+                    </a>
+                </li>-->
+            </ul>
+        </div>
+        <!-- =========================Start Col left section ============================= -->   
+        <aside class="span4 hidden-phone ">
+            <div class="col-left" ng-repeat="(k,v) in sideMenu" 
+                 ng-class="{'col-left-current': currentSelected == $index }" >
+                <h4><a href="" >{{v}}</a></h4>
+                <p>
+                    <!--{{k}}-->
+                </p>
+                <a href="" ng-click="" class="button_red_small">Read more</a>
+            </div>
+
+            <!--<p><img src="img/banner.jpg" alt="Banner" class="img-rounded"></p>-->
+        </aside>
+
+        <!-- for mobile version -->
+        <aside class="span4 hidden-desktop hidden-tablet ">
+            <div class="col-left" >
+                <h5 ng-repeat="menu in sideMenu" >
+                    <a href="" ng-click="">{{v}}</a>
+                </h5>
+            </div>
+        </aside>
+
+        <!-- =========================Start Col right section ============================= --> 
+        <section class="span8" >
+            <div class="col-right">
+                <div class="main-img" style="text-align: center;">
+                    <img src="/static/assets/work-on-progress.jpg" alt="" >
+<!--                    <p class="lead" data-ng-hide="editMode">{{content[0].sub_menu}}</p>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" 
+                               data-ng-model="content[0].sub_menu" />
+                        <textarea class="input-large inputfield" 
+                                  data-ng-model="content[0].sub_menu_description" ></textarea>
+
+                    </div>-->
+                </div>
+
+            </div><!-- end col right-->
+        </section>
+
+    </div><!-- end row-->
+</div> <!-- end container-->
+

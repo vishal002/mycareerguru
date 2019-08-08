@@ -1,0 +1,147 @@
+<div ng-include="'/static/sections/view/header.html'"></div>
+
+<div class="container" ng-controller="collageListCrt" cg-busy="myPromise">
+    <div class="row">
+        <h1 class="span12">Courses & Colleges</h1>
+        <div class="span12">
+            <ul class="breadcrumb">
+                <li><a href="#/home">Home</a><span class="divider">/</span></li>
+                <li><a href="#/services/courses-&-colleges">Courses & Colleges</a><span class="divider">/</span></li>
+                <li class="active">Colleges List</li>
+            </ul>
+        </div>
+
+        <!-- =========================Start Col left section =============================  -->      
+        <aside class="span3 ">
+            <!--<div class="col-left">-->
+            <!--<h4>States</h4>-->
+            <div class="togglehandle">States</div>
+            <div class="toggledata" style="padding: 0px;" >
+                <input class="text-box-search" type="text" ng-model="searchStare" />
+                <div class="section-box">
+                    <table class="table table-condensed">
+                        <tbody>
+                            <tr ng-repeat="state in stateList | filter: searchStare">
+                                <td ng-class="{'border-top-0': $index == 0 }" >
+                                    <input type="checkbox" name="state_name" /> {{state.state}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="togglehandle">Cities</div>
+            <div class="toggledata" style="padding: 0px;" >
+                <input class="text-box-search" type="text" ng-model="searchCity" />
+                <div class="section-box">
+                    <table class="table table-condensed">
+                        <tbody>
+                            <tr ng-repeat="city in stateList | filter: searchCity">
+                                <td ng-class="{'border-top-0': $index == 0 }" >
+                                    <input type="checkbox" name="city_name" /> {{city.name}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="togglehandle">Fees</div>
+            <div class="toggledata">
+                <table class="table table-condensed">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type="checkbox" />
+                            </td>
+                            <td>
+                                Andhra Pradesh
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" />
+                            </td>
+                            <td>
+                                Assam
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--</div>-->
+        </aside> 
+
+        <!-- =========================Start Col right section ============================= -->
+        <section class="span9 ">
+
+            <ul class="nav nav-tabs sort-menu">
+                <li class="active"><a href data-toggle="tab">Sort By</a></li>
+                <li><a href data-toggle="tab">Relevance</a></li>
+                <li><a href data-toggle="tab">Smart Quotient</a></li>
+                <li><a href data-toggle="tab">Popularity</a></li>
+                <li><a href data-toggle="tab">Response Time</a></li>
+                <li><a href data-toggle="tab">Fee</a></li>
+            </ul>
+
+            <div class="col-right" id="fixed" when-scrolled="loadMore()">
+                <div class="strip-staff" ng-repeat="i in data | filter:search | limitTo:quantity">
+                    <div class="row">
+                        <div class="span1 pic-teacher">
+                            <div class="borders">
+                                <a href="#/services/courses-&-colleges/colleges">
+                                    <img src="/static/assets/img/teacher.jpg" alt="" class=" img-rounded">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="span7">
+                            <h4><span class="pull-left"> <!--target="_blank" -->
+                                    <a href="#/services/courses-&-colleges/colleges/{{i.name| spaceless}}" 
+                                       ng-click="getCollageInDetail(i);" >{{i.name}}</a><em>{{i.city}}, {{i.state}}</em></span></h4>
+                            <span class="pull-right">
+                                <div style="width: 42px; height: 42px;">
+                                    <div class="ab" style="position: relative; text-align: center; width: 42px; height: 42px; border-radius: 100%; 
+                                         background-image: linear-gradient(345deg, transparent 50%, rgb(145, 113, 145) 50%), 
+                                         linear-gradient(90deg, rgb(145, 113, 145) 50%, transparent 50%); background-color: rgb(239, 239, 239);">
+                                        <div class="cir" style="position: relative; top: 2px; left: 2px; text-align: center; width: 38px; height: 38px; 
+                                             border-radius: 100%; background-color: rgb(255, 255, 255);">
+                                            <span class="perc" style="display: block; width: auto; height: 42px; line-height: 42px; vertical-align: middle; 
+                                                  font-size: 15px; font-weight: bold; color: rgb(145, 113, 145);">
+                                                <span>{{i.rank_index}}
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </span>
+                            <table class="table table-condensed">
+                                <tr>
+                                    <th colspan="4">Master of Technology</th>
+                                </tr>
+                                <tr>
+                                    <th>Duration:</th>
+                                    <td>2 Years</td>
+                                    <th>Fees:</th>
+                                    <td>{{i.fees| currency:"Rs "}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Institute Type:</th>
+                                    <td>{{i.institute_type}}</td>
+                                    <th>Reviews:</th>
+                                    <td>(4 Reviews)</td>
+                                </tr>
+                            </table>
+                            <ul class="data-staff" style="margin: 0px;">
+                                <li><a href><i class="icon-building"></i> Courses & Fees</a></li>
+                                <li><a href><i class="icon-briefcase"></i> Eligibility</a></li>
+                                <li><a href><i class="icon-envelope-alt"></i> Reviews</a></li>
+                                <li><a href><i class="icon-gamepad"></i> Gallery</a></li>
+                                <li><a href><i class="icon-phone"></i> Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!-- end col right-->
+    </div><!-- end row-->
+</div><!-- end container-->
+

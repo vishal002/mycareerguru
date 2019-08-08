@@ -1,0 +1,444 @@
+<div ng-include="'/static/sections/view/header.html'"></div>
+
+<div class="container" ng-controller="collageDetailCrt">
+    <div class="row">
+        <h1 class="span12">Courses & Colleges</h1>
+        <div class="span12">
+            <ul class="breadcrumb">
+                <li><a href="#/home">Home</a><span class="divider">/</span></li>
+                <li><a href="#/services/courses-&-colleges">Courses & Colleges</a><span class="divider">/</span></li>
+                <li><a href="#/services/courses-&-colleges/colleges-list">Colleges List</a><span class="divider">/</span></li>
+                <li class="active">Colleges</li>
+                <li class="pull-right  hidden-phone">
+                    <a href="" data-ng-hide="editMode" data-ng-click="editMode = true;" class="button_red_small">
+                        <span class="icon-edit"></span>Edit
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false;" class="button_red_small">
+                        <span class="icon-save"></span>Save
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false;" class="button_red_small">
+                        <span class="icon-remove"></span>Cancel
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="span12">
+            <div class="widget">
+                <div class="form-group">
+                    <form class="form-search form-inline" 
+                          style="background-color: #555;padding: 10px;">
+                        <input type="text" class="input-medium form-control" placeholder="Search /Filter Box for other colleges" style="width: 92%;">
+                        <button type="submit" class="button_medium" style="position:relative; top:2px;">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <section class="span12">
+            <div class="col-right" style="background-color: transparent; border: none; margin-bottom: 0px;">
+                <div class="main-img">
+
+                    <div class="imageContainer">
+                        <p class="lead" style="bottom: 15%;" >{{selectedCollege.name}} <br/>
+                            <small>{{selectedCollege.city}}, {{selectedCollege.state}}</small>
+                        </p>
+                        <div class="widget tags pull-right">
+                            <a href="#"><span class="icon-envelope"></span> View Email</a>
+                            <a href="#"><span class="icon-phone"></span> View Phone</a>
+                            <a href="#"><span class="icon-globe"></span> View Website</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="span11" ng-controller="headerCtrl">
+            <div class="fixed-header" >
+                <!--                <a href="" ng-click="gotoAnchor(x)" ng-repeat="x in menuHeader">
+                                    {{x}}
+                                </a>-->
+                <a href="">Info</a>
+                <a href="">Gallery</a>
+                <a href="">Courses</a>
+                <a href="">Rankings</a>
+                <a href="">Contact</a>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>About Institute</span></h3>
+                    <div data-ng-hide="editMode" dynamic="selectedCollege.about"></div>
+                    <div data-ng-show="editMode" >
+                        <textarea ui-tinymce="tinymceOptions" ng-model="selectedCollege.about"></textarea>
+                        <!--<wysiwyg-edit content="selectedCollege.about" config="editorConfig"></wysiwyg-edit>-->
+                    </div>
+                    <b>Establishment Year :</b> <div data-ng-hide="editMode" dynamic="selectedCollege.establishment"></div>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="selectedCollege.establishment" />
+                    </div>
+                    <b>Institute Type :</b> <div data-ng-hide="editMode" dynamic="selectedCollege.institute_type"></div>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="selectedCollege.institute_type" />
+                    </div>
+                    <b>Accredited By :</b> <div data-ng-hide="editMode" dynamic="selectedCollege.accreditted_by"></div>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="selectedCollege.accreditted_by" />
+                    </div>
+                    <b>Affiliated To :</b> <div data-ng-hide="editMode" dynamic="selectedCollege.affiliated_to"></div>
+                    <div data-ng-show="editMode" >
+                        <input class="input-large inputfield" type="text" data-ng-model="selectedCollege.affiliated_to" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>Eligibility & Admission process</span></h3>
+                    <div class="row">
+                        <div class="span9">
+                            <div data-ng-hide="editMode" dynamic="eligibility"></div>
+                        </div>
+                    </div>
+                    <div data-ng-show="editMode" >
+                        <wysiwyg-edit content="eligibility" config="editorConfig"></wysiwyg-edit>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3><span>PROSPECTS</span></h3>
+                    <b>Placements</b><br/>
+                    <div data-ng-hide="editMode" dynamic="selectedCollege.placements"></div>
+                    <b>Recruiters</b><br/>
+                    <div data-ng-hide="editMode">
+                        <data-owl-carousel class="owl-carousel" data-options="{navigation: false, pagination: true, rewindNav : false}">
+                            <div owl-carousel-item="" ng-repeat="item in ::items2" class="item">
+                                <div class="col-xs-6 col-md-3">
+                                    <a ng-href class="thumbnail">
+                                        <img style=" width: 120px; height: 60px; border: 1px solid #eee" src="{{item.img_path}}" alt="{{item.name}}">
+                                    </a>
+                                </div>
+                            </div>
+                        </data-owl-carousel>
+                    </div>
+                    <div data-ng-show="editMode" style="height: 300px; overflow: auto;">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Image</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- add image data -->
+                                <tr>
+                                    <td>
+                                        <input type="text" class="form-control" ng-model="recruiter_name" />
+                                    </td>
+                                    <td>
+                                        <input type="file" class="form-control" file-model="myFile" ng-model="img"> 
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-danger btn-sm" ng-click="addRecruiter(recruiter_name)" >Add</a>
+                                        <a class="btn btn-primary btn-sm">Cancel</a>
+                                    </td>
+                                </tr>
+                                <!-- list images -->
+                                <tr ng-repeat="item in ::items2">
+                                    <td>{{item.name}}</td>
+                                    <td>
+                                        <img style=" width: 120px; height: 60px; border: 1px solid #eee" src="{{item.img_path}}" alt="...">
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-danger btn-sm" ng-click="">Delete</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3 data-ng-hide="editMode"><span>Faculties</span></h3>
+                    <div class="row" >
+
+                        <div class="span2" ng-repeat="staff in staffList">
+                            <p><img src="/static/assets/img/teacher-small.jpg" class="img-rounded shadow" alt=""></p>
+                            <h5>{{staff}}<em>Management</em></h5>
+                            <!--<p>An utinam reprimique duo, putant mandamus cu qui. Autem possim his cu, quodsi nominavi fabellas ut sit, mea ea ullum epicurei.</p>
+                            <p><a href="staff.html" class="button_red_small" title="staff">Read more</a></p>
+                            --></div>
+
+                    </div>
+                    <!--<div data-ng-hide="editMode" dynamic="selectedCollege.faculty"></div>-->
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3 data-ng-hide="editMode"><span>Remarks</span></h3>
+                    <div data-ng-hide="editMode" dynamic=""></div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3 data-ng-hide="editMode"><span>Noted Alumni</span></h3>
+                    <div data-ng-hide="editMode" dynamic=""></div>
+                </div>
+            </div>
+
+
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3 data-ng-hide="editMode"><span>Infrastructure / Facilities</span></h3>
+                    <div data-ng-hide="editMode" dynamic="selectedCollege.facilities"></div>
+                </div>
+            </div>
+
+
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3 data-ng-hide="editMode"><span>Total Number of courses offered</span></h3>
+                    <div data-ng-hide="editMode" dynamic=""></div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3 data-ng-hide="editMode"><span>Courses & Branches</span></h3>
+                    <div data-ng-hide="editMode" dynamic="selectedCollege.institute_type"></div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3 data-ng-hide="editMode"><span>Number of Seats</span></h3>
+                    <div data-ng-hide="editMode" dynamic="selectedCollege.institute_type"></div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3 data-ng-hide="editMode"><span>Cutoffs</span></h3>
+                    <div data-ng-hide="editMode" dynamic="selectedCollege.institute_type"></div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3 data-ng-hide="editMode"><span>Full time/Part time - On campus or Online</span></h3>
+                    <div data-ng-hide="editMode" dynamic="selectedCollege.institute_type"></div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3 data-ng-hide="editMode"><span>Duration of the Course</span></h3>
+                    <div data-ng-hide="editMode" dynamic="selectedCollege.institute_type"></div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3 data-ng-hide="editMode"><span>Fees</span></h3>
+                    <div data-ng-hide="editMode" dynamic="selectedCollege.institute_type"></div>
+                </div>
+            </div>
+
+
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3 data-ng-hide="editMode"><span>Ranking & Ratings</span></h3>
+                    <div class="row">
+                        <div class="span9">
+                            <p>
+                                MCG Score is an exclusive rating assigned to institutes. The unique rating is determined on the basis of a gamut of factors like placement record, approvals, type of establishment, faculty, cut-offs, offline ranking and alumni rating that determine overall quality of an institute.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="span5">
+                            <div data-ng-hide="editMode">
+                                <round-progress
+                                    max="total"
+                                    current="count"
+                                    color="#45ccce"
+                                    bgcolor="#eaeaea"
+                                    radius="50"
+                                    stroke="10"
+                                    semi="true"
+                                    rounded="true"
+                                    clockwise="false"
+                                    responsive="false"
+                                    duration="800"
+                                    animation="easeInOutQuart"
+                                    animation-delay="0"></round-progress>
+                                <span style="margin-left: 30px;"><b>{{selectedCollege.rank_index}}</b></span>
+                            </div>
+                        </div>
+                        <div class="span4">
+                            <div data-ng-hide="editMode">
+                                <star-rating ng-model="rating2" readonly="isReadonly"></star-rating>
+                            </div>
+                            <label data-ng-show="editMode">
+                                <input type="checkbox" ng-model="isReadonly"/>
+                                Is Readonly
+                            </label>
+                            <div><strong>NAAC rating :</strong> {{rating2}}/5</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3 data-ng-hide="editMode"><span>Contact info</span></h3>
+                    <div data-ng-hide="editMode">
+                        <div class="row">
+                            <div class="span6">
+                                <div id="map_1"><iframe style="height:200px; width:100%; border:0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2482.336900888852!2d-0.18850530000000001!3d51.52538029999999!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x10d04b6d1a254faa!2sMaida+Vale+Library!5e0!3m2!1sit!2sit!4v1410245771307" frameborder="0"></iframe></div>
+                            </div>
+
+                            <div class="span3">
+                                <h4>Address</h4>
+                                <ul>
+                                    <li><i class="icon-home"></i> {{selectedCollege.full_address}}</li>
+                                    <li><i class="icon-phone"></i> Telephone: {{selectedCollege.phone}}</li>
+                                    <!--<li><i class="icon-phone-sign"></i> Fax: +61 (2) 9542 3599</li>-->
+                                    <li><i class="icon-globe"></i> Website: <a href>{{selectedCollege.website}}</a></li>
+                                    <li><i class="icon-envelope"></i> Email: <a href>{{selectedCollege.email}}</a></li>
+                                </ul>
+                            </div><!-- End Span6 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3 data-ng-hide="editMode"><span>Other Details</span></h3>
+                    <!--                    <div data-ng-show="editMode" >
+                                            <input class="input-large inputfield" type="text" 
+                                                   data-ng-model="mc.submenuHeader" />
+                                        </div>-->
+
+                    <div data-ng-hide="editMode" dynamic="selectedCollege.other_details"></div>
+                    <!--                    <div class="container-fluid" data-ng-show="editMode">
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <wysiwyg-edit content="mc.subMenuContent" config="editorConfig"></wysiwyg-edit>
+                                                </div>
+                                            </div>
+                                        </div>-->
+                </div>
+            </div>
+
+            <!--<div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3 data-ng-hide="editMode"><span>Location</span></h3>
+                    <div data-ng-hide="editMode" dynamic="selectedCollege.institute_type"></div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3 data-ng-hide="editMode"><span>Complete Address</span></h3>
+                    <div data-ng-hide="editMode" dynamic="selectedCollege.institute_type"></div>
+                </div>
+            </div>
+            <div>
+                <div class="col-right para-header margin-bot-10px">
+                    <h3 data-ng-hide="editMode"><span>Website</span></h3>
+                    <div data-ng-hide="editMode" dynamic="selectedCollege.institute_type"></div>
+                </div>
+            </div>-->
+
+
+
+
+
+
+
+            <!--            <div id="anchorInfo">
+                            <div class="col-right para-header margin-bot-10px" ng-repeat="mc in menuContentForInfo">
+                                <h3 data-ng-hide="editMode"><span>{{mc.submenuHeader}}</span></h3>
+                                <div data-ng-show="editMode" >
+                                    <input class="input-large inputfield" type="text" 
+                                           data-ng-model="mc.submenuHeader" />
+                                </div>
+                                <div data-ng-hide="editMode" dynamic="mc.subMenuContent"></div>
+                                <div class="container-fluid" data-ng-show="editMode">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <wysiwyg-edit content="mc.subMenuContent" config="editorConfig"></wysiwyg-edit>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="anchorGallery">
+                            <div class="col-right para-header margin-bot-10px" ng-repeat="mc in menuContentForGallery">
+                                <h3 data-ng-hide="editMode"><span>{{mc.submenuHeader}}</span></h3>
+                                <div data-ng-show="editMode" >
+                                    <input class="input-large inputfield" type="text" 
+                                           data-ng-model="mc.submenuHeader" />
+                                </div>
+                                <div data-ng-hide="editMode" dynamic="mc.subMenuContent"></div>
+                                <div class="container-fluid" data-ng-show="editMode">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <wysiwyg-edit content="mc.subMenuContent" config="editorConfig"></wysiwyg-edit>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="anchorCourses">
+                            <div class="col-right para-header margin-bot-10px" ng-repeat="mc in menuContentForCourses">
+                                <h3 data-ng-hide="editMode"><span>{{mc.submenuHeader}}</span></h3>
+                                <div data-ng-show="editMode" >
+                                    <input class="input-large inputfield" type="text" 
+                                           data-ng-model="mc.submenuHeader" />
+                                </div>
+                                <div data-ng-hide="editMode" dynamic="mc.subMenuContent"></div>
+                                <div class="container-fluid" data-ng-show="editMode">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <wysiwyg-edit content="mc.subMenuContent" config="editorConfig"></wysiwyg-edit>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="anchorRankings">
+                            <div class="col-right para-header margin-bot-10px" ng-repeat="mc in menuContentForRankings">
+                                <h3 data-ng-hide="editMode"><span>{{mc.submenuHeader}}</span></h3>
+                                <div data-ng-show="editMode" >
+                                    <input class="input-large inputfield" type="text" 
+                                           data-ng-model="mc.submenuHeader" />
+                                </div>
+                                <div data-ng-hide="editMode" dynamic="mc.subMenuContent"></div>
+                                <div class="container-fluid" data-ng-show="editMode">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <wysiwyg-edit content="mc.subMenuContent" config="editorConfig"></wysiwyg-edit>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="anchorContact">
+                            <div class="col-right para-header margin-bot-10px" ng-repeat="mc in menuContentForContact">
+                                <h3 data-ng-hide="editMode"><span>{{mc.submenuHeader}}</span></h3>
+                                <div data-ng-show="editMode" >
+                                    <input class="input-large inputfield" type="text" 
+                                           data-ng-model="mc.submenuHeader" />
+                                </div>
+                                <div data-ng-hide="editMode" dynamic="mc.subMenuContent"></div>
+                                <div class="container-fluid" data-ng-show="editMode">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <wysiwyg-edit content="mc.subMenuContent" config="editorConfig"></wysiwyg-edit>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+        </section>
+
+    </div>
+</div> <!-- end container-->

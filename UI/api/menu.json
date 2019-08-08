@@ -1,0 +1,22 @@
+[{
+        "menu_name": "Career Planning",
+        "mo_menu_name": "Career Planning"
+    },
+    {
+        "menu_name": "Colleges",
+        "mo_menu_name": "Find College of your choice",
+        "major_fields": ["Architecture ", "Arts & Humanities",
+            "Business & Management", "Commerce", "Computers ", "Defence ", "Engineering ", "Fashion & Design",
+            "Health Science ­ Medicine", "Hotel Management", "Law ", "Mass Media, Film & Communication",
+            "Pharmacy ", "Science ", "Teaching ", "Travel & Tourism", "UPSC ­ Civil Services", "Unconventional Courses"]
+    },
+    {
+        "menu_name": "Courses",
+        "mo_menu_name": "Find Course of your choice",
+        "major_fields": ["Architecture ", "Arts & Humanities",
+            "Business & Management", "Commerce", "Computers ", "Defence ", "Engineering ", "Fashion & Design",
+            "Health Science ­ Medicine", "Hotel Management", "Law ", "Mass Media, Film & Communication",
+            "Pharmacy ", "Science ", "Teaching ", "Travel & Tourism", "UPSC ­ Civil Services", "Unconventional Courses"]
+    }
+
+]

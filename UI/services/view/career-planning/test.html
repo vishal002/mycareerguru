@@ -1,0 +1,54 @@
+<div ng-include="'/static/sections/view/header.html'"></div>
+
+<div class="container margin-top-30px" ng-controller="careerPlanningCrt">
+    <div class="row" ng-init="countdown('countdown', 20, 0 )">
+        <h2 class="span12">Career Planning</h2>
+        <div class="span12">
+            <ul class="breadcrumb">
+                <li><a href="#/home">Home</a><span class="divider">/</span></li>
+                <li><a href="#/services/career-planning">Discover what I am good at?</a><span class="divider">/</span></li>
+                <li class="active">Online Test</li>
+                <li class="pull-right  hidden-phone">
+                    <a href="" data-ng-hide="editMode" data-ng-click="editMode = true;" class="button_red_small">
+                        <span class="icon-edit"></span>Edit
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false;" class="button_red_small">
+                        <span class="icon-save"></span>Save
+                    </a>
+                    <a href="" data-ng-show="editMode" data-ng-click="editMode = false;" class="button_red_small">
+                        <span class="icon-remove"></span>Cancel
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <section class="span2 ">
+        </section>
+
+        <section class="span8  ">
+            <div class="col-right">
+                <div>
+                    <div class="pull-right">
+                        <b><span class="icon-time"></span><span  id="countdown"></span></b>
+                    </div>
+                    <div >
+                        Question: {{limit + 1}} &nbsp; <div dynamic="questionList[limit].question"></div>
+                    </div>
+                    <ul>
+                        <li ng-repeat="(opt,val) in questionList[limit].options">
+                            <input type="radio" name="option" ng-value="val" ng-click="selectOption(val, questionList[limit].question_id)" /> &nbsp; <b>({{letter($index)}})</b> <span>{{val}}</span>
+                        </li>
+                    </ul>
+                </div>
+                <br/>
+                <!--<a class="btn btn-info" ng-if="limit > 0" ng-click="previous(limit)">Previous</a>-->
+                <a class="btn btn-info" ng-click="next(limit)">Next</a>
+                
+                <a class="btn btn-success" ng-click="submitTest(); countdown('countdown', 0, 0 )">Submit</a>
+            </div><!-- end col right-->
+        </section>
+
+        <section class="span2 ">
+        </section>
+    </div><!-- end row-->
+</div> <!-- end container-->

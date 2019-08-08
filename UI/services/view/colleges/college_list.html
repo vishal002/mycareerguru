@@ -1,0 +1,141 @@
+<div ng-include="'/static/sections/view/header.html'"></div>
+
+<div class="container margin-top-30px" ng-controller="collageListCrt" cg-busy="myPromise">
+    <div class="row">
+        <!--<h1 class=" span12">Colleges Search</h1>-->
+        <h2 class="span12">Colleges Search</h2>
+        <div class="span12">
+            <ul class="breadcrumb">
+                <li class="hidden-phone"><a href="#/home">Home</a><span class="divider">/</span></li>
+                <li class="hidden-phone active">College list <span class="divider">/</span> {{param_name}}</li>
+                <li class="hidden-phone active">{{param_name}}</li>
+            </ul>
+        </div>
+
+        <section class="span12">
+            <div class="col-right" style="background-color: transparent; 
+                 border: none; margin-bottom: 0px; padding: 0px;">
+                <div class="main-img">
+                    <div class="imageContainer">
+                        <p class="lead hidden-phone" style="bottom: 18%; left: 20%; width: 60%; padding: 15px 20px 0px; " >
+                            <select class="form-control" ng-model="filterType" style="width: 50%; height: 45px;" 
+                                    ng-init="filterType = ''" ng-change="search[filterType] == '' ">
+                                <option value="" selected>Select The Search Type</option>
+                                <!--<option value="majorField">Search College by Major Field</option>-->
+                                <option value="state">Search College by State</option>
+                                <option value="exam">Search College by Exam</option>
+                                <option value="course">Search College by Course</option>
+                            </select>
+                            <input type="text" class="form-control" style="width: 47%; height: 30px;"
+                                   placeholder="Type College Name" ng-model="search[filterType]" list="majorfieldsupport"/>
+                            
+                            <datalist ng-if="filterType == 'majorField' " id='majorfieldsupport' >
+                                <option ng-repeat="mf in majorFieldsList" value="{{mf.name}}"></option>
+                            </datalist>
+
+                        </p>
+                        <!-- mobile -->
+                        <p class="lead hidden-desktop hidden-tablet" style="bottom: 0%; left: 5%; width: 80%; padding: 15px 20px 0px; " >
+                            <select class="form-control" style="width: 100%; height: 45px;">
+                                 <option value="" selected>Select The Search Type</option>
+                                <!--<option value="majorField">Search College by Major Field</option>-->
+                                <option value="state">Search College by State</option>
+                                <option value="exam">Search College by Exam</option>
+                                <option value="course">Search College by Course</option>
+                            </select>
+                            <input type="text" class="form-control" style="width: 96%; height: 30px;"
+                                   placeholder="Type College Name" ng-model="search[filterType]" list="majorfieldsupport" />
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="span12">
+            <div class="col-right para-header">
+                <!--Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing-->
+                <!--<div data-ng-hide="editMode" dynamic="eligibility"></div>-->
+                <div style="text-align: center;"><b>{{msg}}</b></div>
+                <div data-ng-show="editMode" >
+                    <wysiwyg-edit content="eligibility" config="editorConfig"></wysiwyg-edit>
+                </div>
+                <br/>
+                <br/>
+
+                <div class="row">
+                    <div class="span3" style="padding-bottom: 20px; width: 250px !important;" 
+                         ng-repeat="data in dataList| filter: search ">
+                        <div class="thumbnail" style="border-radius: 25px;">
+                            <img style="width: 70px; height: 70px;" ng-src="{{data.logo_img}}" />
+                            <span class="pull-right">
+                                <div style="width: 42px; height: 42px;">
+                                    <div class="ab" style="position: relative; text-align: center; width: 42px; height: 42px; border-radius: 100%; 
+                                         background-image: linear-gradient(345deg, transparent 50%, rgb(145, 113, 145) 50%), 
+                                         linear-gradient(90deg, rgb(145, 113, 145) 50%, transparent 50%); background-color: rgb(239, 239, 239);">
+                                        <div class="cir" style="position: relative; top: 2px; left: 2px; text-align: center; width: 38px; height: 38px; 
+                                             border-radius: 100%; background-color: rgb(255, 255, 255);">
+                                            <span class="perc" style="display: block; width: auto; height: 42px; line-height: 42px; vertical-align: middle; 
+                                                  font-size: 15px; font-weight: bold; color: rgb(145, 113, 145);">
+                                                <span>{{data.rank_index|| '6/10'}}
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </span>
+                            <div class="caption" style="text-align: center;">
+                                <a href="#/services/colleges/{{data.name| spaceless}}/{{data.id}}"><h5 title="{{data.name}}">{{ data.name | limitTo: 20 }}{{data.name.length > 20 ? '...' : ''}}</h5></a>
+                                <div style="font-size: 10px;">
+                                    {{data.city}}, {{data.state| limitTo: 15 }}{{data.state.length > 15 ? '...' : ''}}
+                                </div>
+                                <table class="table table-bordered" style="margin-bottom: 15px; font-size: 10px;">
+                                    <tr>
+                                        <td style="width: 50%;">
+                                            Branch<br/>
+                                            {{data.branch}}
+                                        </td>
+                                        <td>
+                                            Duration<br/>
+                                            {{data.duaration}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 50%;">
+                                            Institute Type<br/>
+                                            {{data.institute_type}}
+                                        </td>
+                                        <td>
+                                            Fees<br/>
+                                            {{data.fees}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 50%;">
+                                            Avg. Placement<br/>
+                                            {{data.plac_avg}}
+                                        </td>
+                                        <td>
+                                            Max. Placement<br/>
+                                            {{data.plac_higest}}
+                                        </td>
+                                    </tr>
+                                </table>
+                                <p style="margin: 0 0 10px 0;">
+                                    <a href="#/services/colleges/{{data.name| spaceless}}" class="btn btn-default btn-sm" role="button">
+                                        <i class="icon icon-envelope"></i></a>
+                                    <a href="#/services/colleges/{{data.name| spaceless}}" class="btn btn-default btn-sm" role="button">
+                                        <i class="icon icon-mobile-phone"></i></a>
+
+                                    <a href="#/services/colleges/{{data.name| spaceless}}/{{data.id}}"
+                                       ng-click="getCollageInDetail(data.id)" class="btn btn-primary" role="button">
+                                        Apply Now</a> 
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div><!-- end row-->
+</div><!-- end container-->
+
